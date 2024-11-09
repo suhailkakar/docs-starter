@@ -15,31 +15,85 @@ TAC EVM is a standard EVM chain based on CosmosSDK + Ethermint. These are the ch
   - Blockexplorer: https://turin.explorer.tac.build
   - Faucet (for gas fees): https://turin.faucet.tac.build
   - ChainId: 2390
-  - MaxGasPerBlock: XXXX
   - FeeSchema: EIP-1559
 
 
 ## Environment Setup
-To be able to deploy solidity code on TAC you will need to create and configure an EVM wallet like Rabby and then install and configure an EVM IDE like Foundry or HardHat
+To be able to deploy solidity code on TAC you will need to create and configure an EVM wallet like Rabby and then install and configure an EVM toolkit like Foundry or HardHat. 
 
-TODO
+In this guide, we will use Foundry as our EVM toolkit. Foundry is a smart contract development toolkit for EVM chains. Start by installing Foundry with the following command:
+
+```bash
+curl -L https://foundry.paradigm.xyz | bash
+``` 
+
+Next, run the following commands to create a new Foundry project:
+
+```bash
+forge init my-tac-project
+cd my-tac-project
+```
+
+The folder structure should look like this:
+
+```bash
+├── lib
+├── script
+├── src
+└── test
+foundry.toml
+```
+
+In the `src` folder, create a new Solidity file, for example `MyContract.sol`:
+
+```bash
+touch src/MyContract.sol
+```
+
+And write your smart contract code in `MyContract.sol`. To compile the contract, run the following command:
+
+```bash
+forge build
+```
 
 ## Get TAC Testnet Gastokens
 
 You will need to load some TAC Testnet tokens to pay TAC gasfees to deploy a solidity contract on TAC EVM.
 
-TODO
+To get some testnet tokens, please visit the [Turin Faucet](https://turin.faucet.tac.build/)
 
 
 ## Deploying Solidity Code
 
-Example - TODO
+To deploy your contract on to the TAC network, run the following forge create command.
+
+```
+forge create --rpc-url TAC_RPC_URL \
+--private-key YOUR_PRIVATE_KEY \
+src/MyContract.sol:MyContract
+```
+
+<Warning>
+Make sure to replace `TAC_RPC_URL` with the actual RPC URL of the TAC network and `YOUR_PRIVATE_KEY` with your actual private key.
+</Warning>
+
+Once the transaction is confirmed, you will see the contract address in the terminal. You can verify the contract on the [Turin Block Explorer](https://turin.explorer.tac.build/)
+
+```
+No files changed, and compilation skipped
+Deployer: 0x....
+Deployed to: 0x....
+Transaction hash: 0x....
+```
+
+
+
 
 ## Next Steps
 
 Now that you've deployed solidity code on TAC, you need to build/modify a frontend or a Telegram Mini APP (TMA) that will interact with the solidity code you just deployed. There are multiple choices for the Proxy App in this case:
 
-- Option 1: using the single TAC ProxyApp on TON to rely users' transactions on TAC EVM extension network. In this case, you can use the [TAC Sdk](/get-started/quickstart-frontend) to easily implement the frontend with TON Connect.
+- Option 1: using the single TAC ProxyApp on TON to rely users' transactions on TAC EVM extension network. In this case, you can use the [TAC SDK](/get-started/quickstart-frontend) to easily implement the frontend with TON Connect.
 - Option 2: you can build your own TAC [Proxy App](/core-concepts/proxy-apps) on TON and build a frontend that will prepare and execute transacitons for your proxy app.
 
 Note: TAC SDK (Option 1) is reccomended if you don't know how to write secure code in funC (TON Native language). Opt for a custom Proxy App only if you need specific business logic to be executed on TON side before triggering Solidity code deployed on TAC EVM.

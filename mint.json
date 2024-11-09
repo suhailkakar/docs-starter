@@ -5,7 +5,7 @@
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
   },
-  "favicon": "./favicon.svg",
+  "favicon": "./favicon.jpg",
   "colors": {
     "primary": "#91029B",
     "light": "#91029B",
@@ -37,14 +37,14 @@
     }
   ],
   "topbarCtaButton": {
-    "name": "Discord",
-    "url": "https://discord.gg/tac-abc-xyz"
+    "name": "Telegram",
+    "url": "https://t.me/TACbuild"
   },
   "anchors": [
     {
-      "name": "Discord",
-      "icon": "discord",
-      "url": "https://discord.gg/tac-abc-xyz"
+      "name": "Telegram",
+      "icon": "telegram",
+      "url": "https://t.me/TACbuild"
     },
     {
       "name": "X (Twitter)",
@@ -54,7 +54,7 @@
     {
       "name": "Github",
       "icon": "github",
-      "url": "https://github.com/tac"
+      "url": "https://github.com/TacBuild/"
     }
   ],
   "navigation": [
@@ -70,7 +70,6 @@
       "group": "Core Concepts",
       "pages": [
         "core-concepts/what-is-tac",
-        "core-concepts/deploying-solidity",
         "core-concepts/proxy-apps",
         "core-concepts/cross-chain-messaging",
         "core-concepts/sequencer-network"
@@ -110,8 +109,7 @@
   ],
   "theme": "prism",
   "footerSocials": {
-    "x": "https://x.com/tacBuild",
-    "github": "https://github.com/tac",
-    "linkedin": "https://linkedin.com/company/tac"
+    "x": "https://x.com/TacBuild",
+    "github": "https://github.com/TacBuild"
   }
 }
