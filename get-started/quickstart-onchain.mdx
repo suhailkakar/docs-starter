@@ -1,8 +1,7 @@
 ---
 title: Onchain components Quick Start
-description: 'Get started with TAC development in minutes'
+description: "Get started with TAC development in minutes"
 ---
-
 
 This guide will help you deploying your Solidity code on the TAC EVM. You can then invoke this code on TON side with the TAC SDK. Here you will learn on how to connect directly to the TAC EVM with an EVM wallet and deploy your solidity code
 
@@ -11,21 +10,21 @@ This guide will help you deploying your Solidity code on the TAC EVM. You can th
 TAC EVM is a standard EVM chain based on CosmosSDK + Ethermint. These are the chain parameters for TAC:
 
 - Turin (Testnet):
-  - RPC endpoint: https://turin.rpc.tac.build
-  - Blockexplorer: https://turin.explorer.tac.build
-  - Faucet (for gas fees): https://turin.faucet.tac.build
-  - ChainId: 2390
+  - RPC endpoint: [Coming Soon - later this week]
+  - Blockexplorer: [Coming Soon - later this week]
+  - Faucet (for gas fees): [Coming Soon - later this week]
+  - ChainId: [Coming Soon - later this week]
   - FeeSchema: EIP-1559
 
-
 ## Environment Setup
-To be able to deploy solidity code on TAC you will need to create and configure an EVM wallet like Rabby and then install and configure an EVM toolkit like Foundry or HardHat. 
+
+To be able to deploy solidity code on TAC you will need to create and configure an EVM wallet like Rabby and then install and configure an EVM toolkit like Foundry or HardHat.
 
 In this guide, we will use Foundry as our EVM toolkit. Foundry is a smart contract development toolkit for EVM chains. Start by installing Foundry with the following command:
 
 ```bash
 curl -L https://foundry.paradigm.xyz | bash
-``` 
+```
 
 Next, run the following commands to create a new Foundry project:
 
@@ -60,8 +59,7 @@ forge build
 
 You will need to load some TAC Testnet tokens to pay TAC gasfees to deploy a solidity contract on TAC EVM.
 
-To get some testnet tokens, please visit the [Turin Faucet](https://turin.faucet.tac.build/)
-
+To get some testnet tokens, please visit the Turin Faucet (Coming Soon - later this week)
 
 ## Deploying Solidity Code
 
@@ -74,10 +72,11 @@ src/MyContract.sol:MyContract
 ```
 
 <Warning>
-Make sure to replace `TAC_RPC_URL` with the actual RPC URL of the TAC network and `YOUR_PRIVATE_KEY` with your actual private key.
+  Make sure to replace `TAC_RPC_URL` with the actual RPC URL of the TAC network
+  and `YOUR_PRIVATE_KEY` with your actual private key.
 </Warning>
 
-Once the transaction is confirmed, you will see the contract address in the terminal. You can verify the contract on the [Turin Block Explorer](https://turin.explorer.tac.build/)
+Once the transaction is confirmed, you will see the contract address in the terminal. You can verify the contract on the Turin Block Explorer(Coming Soon - later this week)
 
 ```
 No files changed, and compilation skipped
@@ -85,9 +84,6 @@ Deployer: 0x....
 Deployed to: 0x....
 Transaction hash: 0x....
 ```
-
-
-
 
 ## Next Steps
 
