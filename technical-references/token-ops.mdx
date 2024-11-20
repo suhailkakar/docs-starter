@@ -1,43 +1,42 @@
 
-TAC Token OPS
+# TAC Token OPS
 
 The document describes the operations and processes involved in handling TAC tokens, which are designed to work with various types of tokens, including those from different blockchain environments. Here is a translation and a brief review of the key points:
 
 ---
 
-**TAC Token Operations**
+## TAC Token Operations
 
 TAC allows for the handling of any type of tokens. Tokens are divided into two types on each side: original or wrapped by our CCL smart contract (the main Cross Chain Layer smart contract).
 
 For example, if a token originates from an EVM-compatible blockchain, when we bridge it, the token is locked on the EVM side and automatically deployed and minted on the TVM side.
 
-**Synchronization**
+### Synchronization
 
 Synchronization is automatic: upon the first attempt to execute any transaction with tokens, the sequencer will automatically create the necessary tokens if they are absent (the sequencer creates a token deployment operation, and at the blockchain level, it checks whether such a token exists).
 
 **Setting Correspondence for a Token from the TON Side (TON -> TAC)**
 
-A user (app) initiates a cross-chain message transaction of a specific type on the cross-chain contract, indicating the token address in the TON network. After executing this transaction, a log message is created, which is indexed by sequencers.
+- A user (app) initiates a cross-chain message transaction of a specific type on the cross-chain contract, indicating the token address in the TON network. After executing this transaction, a log message is created, which is indexed by sequencers.
 
-After indexing, sequencers verify that the token is indeed created on TON, retrieve its metadata, and form a message to be embedded in a Merkle tree for deploying a new token via the CrossChainLayerTokenFactory.
+- After indexing, sequencers verify that the token is indeed created on TON, retrieve its metadata, and form a message to be embedded in a Merkle tree for deploying a new token via the CrossChainLayerTokenFactory.
 
-After uploading the proof to TAC, the sequencer executes the message to deploy the new token. Once the token is deployed and its address is obtained, it is set in the correspondence dictionary as TONTokenAddress:Layer2TokenAddress.
+- After uploading the proof to TAC, the sequencer executes the message to deploy the new token. Once the token is deployed and its address is obtained, it is set in the correspondence dictionary as TONTokenAddress:Layer2TokenAddress.
+
 
 **Setting Correspondence for a Token from the TAC Side (TAC -> TON)**
 
-A user (app) initiates a cross-chain operation of a specific type on the cross-chain contract, indicating the token address in the TAC network. After executing this transaction, an event is created, which sequencers listen for.
+- A user (app) initiates a cross-chain operation of a specific type on the cross-chain contract, indicating the token address in the TAC network. After executing this transaction, an event is created, which sequencers listen for.
 
-Sequencers verify that the token is indeed created on the TAC side, retrieve its metadata, and form a Merkle tree.
+- Sequencers verify that the token is indeed created on the TAC side, retrieve its metadata, and form a Merkle tree.
 
-After loading the proof, the sequencer executes a Mint operation, attaching StateInit to the message to automatically deploy the token if it is absent.
+- After loading the proof, the sequencer executes a Mint operation, attaching StateInit to the message to automatically deploy the token if it is absent.
 
 **Note:**
 
-If a token originally comes from TVM, its paired address for the wrapped token is calculated based on the token's metadata from TON.
-
-If a token originally comes from EVM, its paired token address is also calculated based on the token's metadata from EVM.
-
-This allows us to pre-calculate paired token addresses even if they do not yet exist in another network.
+> If a token originally comes from TVM, its paired address for the wrapped token is calculated based on the token's metadata from TON.
+ If a token originally comes from EVM, its paired token address is also calculated based on the token's metadata from EVM.
+ This allows us to pre-calculate paired token addresses even if they do not yet exist in another network.
 
 **Cases**
 
@@ -59,27 +58,27 @@ All of this will occur within a single transaction.
 
 **LP Provisioning (using Uniswap v2 as an example)**
 
-For Uniswap v2, two transactions (two tokens) are created with transfers/burning of TVM tokens TAC.
+- For Uniswap v2, two transactions (two tokens) are created with transfers/burning of TVM tokens TAC.
 
-Then the sequencer collects them and creates a single Merkle msg for them, which will contain the deployment of two tokens and their transfer to Uniswap with a specific method and parameters for adding liquidity. If liquidity is added for the first time, a new pool will be created.
+- Then the sequencer collects them and creates a single Merkle msg for them, which will contain the deployment of two tokens and their transfer to Uniswap with a specific method and parameters for adding liquidity. If liquidity is added for the first time, a new pool will be created.
 
-Then Uniswap deploys a new LP token, which is recorded in the field with locked tokens. It then creates events for unlocking and burning tokens (if any).
+- Then Uniswap deploys a new LP token, which is recorded in the field with locked tokens. It then creates events for unlocking and burning tokens (if any).
 
-The sequencer collects these events. It sees that a new token is locked in EVM and creates a transaction to deploy and mint a new token in one transaction.
+- The sequencer collects these events. It sees that a new token is locked in EVM and creates a transaction to deploy and mint a new token in one transaction.
 
-A new token appears on TON, and liquidity is transferred.
+- A new token appears on TON, and liquidity is transferred.
 
 **Swap TON - X Token (EVM)**
 
-On TVM, the user creates a transaction to transfer TON, specifying the necessary data for EVM.
+- On TVM, the user creates a transaction to transfer TON, specifying the necessary data for EVM.
 
-Then the sequencer collects data from such a transaction and creates a Merkle Msg. It includes a transaction to deploy wrapped TON (for the swap, the TON-X Token pool must already exist).
+- Then the sequencer collects data from such a transaction and creates a Merkle Msg. It includes a transaction to deploy wrapped TON (for the swap, the TON-X Token pool must already exist).
 
-Then the pool on DEX issues token X in exchange for TON (lock event on EVM).
+- Then the pool on DEX issues token X in exchange for TON (lock event on EVM).
 
-The sequencer collects such an event, creates a Merkle Msg with the deployment and minting of token X on TVM.
+- The sequencer collects such an event, creates a Merkle Msg with the deployment and minting of token X on TVM.
 
-The user receives the TVM version of token X.
+- The user receives the TVM version of token X.
 
 ---
 
