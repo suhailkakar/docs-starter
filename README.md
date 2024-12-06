@@ -4,4 +4,4 @@ Live at https://docs.tac.build
 
 https://tac.build
 
-Version 0.1
+Version 0.2
