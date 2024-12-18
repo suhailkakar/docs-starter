@@ -68,7 +68,7 @@
       ]
     },
     {
-      "group": "Contribue",
+      "group": "Contribute",
       "pages": ["evm/introduction-1"]
     },
 
@@ -104,7 +104,20 @@
         "developers/guides/token",
         "developers/guides/uniswap-v2"
       ]
+    },
+
+    {
+      "group": "Partner Integrations",
+      "pages": [
+        {
+          "group": "Oracles",
+          "pages": [
+            "partner-integrations/oracles/stork"
+          ]
+        }
+      ]
     }
+
   ],
   "theme": "prism",
   "footerSocials": {
