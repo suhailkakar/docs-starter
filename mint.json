@@ -21,17 +21,21 @@
       "url": "mailto:info@tac.build"
     }
   ],
-
+  "tabs": [
+    {
+      "name": "Developers",
+      "url": "developers"
+    },
+    {
+      "name": "Validators",
+      "url": "validators"
+    }
+  ],
   "topbarCtaButton": {
     "name": "Telegram",
     "url": "https://t.me/TACbuild"
   },
   "anchors": [
-    {
-      "name": "Developers",
-      "icon": "code",
-      "url": "developers"
-    },
     {
       "name": "Telegram",
       "icon": "telegram",
@@ -53,7 +57,6 @@
       "group": "Get Started",
       "pages": [
         "get-started/introduction",
-        "get-started/quickstart",
         "get-started/architecture",
         "get-started/token-ops"
       ]
@@ -68,12 +71,19 @@
       ]
     },
     {
-      "group": "Contribute",
-      "pages": ["evm/introduction-1"]
+      "group": "References",
+      "pages": [
+        "references/contract-addresses",
+        "references/example-applications",
+        "references/awesome-tac"
+      ]
     },
-
     {
-      "group": "SDK",
+      "group": "Contribute",
+      "pages": ["core-concepts/contribute"]
+    },
+    {
+      "group": "",
       "pages": [
         "developers/sdk/introduction",
         "developers/sdk/quickstart",
@@ -105,19 +115,15 @@
         "developers/guides/uniswap-v2"
       ]
     },
-
     {
       "group": "Partner Integrations",
       "pages": [
         {
           "group": "Oracles",
-          "pages": [
-            "partner-integrations/oracles/stork"
-          ]
+          "pages": ["developers/partner-integrations/oracles/stork"]
         }
       ]
     }
-
   ],
   "theme": "prism",
   "footerSocials": {
