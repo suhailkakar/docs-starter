@@ -87,7 +87,7 @@
       "pages": [
         "developers/sdk/introduction",
         {
-          "group": "Quick Start",
+          "group": "Quickstart",
           "pages": [
             "developers/sdk/quickstart-frontend",
             "developers/sdk/quickstart-onchain"
