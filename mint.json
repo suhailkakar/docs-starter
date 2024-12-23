@@ -130,6 +130,10 @@
           "pages": ["developers/partner-integrations/oracles/stork"]
         }
       ]
+    },
+    {
+      "group": "",
+      "pages": ["validators/join-network"]
     }
   ],
   "theme": "prism",
