@@ -86,7 +86,13 @@
       "group": "",
       "pages": [
         "developers/sdk/introduction",
-        "developers/sdk/quickstart",
+        {
+          "group": "Quick Start",
+          "pages": [
+            "developers/sdk/quickstart-frontend",
+            "developers/sdk/quickstart-onchain"
+          ]
+        },
         {
           "group": "Core Concepts",
           "pages": [
@@ -103,12 +109,13 @@
           ]
         },
         "developers/sdk/api-reference",
-        "developers/sdk/types"
+        "developers/sdk/types",
+        "developers/sdk/changelog"
       ]
     },
 
     {
-      "group": "Integration Guides",
+      "group": "Guides",
       "pages": [
         "developers/guides/hello-world",
         "developers/guides/token",

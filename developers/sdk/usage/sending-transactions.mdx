@@ -3,6 +3,11 @@ title: Sending Transactions
 description: "Learn how to send transactions using TAC SDK"
 ---
 
+<Info>
+  For more up-to-date information, please refer to the [TAC SDK GitHub
+  repository](https://github.com/TacBuild/tac-sdk).
+</Info>
+
 The TAC-SDK provides two approaches for sending transactions:
 
 - Using TonConnect
@@ -79,7 +84,7 @@ const jettons = [
 3. Send Transaction
 
 ```typescript
-const result = await tacSdk.sendCrossChainJettonTransaction(
+const result = await tacSdk.sendCrossChainTransaction(
   jettons,
   evmProxyMsg,
   sender
@@ -117,7 +122,7 @@ const jettons = [
 ];
 
 // Send transaction
-const { transactionLinker } = await tacSdk.sendCrossChainJettonTransaction(
+const { transactionLinker } = await tacSdk.sendCrossChainTransaction(
   jettons,
   evmProxyMsg,
   sender
