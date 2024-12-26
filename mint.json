@@ -93,7 +93,8 @@
           ]
         },
         "developers/sdk/api-reference",
-        "developers/sdk/types"
+        "developers/sdk/types",
+        "developers/sdk/changelog"
       ]
     },
 
@@ -111,13 +112,10 @@
       "pages": [
         {
           "group": "Oracles",
-          "pages": [
-            "partner-integrations/oracles/stork"
-          ]
+          "pages": ["partner-integrations/oracles/stork"]
         }
       ]
     }
-
   ],
   "theme": "prism",
   "footerSocials": {
