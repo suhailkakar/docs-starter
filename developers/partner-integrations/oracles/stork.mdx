@@ -1,11 +1,11 @@
 ---
 title: Stork
-description: 'Ultra low latency data on-chain'
+description: "Ultra low latency data on-chain"
 ---
 
 ## What is Stork?
 
-Stork is an oracle protocol that enables sub-second data feeds on-chain. The core technical principles of Stork are: 
+Stork is an oracle protocol that enables sub-second data feeds on-chain. The core technical principles of Stork are:
 
 - **Modularity**
 - **Low Latency**
@@ -17,9 +17,9 @@ Stork's full documentation is available [here](https://docs.stork.network).
 
 ## How does it work?
 
-Stork is implemented as a pull oracle. Stork continuously aggregates data from our decentralized publisher network, verifies that data, audits it, then makes that data available. This data can the be pulled onto TAC via the Stork contract, and then used by any EVM application on TAC. For more information, please refer to [How It Works](https://docs.stork.network/introduction/how-it-works).
+Stork is implemented as a pull oracle. Stork continuously aggregates data from our decentralized publisher network, verifies that data, audits it, then makes that data available. This data can then be pulled onto TAC via the Stork contract, and then used by any EVM application on TAC. For more information, please refer to [How It Works](https://docs.stork.network/introduction/how-it-works).
 
-## Quick Start
+## Quickstart
 
 Using Stork on TAC requires two primary steps:
 
@@ -28,7 +28,7 @@ Using Stork on TAC requires two primary steps:
 
 ### Pulling Data from Stork
 
-The easiest way to pull data from Stork and make it available on-chain is to use the Stork Chain Pusher and configure it to push any relevant assets to TAC. The Stork Chain Pusher will automatically listen to the Stork aggregator websocket, and push that data the Stork contract on TAC whenever certain conditions are met. The following conditions are supported and can be combined:
+The easiest way to pull data from Stork and make it available on-chain is to use the Stork Chain Pusher and configure it to push any relevant assets to TAC. The Stork Chain Pusher will automatically listen to the Stork aggregator websocket, and push that data to the Stork contract on TAC whenever certain conditions are met. The following conditions are supported and can be combined:
 
 1. **Percentage Change**: Push data when the price changes by a certain percentage.
 2. **Time Interval**: Push data at a regular interval.
@@ -41,7 +41,7 @@ Reading from the Stork contract is as simple as calling its `getTemporalNumericV
 
 For more information on how to read data from the Stork contract, please refer to the [EVM Contract API](https://docs.stork.network/api-reference/contract-apis/evm).
 
-## Asset IDs 
+## Asset IDs
 
 Stork supports a wide range of assets and asset classes. For a full list of supported assets and their encoded asset IDs, please refer to [Supported Assets](https://docs.stork.network/resources/asset-id-registry).
 
@@ -50,4 +50,4 @@ Stork supports a wide range of assets and asset classes. For a full list of supp
 Stork is deployed on the following TAC chains:
 | Chain | Address |
 |-------|---------|
-| TAC Turin | 0xacC0a0cF13571d30B4b8637996F5D6D774d4fd62 |
+| TAC Turin | `0xacC0a0cF13571d30B4b8637996F5D6D774d4fd62` |

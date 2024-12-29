@@ -3,160 +3,186 @@ title: API Reference
 description: API Reference for TAC-SDK
 ---
 
-## TAC SDK Class
+<Info>
+  For more up-to-date information, please refer to the [TAC SDK GitHub
+  repository](https://github.com/TacBuild/tac-sdk).
+</Info>
 
-### Constructor
+## Constructor
 
 ```typescript
 constructor(params: TacSDKTonClientParams)
 ```
 
-Parameters:
+**Parameters:**
 
-- tonClientParameters?: TonClientParameters - Optional custom TON client configuration
-- network?: Network - Network selection (Testnet/Mainnet), defaults to Testnet
-- delay?: number - Delay in seconds for TON client requests, defaults to 0
+- `params`: Configuration object of type `TacSDKTonClientParams`
+  - `network`: Network enum (`Network.Testnet` or `Network.Mainnet`)
+  - `tonClientParameters?`: Optional TON client parameters
+  - `delay?`: Optional delay in seconds (default: 3)
+  - `settingsAddress?`: Optional TAC protocol contract address
 
-Example:
+Constructor include the following methods:
 
-```typescript
-import { TacSdk, Network } from "tac-sdk";
-
-const sdk = new TacSdk({
-  network: Network.Testnet,
-  delay: 3,
-});
-```
-
-### Core Method: sendCrossChainJettonTransaction
+### init()
 
 ```typescript
-async sendCrossChainJettonTransaction(
-jettons: JettonOperationGeneralData[],
-evmProxyMsg: EvmProxyMsg,
-sender: SenderAbstraction
-): Promise<{ transactionLinker: TransactionLinker }>
+async init(): Promise<void>
 ```
 
-Parameters:
+Initializes the SDK instance.
 
-1. jettons: Array of JettonOperationGeneralData objects
-
-   - fromAddress: string - Address of the sender
-   - tokenAddress: string - Address of the Jetton token
-   - jettonAmount: number - Amount of Jettons to transfer
-   - tonAmount?: number - Optional additional TON amount
-
-2. evmProxyMsg: EvmProxyMsg object
-
-   - evmTargetAddress: string - Target address on EVM network
-   - methodName: string - Method to execute on target contract
-   - encodedParameters: string - Encoded parameters for EVM method
-
-3. sender: SenderAbstraction
-   Either TonConnectSender or RawSender instance
-
-Returns:
-Promise resolving to an object containing transactionLinker for tracking
-
-## Transaction Functions
-
-### TonConnectSender Class
+### sendCrossChainTransaction()
 
 ```typescript
-constructor(tonConnect: TonConnectUI)
+async sendCrossChainTransaction(
+  evmProxyMsg: EvmProxyMsg,
+  sender: SenderAbstraction,
+  assets?: AssetBridgingData[]
+): Promise<TransactionLinker>
 ```
 
-Purpose:
-Enables sending transactions via TonConnect integration.
+Sends a cross-chain transaction.
 
-Example:
+**Parameters:**
+
+- `evmProxyMsg`: EVM proxy message configuration
+- `sender`: Transaction sender (TonConnectSender or RawSender)
+- `assets`: Optional array of assets to bridge
+
+**Returns:** TransactionLinker object for tracking the transaction
+
+### getEVMTokenAddress()
 
 ```typescript
-const sender = new TonConnectSender(tonConnect);
+async getEVMTokenAddress(tvmTokenAddress: string): Promise<string>
 ```
 
-### RawSender Class
+Gets the corresponding EVM address for a TVM token.
 
-```typescript
-constructor(mnemonic: string)
-```
+**Parameters:**
 
-Purpose:
-Enables direct blockchain interaction using a mnemonic phrase.
-Currently supports V3R2 wallets.
+- `tvmTokenAddress`: TVM token address
 
-Example:
+**Returns:** Promise resolving to EVM token address
 
-```typescript
-const sender = new RawSender("24 words mnemonic");
-```
+## TransactionStatus
 
-## Status Tracking
+Class for tracking cross-chain transaction statuses.
 
-### TransactionStatus Class
-
-Purpose:
-Tracks cross-chain transaction status through Lite Sequencer endpoints.
-
-#### Method: getOperationId
+### getOperationId()
 
 ```typescript
 async getOperationId(transactionLinker: TransactionLinker): Promise<string>
 ```
 
-Purpose:
-Retrieves operation ID for transaction tracking.
+Gets the operation ID for a transaction.
 
-Parameters:
+**Parameters:**
 
-- transactionLinker: TransactionLinker object from sendCrossChainJettonTransaction
+- `transactionLinker`: TransactionLinker object
 
-Returns:
-String representing the operationId
+**Returns:** Operation ID string
 
-#### Method: getStatusTransaction
+### getStatusTransaction()
 
 ```typescript
 async getStatusTransaction(operationId: string): Promise<string>
 ```
 
-Purpose:
-Retrieves current transaction status.
+Gets the current status of a transaction.
 
-Parameters:
+**Parameters:**
 
-- operationId: String obtained from getOperationId
+- `operationId`: Operation ID string
 
-Returns:
-Transaction status string:
+**Returns:** Transaction status string
 
-- EVMMerkleMessageCollected
-- EVMMerkleRootSet
-- EVMMerkleMessageExecuted
-- TVMMerkleMessageCollected
-- TVMMerkleRootSet
-- TVMMerkleMessageExecuted
-
-#### Method: getSimpifiedTransactionStatus
+### getSimplifiedTransactionStatus()
 
 ```typescript
-async getSimpifiedTransactionStatus(
-  transactionLinker: TransactionLinker
+async getSimplifiedTransactionStatus(
+  transactionLinker: TransactionLinker,
+  isBridgeOperation?: boolean
 ): Promise<SimplifiedStatuses>
 ```
 
-Purpose:
-Provides simplified transaction status.
+Gets a simplified transaction status.
 
-Parameters:
+**Parameters:**
 
-- transactionLinker: TransactionLinker object
+- `transactionLinker`: TransactionLinker object
+- `isBridgeOperation`: Optional boolean for bridge-only operations
 
-Returns:
-SimplifiedStatuses enum value:
+**Returns:** SimplifiedStatuses enum value
 
-- Pending
-- Successful
-- Failed
-- OperationIdNotFound
+### startTracking()
+
+```typescript
+async startTracking(
+  transactionLinker: TransactionLinker,
+  isBridgeOperation?: boolean
+): Promise<void>
+```
+
+Starts tracking a transaction until completion.
+
+**Parameters:**
+
+- `transactionLinker`: TransactionLinker object
+- `isBridgeOperation`: Optional boolean for bridge-only operations
+
+## Example Usage
+
+```typescript
+import { TacSdk, Network, EvmProxyMsg, AssetBridgingData } from "tac-sdk";
+import { TonConnectUI } from "@tonconnect/ui";
+import { ethers } from "ethers";
+
+// Initialize SDK
+const tacSdk = new TacSdk({
+  network: Network.Testnet,
+  delay: 3,
+});
+await tacSdk.init();
+
+// Create EVM payload
+const abi = new ethers.AbiCoder();
+const encodedParameters = abi.encode(
+  ["uint256", "address"],
+  [amount, tokenAddress]
+);
+
+const evmProxyMsg: EvmProxyMsg = {
+  evmTargetAddress: proxyAddress,
+  methodName: "swap",
+  encodedParameters,
+};
+
+// Define assets to bridge
+const assets: AssetBridgingData[] = [
+  {
+    address: tvmTokenAddress,
+    amount: tokenAmount,
+  },
+];
+
+// Initialize sender with TonConnect
+const tonConnectUI = new TonConnectUI({
+  manifestUrl: manifestUrl,
+});
+const sender = await SenderFactory.getSender({
+  tonConnect: tonConnectUI,
+});
+
+// Send transaction
+const transactionLinker = await tacSdk.sendCrossChainTransaction(
+  evmProxyMsg,
+  sender,
+  assets
+);
+
+// Track transaction status
+const tracker = new TransactionStatus();
+const status = await tracker.getSimplifiedTransactionStatus(transactionLinker);
+```
