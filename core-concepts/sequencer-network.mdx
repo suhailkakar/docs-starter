@@ -1,28 +1,25 @@
 ---
 title: Sequencer Network
-description: Deep dive into TAC's sequencer network - how it maintains secure cross-chain communication
+description: Deep dive into TAC's sequencer network - how it maintains secure communication through the TAC Adaptor
 ---
 
 The sequencer network is TAC's decentralized off-chain system based on proof-of-stake that ensures reliable and secure message delivery between TON and EVM chains.
 
 ## Understanding Sequencers
 
-Sequencers are nodes that form transaction trees, with one tree for TON and another for EVM. They use Merkle trees to organize cross-chain messages, collecting log messages from TON and events from the EVM side within specific time intervals set by the network.
+Sequencers are nodes that form transaction trees, with one tree for TON and another for EVM. They use Merkle trees to organize messages in the TAC Adaptor, collecting log messages from TON and events from the EVM side within specific time intervals set by the network.
 
-A sequencer takes data from smart contracts, part of the execution layer, and aggregates transactions received over time T (a global network parameter). This organized approach ensures orderly processing of all cross-chain communications.
+A sequencer takes data from smart contracts, part of the execution layer, and aggregates transactions received over time T (a global network parameter). This organized approach ensures orderly processing of all messages through the TAC Adaptor.
 
 ## Sequencer Groups
 
 The network organizes sequencers into groups to enhance security and reliability. A sequencer group is a unified set of sequencer nodes owned by a specific entity - for example, each trusted dApp can have its own group.
 
-
 - Within each group, sequencers independently form transaction trees and create Merkle proofs. They submit their root hashes to the SequencerGroup smart contract, where the system verifies the submitting wallet's approval status.
-
 
 - The signature counter for each proof increases as group members submit matching hashes. When signatures reach 66% of the group's required threshold, the tree advances to the CrossChainLayer smart contract.
 
-- At the CrossChainLayer level, groups must achieve network-wide consensus. The tree is only applied for cross-chain operations when enough groups submit identical trees, creating multiple layers of security.
-
+- At the TAC Adaptor level, groups must achieve network-wide consensus. The tree is only applied for operations when enough groups submit identical trees, creating multiple layers of security.
 
 ## Becoming a Sequencer Group
 
@@ -34,11 +31,9 @@ Each group must maintain collateral above a minimum threshold determined by DAO 
 
 Groups can modify their collateral when changing proofs. If an incorrect proof is submitted, there's time to issue penalties before collateral withdrawal. Other groups can submit penalty applications to the Penalty smart contract, with partial collateral locking if enough groups agree.
 
-
-
 ## Message Validation
 
-The sequencer network ensures transaction integrity through comprehensive validation. When processing cross-chain messages, sequencers verify that:
+The sequencer network ensures transaction integrity through comprehensive validation. When processing messages through the TAC Adaptor, sequencers verify that:
 
 <Steps>
 <Step title="Asset Verification">
@@ -46,7 +41,9 @@ Sequencers index and validate all transferred assets, ensuring message parameter
 </Step>
 
 <Step title="Message Processing">
-Valid messages proceed to the target contract. The system ensures users can't spend more assets than they've actually transferred, maintaining economic security.
+  Valid messages proceed to the target contract. The system ensures users can't
+  spend more assets than they've actually transferred, maintaining economic
+  security.
 </Step>
 
 <Step title="Execution Oversight">
@@ -64,11 +61,12 @@ The system generates a random number using the Merkle root as a seed. This numbe
 </Step>
 
 <Step title="Execution Rights">
-While any account can technically execute transactions by providing correct proofs, rewards distribute based on stake regardless of who performs the execution.
+  While any account can technically execute transactions by providing correct
+  proofs, rewards distribute based on stake regardless of who performs the
+  execution.
 </Step>
 
 <Step title="Reward Distribution">
 At round end, rewards distribute proportionally to sequencer stakes, incentivizing higher collateral commitment.
 </Step>
 </Steps>
-

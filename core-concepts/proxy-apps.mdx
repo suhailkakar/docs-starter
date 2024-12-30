@@ -1,6 +1,6 @@
 ---
 title: Proxy Apps
-description: "Learn about TAC Proxy Apps - the bridge between TON and EVM applications"
+description: "Learn about TAC Proxy Apps - the connectors between TON and EVM applications"
 ---
 
 <Warning>
@@ -28,37 +28,36 @@ The proxy system operates on both chains:
   interacting with the proxy directly.
 </Warning>
 
-On the TON chain, the proxy app receives your transaction and prepares it for cross-chain transfer. When you interact with an EVM application, the TON proxy:
+On the TON chain, the proxy app receives your transaction and prepares it for the TAC Adaptor. When you interact with an EVM application, the TON proxy:
 
 1. Accepts your transaction from your TON wallet
 2. Formats the call data appropriately
-3. Locks any required assets in the bridge wallet
-4. Sends the formatted message to the cross-chain messaging layer
+3. Locks any required assets in the adaptor wallet
+4. Sends the formatted message to the TAC Adaptor
 5. Monitors transaction status and handles confirmations
 
 ### EVM Side Proxy
 
-The EVM proxy bridges the gap between TAC and the target application:
+The EVM proxy connects TAC and the target application:
 
 1. Receives verified messages from the sequencer network
 2. Handles asset unlocking or minting
 3. Interacts with the target EVM application
 4. Processes return data
-5. Sends results back through the cross-chain layer
+5. Sends results back through the TAC Adaptor
 
-## Cross-Chain Communication Flow
+## Message Flow
 
 When you interact with an EVM application through TAC, here's what happens:
 
 <Steps>
 <Step title="Transaction Initiation">
-You send a transaction using your TON wallet to the TON proxy contract. The proxy formats your request and prepares any assets for cross-chain transfer.
+You send a transaction using your TON wallet to the TON proxy contract. The proxy formats your request and prepares any assets for transfer through the TAC Adaptor.
 </Step>
 
-<Step title="Cross-Chain Transfer">
-  The TON proxy creates a cross-chain message containing your transaction
-  details and sends it through TAC's messaging layer, where sequencers validate
-  and process it.
+<Step title="Message Transfer">
+  The TON proxy creates a message containing your transaction details and sends
+  it through the TAC Adaptor, where sequencers validate and process it.
 </Step>
 
 <Step title="EVM Execution">
@@ -98,11 +97,11 @@ Proxy apps manage asset transfers securely between chains:
 
 ### Asset Locking
 
-When sending assets from TON to EVM, the TON proxy locks them in a bridge wallet. This ensures assets can't be double-spent and maintains the correct token supply across chains.
+When sending assets from TON to EVM, the TON proxy locks them in the adaptor wallet. This ensures assets can't be double-spent and maintains the correct token supply across chains.
 
 ### Asset Minting and Unlocking
 
-The EVM proxy handles asset representation on the EVM side. It can mint new tokens representing locked TON assets or unlock previously bridged tokens, depending on the direction of transfer.
+The EVM proxy handles asset representation on the EVM side. It can mint new tokens representing locked TON assets or unlock previously transferred tokens, depending on the direction of transfer.
 
 ## Security Considerations
 
@@ -132,14 +131,14 @@ Before deploying to mainnet, test your integration using our testnet:
 
 1. Deploy your application to an EVM testnet
 2. Use the TAC testnet proxy generation
-3. Test cross-chain interactions using test tokens
+3. Test interactions using test tokens
 4. Verify both TON and EVM side behavior
 
 ## Common Use Cases
 
 ### Token Swaps
 
-Users can swap tokens on EVM DEXes directly from their TON wallet. The proxy apps handle all the necessary asset locking, unlocking, and cross-chain messaging automatically.
+Users can swap tokens on EVM DEXes directly from their TON wallet. The proxy apps handle all the necessary asset locking, unlocking, and message routing automatically.
 
 ### NFT Markets
 

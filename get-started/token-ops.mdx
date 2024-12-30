@@ -16,19 +16,19 @@ All tokens within the system must implement the IERC20 interface standard. When 
 - image (string)
 - l1Address (string) - A custom parameter specifically for TON jetton token address
 
-An important consideration regarding metadata is its upgradeability. While all metadata fields except l1Address can be modified from the TON side, these changes are not currently reflected on the TAC side. The metadata remains static from the moment it first appears in the cross-chain environment.
+An important consideration regarding metadata is its upgradeability. While all metadata fields except l1Address can be modified from the TON side, these changes are not currently reflected on the TAC side. The metadata remains static from the moment it first appears in the TAC Adaptor environment.
 
 ## Token Synchronization Process
 
 Synchronization occurs automatically within the system. When a user attempts to execute any transaction with tokens, the sequencer automatically creates necessary tokens if they don't exist. This process involves the sequencer creating a token deployment operation and verifying the token's existence at the blockchain level.
 
-## TON to TAC Bridge Process
+## TON to TAC Transfer Process
 
-The process begins when a user initiates a cross-chain message transaction on the cross-chain contract, specifying the token address in the TON network. After transaction execution, sequencers index a created log message. They then verify the token's creation on TON, retrieve its metadata, and form a message for the Merkle tree. This message facilitates new token deployment via the CrossChainLayerTokenFactory. Upon deployment completion, the token's address is recorded in a correspondence dictionary linking TONTokenAddress to Layer2TokenAddress.
+The process begins when a user initiates a message transaction through the TAC Adaptor, specifying the token address in the TON network. After transaction execution, sequencers index a created log message. They then verify the token's creation on TON, retrieve its metadata, and form a message for the Merkle tree. This message facilitates new token deployment via the TokenFactory. Upon deployment completion, the token's address is recorded in a correspondence dictionary linking TONTokenAddress to Layer2TokenAddress.
 
-## TAC to TON Bridge Process
+## TAC to TON Transfer Process
 
-When bridging from TAC to TON, a user initiates a cross-chain operation on the cross-chain contract, indicating the token's TAC network address. This creates an event that sequencers monitor. After verifying the token's existence on TAC and retrieving its metadata, sequencers form a Merkle tree. The process concludes with a Mint operation, which includes StateInit in the message for automatic token deployment if needed.
+When transferring from TAC to TON, a user initiates an operation through the TAC Adaptor, indicating the token's TAC network address. This creates an event that sequencers monitor. After verifying the token's existence on TAC and retrieving its metadata, sequencers form a Merkle tree. The process concludes with a Mint operation, which includes StateInit in the message for automatic token deployment if needed.
 
 ## Liquidity Management
 
@@ -56,6 +56,6 @@ Consider the process of transferring FNZ tokens from TON to TAC. The user sends 
 
 In Uniswap v2 scenarios, the system handles two transactions for TVM tokens. These are combined into a single Merkle message containing token deployment and transfer instructions. When Uniswap deploys a new LP token, the system records it and manages any necessary unlocking or burning events. The process concludes with liquidity transfer and new token appearance on TON.
 
-### Cross-Chain Swaps
+### Token Swaps
 
-For TON-to-token swaps, users create TON transfer transactions with specific EVM parameters. The sequencer processes this into a Merkle message that includes wrapped TON deployment. After the DEX pool executes the swap and locks tokens on the EVM side, users receive their TVM version of the exchanged token.
+For TON-to-token swaps, users create TON transfer transactions with specific EVM parameters. The sequencer processes this into a message that includes wrapped TON deployment. After the DEX pool executes the swap and locks tokens on the EVM side, users receive their TVM version of the exchanged token.

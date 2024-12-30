@@ -1,14 +1,13 @@
 ---
-title: Cross-Chain Messaging
-description: 'Understanding how messages move between TON and EVM chains in TAC'
+title: TAC Adaptor
+description: "Understanding how messages move between TON and EVM chains in TAC"
 ---
 
-
-Cross-chain messaging is the backbone of TAC, enabling secure communication between TON and EVM chains. This system ensures reliable message delivery, asset security, and proper transaction execution across different blockchains.
+The TAC Adaptor is the backbone of TAC, enabling secure communication between TON and EVM chains. This system ensures reliable message delivery, asset security, and proper transaction execution across different blockchains.
 
 ## Message Structure
 
-Every cross-chain message in TAC contains essential information needed for cross-chain operations. The message includes a timestamp from the TON blockchain, target contract address, method name, and arguments. It also tracks token amounts for minting and unlocking operations, ensuring accurate asset transfer across chains.
+Every message in the TAC Adaptor contains essential information needed for cross-chain operations. The message includes a timestamp from the TON blockchain, target contract address, method name, and arguments. It also tracks token amounts for minting and unlocking operations, ensuring accurate asset transfer across chains.
 
 ```solidity
 Message {
@@ -30,11 +29,17 @@ The process begins when a user interacts with a TAC proxy. Their action triggers
 </Step>
 
 <Step title="Sequencer Processing">
-Sequencers take over once a message is created. They store these messages in their local databases and perform comprehensive validation. This includes verifying that all asset transfers match the message parameters exactly, ensuring the integrity of the cross-chain operation.
+  Sequencers take over once a message is created. They store these messages in
+  their local databases and perform comprehensive validation. This includes
+  verifying that all asset transfers match the message parameters exactly,
+  ensuring the integrity of the cross-chain operation.
 </Step>
 
 <Step title="Tree Formation">
-At regular intervals determined by DAO settings, sequencers compile all validated messages into Merkle trees. The root hash of these trees becomes the foundation for network-wide consensus, creating a verifiable record of all cross-chain communications.
+  At regular intervals determined by DAO settings, sequencers compile all
+  validated messages into Merkle trees. The root hash of these trees becomes the
+  foundation for network-wide consensus, creating a verifiable record of all
+  cross-chain communications.
 </Step>
 
 <Step title="Message Execution">
@@ -53,10 +58,9 @@ EpochId = (now - protocolDeployDate) / epochDuration
 Messages are processed within specific timespans, ensuring orderly handling of cross-chain operations:
 
 ```
-[protocolDeployDate + EpochId * epochDuration, 
+[protocolDeployDate + EpochId * epochDuration,
 protocolDeployDate + (EpochId + 1) * epochDuration]
 ```
-
 
 ## Validation and Security
 
@@ -68,10 +72,9 @@ When handling assets, the system maintains strict validation protocols. Every as
 
 TAC's error handling system ensures user assets remain secure even when transactions fail. If a transaction cannot complete, the system automatically returns locked assets to the sender and prevents the message from forwarding to the other chain. A specialized rollback process handles these cases, collecting failed transactions into new Merkle trees for proper resolution.
 
-## Cross-Chain Layer Implementation
+## TAC Adaptor Implementation
 
-The cross-chain messaging system comes to life through the CrossChainLayer.receiveMessage() method. This crucial component verifies message uniqueness, validates proofs, and manages asset operations before calling target contract methods. During execution, it handles token minting or unlocking, executes the intended contract calls, and manages any return messages needed.
-
+The TAC Adaptor system comes to life through the CrossChainLayer.receiveMessage() method. This crucial component verifies message uniqueness, validates proofs, and manages asset operations before calling target contract methods. During execution, it handles token minting or unlocking, executes the intended contract calls, and manages any return messages needed.
 
 ## Common Scenarios
 

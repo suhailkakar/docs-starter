@@ -19,21 +19,21 @@ At the heart of TAC is a decentralized sequencer network that ensures secure mes
 
 ### Economic Security Model
 
-The network's security on both the TAC EVM Layer and Message Bridge relies on real economic stake in the system. These groups of validators (EVM) & sequencers (Bridge) must stake collateral and actively participate in validation rounds. Good performance earns rewards, while incorrect operations face penalties. This economic model aligns incentives across the network, ensuring participants work to maintain security and efficiency.
+The network's security on both the TAC EVM Layer and TAC Adaptor relies on real economic stake in the system. These groups of validators (EVM) & sequencers (Adaptor) must stake collateral and actively participate in validation rounds. Good performance earns rewards, while incorrect operations face penalties. This economic model aligns incentives across the network, ensuring participants work to maintain security and efficiency.
 
 ### Proxy Apps
 
-TAC provides a flexible approach to use or develop proxy smart contracts on both TON and EVM networks. These proxies handle all the complexities of cross-chain communication behind the scenes, making EVM apps feel native to TON users. When someone wants to interact with an EVM application, they simply use their TON wallet as they normally would - the proxy contracts take care of everything else.
+TAC provides a flexible approach to use or develop proxy smart contracts on both TON and EVM networks. These proxies handle all the complexities of message routing behind the scenes, making EVM apps feel native to TON users. When someone wants to interact with an EVM application, they simply use their TON wallet as they normally would - the proxy contracts take care of everything else.
 
 ## How TAC Works
 
 TAC uses a multi-step process to enable seamless interaction between TON and EVM-based applications:
 
-### Cross-Chain Messaging Process
+### Message Flow
 
 <Steps>
 <Step title="User Interaction">
-The process begins when a user connects their TON wallet to interact with an EVM application. The TAC Proxy Contract deployed on TON handles this interaction by locking the user's assets in a bridge wallet and generating a cross-chain message. As soon as this happens, sequencers begin monitoring the transaction.
+The process begins when a user connects their TON wallet to interact with an EVM application. The TAC Proxy Contract deployed on TON handles this interaction by locking the user's assets in the adaptor wallet and generating a message. As soon as this happens, sequencers begin monitoring the transaction.
 </Step>
 
 <Step title="Message Validation">
@@ -49,15 +49,15 @@ With validation complete, the transaction moves to execution on the EVM side. Th
 </Step>
 </Steps>
 
-### Epoch-Based Processing
+### Secure Message Routing
 
-TAC structures its transaction processing using epochs, a time-based system that ensures orderly processing of cross-chain messages. Each epoch is calculated using the formula:
+TAC structures its transaction processing using epochs, a time-based system that ensures orderly processing of messages through the TAC Adaptor. Each epoch is calculated using the formula:
 
 ```txt
 EpochId = (now - protocolDeployDate) / epochDuration
 ```
 
-Bridge Sequencers handle messages within specific timeframes defined by:
+Sequencers handle messages within specific timeframes defined by:
 
 ```txt
 [protocolDeployDate + EpochId * epochDuration,
@@ -68,9 +68,9 @@ protocolDeployDate + (EpochId + 1) * epochDuration]
 
 TAC is a ComsosSDK + Etheremint Layer 1 secured by Tendermint-Core and Babylon Bitcoin Staking. As such, the TAC EVM Layer inherit all the security aspects of Ethermint Cosmos chains.
 
-## Bridge Network Security
+## TAC Adaptor Security
 
-TAC uses a combination of message validation and transaction protection to ensure the security of cross-chain transactions:
+TAC uses a combination of message validation and transaction protection to ensure the security of transactions through the TAC Adaptor:
 
 ### Message Validation
 
@@ -130,11 +130,11 @@ Here are the key parameters of the TAC EVM network:
 
 - to-be-defined
 
-### Bridge Consensus Architecture
+### TAC Adaptor Consensus Architecture
 
 The network operates on a carefully designed consensus system requiring 66% agreement within sequencer groups. This high threshold ensures security while maintaining efficiency. Cross-group consensus adds another layer of validation, with a 24-hour execution window providing ample time for transaction completion while maintaining network responsiveness.
 
-### Bridge Economic Framework
+### TAC Adaptor Economic Framework
 
 TAC's economic model centers on maintaining network security through financial incentives. The DAO sets minimum stake requirements for participants, while a performance-based reward system encourages reliable operation. Regular stake evaluations and a comprehensive penalty system ensure all participants maintain high standards of service.
 
@@ -148,6 +148,6 @@ During Validation, groups form Merkle trees and work to reach consensus both int
 
 ## Benefits
 
-TAC creates value for multiple stakeholders in the blockchain ecosystem. Users gain the ability to use their familiar TON wallet while accessing the vast world of EVM applications deployed on the TAC EVM Layer, without dealing with complex bridging processes. Developers benefit from easy integration paths and automatic proxy generation, backed by secure cross-chain messaging and a comprehensive SDK.
+TAC creates value for multiple stakeholders in the blockchain ecosystem. Users gain the ability to use their familiar TON wallet while accessing the vast world of EVM applications deployed on the TAC EVM Layer, without dealing with complex routing processes. Developers benefit from easy integration paths and automatic proxy generation, backed by secure message routing and a comprehensive SDK.
 
 For the broader ecosystem, TAC significantly increases TON's utility by making EVM applications accessible to its users. The system's security architecture and scalable design ensure it can grow with increasing demand while maintaining high security standards.

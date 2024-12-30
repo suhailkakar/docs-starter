@@ -10,7 +10,7 @@ TAC creates a compatibility layer that connects TON with EVM-compatible applicat
 TAC consists of three main components:
 
 1. TAC EVM: A dPoS Layer1 EVM chain built on CosmosSDK with Ethermint and re-secured by Babylon Bitcoin Staking
-2. TAC Message Bridge: A decentralized Cross-chain layer on both TON and EVM sides secured by a set of sequencers
+2. TAC Adaptor: A decentralized message routing layer on both TON and EVM sides secured by a set of sequencers
 3. Proxy Apps: set of smart contracts (TON and TAC EVM) that enable direct application interaction
 
 <Frame>
@@ -39,21 +39,21 @@ On top of the dPoS consensus that secure the network at the next block, TAC EVM 
 
 TAC EVM Layer, being built on Tendermint-Core, cannot allow re-orgs.
 
-## TAC Message Bridge
+## TAC Adaptor
 
 ### Overview
 
-The TAC Message Bridge is the cross-chain layer that connects TON with TAC EVM as a set of smart contracts handling:
+The TAC Adaptor connects TON with TAC EVM as a set of smart contracts handling:
 
 - Transaction execution (call, mint, lock/unlock operations)
 - Data availability
 - Consensus
 - Elections
-- Cross-chain messaging
+- Message routing
 
 For more detailed information consult the [TAC lightpaper](#)
 
-### Bridge Security Model
+### Security Model
 
 The sequencer network is a proof-of-stake based off-chain system that connects the TON and EVM chains. Sequencers form groups, with each group managing transaction validation and consensus.
 
@@ -109,7 +109,7 @@ Groups are selected through DAO voting or multisig processes. The system include
 DApp proxies are automatically generated for each application on both TON and EVM chains. These proxies enable:
 
 - Direct wallet interaction from TON
-- Cross-chain message formatting
+- Message formatting for the TAC Adaptor
 - Asset transfer handling
 - EVM application interaction
 
@@ -120,8 +120,8 @@ Every transaction in TAC follows these stages:
 1. **Initialization**
 
 - User sends transaction through TON wallet
-- DApp proxy creates cross-chain message
-- Assets are sent to bridge wallet
+- DApp proxy creates a message for the TAC Adaptor
+- Assets are sent to the adaptor wallet
 
 2. **Event Detection**
 
