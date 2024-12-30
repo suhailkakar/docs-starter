@@ -1,6 +1,6 @@
 ---
 title: Join the Network
-description: How to join the TAC network as a validator
+description: How to join the TAC network as a node operator
 ---
 
 The TAC network currently has the following active network:
@@ -87,63 +87,3 @@ tacchaind start --chain-id tacchain_2390-1 --home .testnet
 
 </Step>
 </Steps>
-
-## Become a Validator
-
-<Steps>
-
-<Step title="Sync Your Node">
-
-Ensure your node is fully synced with the network before proceeding.
-
-</Step>
-
-<Step title="Set Up Your Account">
-
-1. Get testnet tokens from the [faucet](https://turin.faucet.tac.build/)
-2. Export your MetaMask private key
-3. Import your private key:
-
-```bash
-tacchaind --home .testnet keys unsafe-import-eth-key validator <PRIVATE_KEY> --keyring-backend test
-```
-
-</Step>
-
-<Step title="Create Validator">
-
-1. Generate validator transaction configuration:
-
-```bash
-echo "{\"pubkey\":$(tacchaind --home .testnet tendermint show-validator),\"amount\":\"1000000000utac\",\"moniker\":\"testnode\",\"identity\":null,\"website\":null,\"security\":null,\"details\":null,\"commission-rate\":\"0.1\",\"commission-max-rate\":\"0.2\",\"commission-max-change-rate\":\"0.01\",\"min-self-delegation\":\"1\"}" > validatortx.json
-```
-
-2. Submit validator creation transaction:
-
-```bash
-tacchaind --home .testnet tx staking create-validator validatortx.json --from validator --keyring-backend test -y
-```
-
-</Step>
-
-<Step title="Delegate Additional Tokens (Optional)">
-
-```bash
-tacchaind --home .testnet tx staking delegate $(tacchaind --home .testnet q staking validators --output json | jq -r '.validators[] | select(.description.moniker == "testnode") | .operator_address') 1000000000utac --keyring-backend test --from validator -y
-```
-
-</Step>
-
-</Steps>
-## FAQ
-
-### How can I get testnet tokens?
-
-You can request testnet tokens from the [faucet](https://turin.faucet.tac.build/). The faucet currently provides up to 10 TAC per day per address.
-
-### Why is my validator not in the active set?
-
-To be included in the active validator set, your validator must:
-
-- Have at least 1 voting power, OR
-- Have more TAC delegated than the validator with the lowest delegation (if the maximum validator limit has been reached)
