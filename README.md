@@ -1,7 +1,19 @@
-# TAC Documentation
+<div align="center">
+    <h3>TAC Docs</h3>
+    <a href="https://docs.tac.build">https://docs.tac.build</a>
+</div>
 
-Live at https://docs.tac.build
+### 👩‍💻 Development
 
-https://tac.build
+Install the [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview
+the documentation changes locally. To install, use the following command
 
-Version 0.1
+```
+npm i -g mintlify
+```
+
+Run the following command at the root of your documentation (where mint.json is)
+
+```
+mintlify dev
+```
