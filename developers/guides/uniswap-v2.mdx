@@ -278,9 +278,14 @@ import { ethers } from "ethers";
 import { toNano } from "@ton/ton";
 import { Network, RawSender } from "@/lib/sender";
 
-const EVM_TKA_ADDRESS = "0x7346896431955ad3bD9Fc23C8E3f0447eE1a52Cf";
-const EVM_TKB_ADDRESS = "0x392D1cCB04d25fCBcA7D4fc0E429Dbc1F9fEe73F";
-const UNISWAPV2_PROXY_ADDRESS = "0x2D478BffCEbF652e1Cb7e32Db9C674E10e873e57";
+const TVM_TKA_ADDRESS = "EQBLi0v_y-KiLlT1VzQJmmMbaoZnLcMAHrIEmzur13dwOmM1";
+
+const TVM_TKB_ADDRESS = "EQCsQSo54ajAorOfDUAM-RPdDJgs0obqyrNSEtvbjB7hh2oK";
+
+const UNISWAPV2_PROXY_ADDRESS = "0xd47Cf3c26312B645B5e7a910fCE30B46CFf6a8f8";
+
+const WALLET_VERSION = "v4";
+const mnemonic = process.env.TVM_MNEMONICS || ""; // 24 words mnemonic
 
 export function TokenSwap() {
   const [sellAmount, setSellAmount] = React.useState<number>(0);
@@ -289,24 +294,35 @@ export function TokenSwap() {
 
   const handleSwap = async () => {
     try {
-      const tacSdk = new TacSdk({
-        network: CHAIN.TESTNET,
-      });
+      const tonClientParams: TacSDKTonClientParams = {
+        network: Network.Testnet,
+        delay: 5,
+      };
+      const tacSdk = new TacSdk(tonClientParams);
+      await tacSdk.init();
+
+      let amountIn = 0;
+      for (const amount of amountsIn) {
+        amountIn += amount;
+      }
+
+      const EVM_TKA_ADDRESS = await tacSdk.getEVMTokenAddress(TVM_TKA_ADDRESS);
+      const EVM_TKB_ADDRESS = await tacSdk.getEVMTokenAddress(TVM_TKB_ADDRESS);
 
       // create evm proxy msg
       const abi = new ethers.AbiCoder();
       const encodedParameters = abi.encode(
         ["uint256", "uint256", "address[]", "address", "uint256"],
         [
-          Number(toNano(sellAmount)),
-          Number(toNano(sellAmount)),
+          Number(toNano(amountIn)),
+          Number(toNano(amountOutMin)),
           [EVM_TKA_ADDRESS, EVM_TKB_ADDRESS],
           UNISWAPV2_PROXY_ADDRESS,
           19010987500,
         ]
       );
 
-      const evmProxyMsg = {
+      const evmProxyMsg: EvmProxyMsg = {
         evmTargetAddress: UNISWAPV2_PROXY_ADDRESS,
         methodName:
           "swapExactTokensForTokens(uint256,uint256,address[],address,uint256)",
@@ -314,22 +330,24 @@ export function TokenSwap() {
       };
 
       // create sender abstraction
-      const mnemonic = process.env.TVM_MNEMONICS || ""; // 24 words mnemonic
-      const sender = new RawSender(mnemonic);
-
-      // create JettonTransferData
-      const jettons = [];
-      jettons.push({
-        fromAddress: await sender.getSenderAddress(Network.Testnet),
-        tokenAddress: EVM_TKA_ADDRESS,
-        jettonAmount: sellAmount,
-        tonAmount: 0.35,
+      const sender = await SenderFactory.getSender({
+        version: WALLET_VERSION,
+        mnemonic,
       });
 
-      const tx = await tacSdk.sendShardJettonTransferTransaction(
-        jettons,
+      // create JettonTransferData (transfer jetton in TVM to swap)
+      const assets: AssetBridgingData[] = [];
+      for (const amount of amountsIn) {
+        assets.push({
+          address: tokenAddress,
+          amount: amount,
+        });
+      }
+
+      const tx = await tacSdk.sendCrossChainTransaction(
         evmProxyMsg,
-        sender
+        sender,
+        assets
       );
 
       console.log(tx);

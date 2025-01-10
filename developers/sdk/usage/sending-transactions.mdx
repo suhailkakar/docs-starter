@@ -15,8 +15,6 @@ The TAC-SDK provides two approaches for sending transactions:
 
 ## Using TonConnect
 
-### Setup
-
 ```typescript
 import { TonConnectUI } from "@tonconnect/ui";
 import { TonConnectSender } from "tac-sdk";
@@ -27,19 +25,21 @@ const tonConnect = new TonConnectUI({
 });
 
 // Create sender
-const sender = new TonConnectSender(tonConnect);
+const sender = await SenderFactory.getSender({
+  tonConnect,
+});
 ```
 
 ## Using a Raw Wallet via mnemonic
 
-### Setup
-
 ```typescript
-import { RawSender } from "tac-sdk";
+const walletVersion = "v4";
 
-// Create sender using mnemonic
 const mnemonic = process.env.TVM_MNEMONICS || ""; // 24 words mnemonic
-const sender = new RawSender(mnemonic);
+const sender = await SenderFactory.getSender({
+  version: walletVersion,
+  mnemonic,
+});
 ```
 
 ### Sending Cross-Chain Transactions
@@ -47,15 +47,12 @@ const sender = new RawSender(mnemonic);
 1. Prepare EVM Proxy Message
 
 ```typescript
-import { ethers } from "ethers";
-
 const abi = new ethers.AbiCoder();
 const encodedParameters = abi.encode(
   ["uint256", "uint256", "address[]", "address"],
   [tokenAAmount, tokenBAmount, [EVMtokenAAddress, EVMtokenBAddress], proxyDapp]
 );
-
-const evmProxyMsg = {
+const evmProxyMsg: EvmProxyMsg = {
   evmTargetAddress: DappProxyAddress,
   methodName: "addLiquidity(uint256,uint256,address[],address)",
   encodedParameters,
@@ -65,18 +62,14 @@ const evmProxyMsg = {
 2. Prepare Jetton Transfer Data
 
 ```typescript
-const jettons = [
+const assets: AssetBridgingData[] = [
   {
-    fromAddress: "tonUserAddress",
-    tokenAddress: TVMtokenAAddress,
-    jettonAmount: tokenAAmount,
-    tonAmount: 0.4,
+    address: TVMtokenAAddress,
+    amount: tokenAAmount,
   },
   {
-    fromAddress: "tonUserAddress",
-    tokenAddress: TVMtokenBAddress,
-    jettonAmount: tokenBAmount,
-    tonAmount: 0.4,
+    address: TVMtokenBAddress,
+    amount: tokenBAmount,
   },
 ];
 ```
@@ -85,46 +78,56 @@ const jettons = [
 
 ```typescript
 const result = await tacSdk.sendCrossChainTransaction(
-  jettons,
   evmProxyMsg,
-  sender
+  sender,
+  assets
 );
-
-// Get transaction linker for status tracking
-const { transactionLinker } = result;
 ```
 
 ### Complete Example
 
 ```typescript
-import { TacSdk, Network, RawSender } from "tac-sdk";
+import { TacSdk } from "tac-sdk";
+import { TonConnectUI } from "@tonconnect/ui";
 import { ethers } from "ethers";
 
-// Initialize SDK
+// Create EVM payload for DappProxy
+const abi = new ethers.AbiCoder();
+const encodedParameters = abi.encode(
+  ["uint256", "uint256", "address[]", "address"],
+  [tokenAAmount, tokenBAmount, [EVMtokenAAddress, EVMtokenBAddress], proxyDapp]
+);
+const evmProxyMsg: EvmProxyMsg = {
+  evmTargetAddress: DappProxyAddress,
+  methodName: "addLiquidity(uint256,uint256,address[],address)",
+  encodedParameters,
+};
+
+// Create jetton transfer messages corresponding to EVM tokens, e.g., two tokens for adding liquidity to a pool
+const assets: AssetBridgingData[] = [
+  {
+    address: TVMtokenAAddress,
+    amount: tokenAAmount,
+  },
+  {
+    address: TVMtokenBAddress,
+    amount: tokenBAmount,
+  },
+];
+
 const tacSdk = new TacSdk({
   network: Network.Testnet,
   delay: 3,
 });
+await tacSdk.init();
 
-// Create sender (using Raw Wallet in this example)
-const sender = new RawSender(mnemonic);
+//Send transaction via tonConnect or mnemonic
+const tonConnectUI = new TonConnectUI({
+  manifestUrl: config.tonconnectManifestUrl as string,
+});
+const sender = await SenderFactory.getSender({
+  tonConnect: tonConnectUI,
+});
 
-// Prepare EVM message
-const evmProxyMsg = {
-  evmTargetAddress: DappProxyAddress,
-  methodName: "addLiquidity(uint256,uint256,address[],address)",
-  encodedParameters: abi.encode(/* parameters */),
-};
-
-// Prepare jetton transfers
-const jettons = [
-  /* jetton transfer data */
-];
-
-// Send transaction
-const { transactionLinker } = await tacSdk.sendCrossChainTransaction(
-  jettons,
-  evmProxyMsg,
-  sender
-);
+return await tacSdk.sendCrossChainTransaction(evmProxyMsg, sender, assets);
 ```
