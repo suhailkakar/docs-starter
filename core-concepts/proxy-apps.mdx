@@ -70,27 +70,6 @@ Results from the EVM application flow back through the same path in reverse, eve
 </Step>
 </Steps>
 
-## Integration Example
-
-When integrating with TAC, you'll work with proxy apps through our SDK. Here's a simple example:
-
-```js
-const tacSdk = new TacSdk({
-  network: CHAIN.TESTNET,
-});
-
-// Interact with EVM app through proxy
-await tacSdk.sendJettonWithProxyMsg({
-  fromAddress: userAddress,
-  jettonAmount: amount,
-  proxyMsg: {
-    evmTargetAddress: targetAddress, // Target EVM application
-    methodName: "swap", // Method to call
-    encodedParameters: params, // Method parameters
-  },
-});
-```
-
 ## Asset Handling
 
 Proxy apps manage asset transfers securely between chains:
