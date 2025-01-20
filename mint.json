@@ -172,6 +172,10 @@
       ]
     },
     {
+      "group": "Proxy",
+      "pages": ["developers/proxy/developing-proxy"]
+    },
+    {
       "group": "Partner Integrations",
       "pages": [
         {
