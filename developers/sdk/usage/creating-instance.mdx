@@ -16,10 +16,10 @@ To begin using the TAC-SDK, you need to create an instance of the TacSdk class. 
 import { TacSdk } from "tac-sdk";
 import { Network } from "tac-sdk";
 
-const tacSdk = new TacSdk({
+const sdkParams: SDKParams = {
   network: Network.Testnet,
-  delay: 3,
-});
+};
+const tacSdk = await TacSdk.create(sdkParams);
 ```
 
 ## Configuration Options
@@ -50,31 +50,14 @@ The SDK uses these default public endpoints:
 - Mainnet: https://toncenter.com/api/v2/jsonRPC
 - Testnet: https://testnet.toncenter.com/api/v2/jsonRPC
 
-### Network Selection
-
-```typescript
-// For testing
-const testSdk = new TacSdk({ network: Network.Testnet });
-
-// For production
-const prodSdk = new TacSdk({ network: Network.Mainnet });
-```
-
-### Setting Appropriate Delays
-
-```typescript
-// With default parameters
-const sdk = new TacSdk({ delay: 5 });
-```
-
 ### Usage Example
 
 ```typescript
 // Create SDK instance
-const tacSdk = new TacSdk({
+const sdkParams: SDKParams = {
   network: Network.Testnet,
-  delay: 3,
-});
+};
+const tacSdk = await TacSdk.create(sdkParams);
 
 // Now you can use the instance for transactions
 // For example:

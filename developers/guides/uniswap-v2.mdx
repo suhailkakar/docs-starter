@@ -294,12 +294,11 @@ export function TokenSwap() {
 
   const handleSwap = async () => {
     try {
-      const tonClientParams: TacSDKTonClientParams = {
+      const sdkParams: SDKParams = {
         network: Network.Testnet,
-        delay: 5,
+        // you can also customize TAC and TON params here
       };
-      const tacSdk = new TacSdk(tonClientParams);
-      await tacSdk.init();
+      const tacSdk = await TacSdk.create(sdkParams);
 
       let amountIn = 0;
       for (const amount of amountsIn) {

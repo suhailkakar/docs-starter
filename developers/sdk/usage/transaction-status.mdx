@@ -8,16 +8,16 @@ description: "Learn how to track the status of your transactions"
   repository](https://github.com/TacBuild/tac-sdk).
 </Info>
 
-After sending a cross-chain transaction, you can track its status using the TransactionStatus class. This guide explains how to monitor your transaction through its lifecycle.
+After sending a cross-chain transaction, you can track its status using the OperationTracker class. This guide explains how to monitor your transaction through its lifecycle.
 
 ## Basic Status Tracking
 
 ### Initialize Tracker
 
 ```typescript
-import { TransactionStatus } from "tac-sdk";
+import { OperationTracker } from "tac-sdk";
 
-const tracker = new TransactionStatus();
+const tracker = new OperationTracker();
 ```
 
 ### Detailed Status Tracking
@@ -36,7 +36,7 @@ if (!operationId) {
 2. Check Transaction Status
 
 ```typescript
-const status = await tracker.getStatusTransaction(operationId);
+const status = await tracker.getOperationStatus(operationId);
 console.log("Current status:", status);
 ```
 
@@ -57,7 +57,7 @@ Your transaction will progress through these states:
 Use the simplified method for easier status monitoring:
 
 ```typescript
-const simplifiedStatus = await tracker.getSimpifiedTransactionStatus(
+const simplifiedStatus = await tracker.getSimplifiedOperationStatus(
   transactionLinker
 );
 
@@ -80,20 +80,20 @@ switch (simplifiedStatus) {
 ### Complete Tracking Example
 
 ```typescript
-import { TransactionStatus, SimplifiedStatuses } from "tac-sdk";
+import { OperationTracker, SimplifiedStatuses } from "tac-sdk";
 
 async function trackTransaction(transactionLinker) {
-  const tracker = new TransactionStatus();
+  const tracker = new OperationTracker();
 
   // Method 1: Detailed tracking
   const operationId = await tracker.getOperationId(transactionLinker);
   if (operationId) {
-    const status = await tracker.getStatusTransaction(operationId);
+    const status = await tracker.getOperationStatus(operationId);
     console.log("Detailed status:", status);
   }
 
   // Method 2: Simplified tracking
-  const simplifiedStatus = await tracker.getSimpifiedTransactionStatus(
+  const simplifiedStatus = await tracker.getSimplifiedOperationStatus(
     transactionLinker
   );
   console.log("Simplified status:", SimplifiedStatuses[simplifiedStatus]);
@@ -104,7 +104,7 @@ async function trackTransaction(transactionLinker) {
 
 ```typescript
 async function pollStatus(transactionLinker, maxAttempts = 20) {
-  const tracker = new TransactionStatus();
+  const tracker = new OperationTracker();
   let attempts = 0;
 
   const poll = async () => {
@@ -112,7 +112,7 @@ async function pollStatus(transactionLinker, maxAttempts = 20) {
       throw new Error("Max polling attempts reached");
     }
 
-    const status = await tracker.getSimpifiedTransactionStatus(
+    const status = await tracker.getSimplifiedOperationStatus(
       transactionLinker
     );
     if (status === SimplifiedStatuses.Successful) {

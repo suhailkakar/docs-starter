@@ -66,7 +66,7 @@ Gets the corresponding EVM address for a TVM token.
 
 **Returns:** Promise resolving to EVM token address
 
-## TransactionStatus
+## OperationTracker
 
 Class for tracking cross-chain transaction statuses.
 
@@ -84,10 +84,10 @@ Gets the operation ID for a transaction.
 
 **Returns:** Operation ID string
 
-### getStatusTransaction()
+### getOperationStatus()
 
 ```typescript
-async getStatusTransaction(operationId: string): Promise<string>
+async getOperationStatus(operationId: string): Promise<string>
 ```
 
 Gets the current status of a transaction.
@@ -98,10 +98,10 @@ Gets the current status of a transaction.
 
 **Returns:** Transaction status string
 
-### getSimplifiedTransactionStatus()
+### getSimplifiedOperationStatus()
 
 ```typescript
-async getSimplifiedTransactionStatus(
+async getSimplifiedOperationStatus(
   transactionLinker: TransactionLinker,
   isBridgeOperation?: boolean
 ): Promise<SimplifiedStatuses>
@@ -140,11 +140,11 @@ import { TonConnectUI } from "@tonconnect/ui";
 import { ethers } from "ethers";
 
 // Initialize SDK
-const tacSdk = new TacSdk({
+const sdkParams: SDKParams = {
   network: Network.Testnet,
-  delay: 3,
-});
-await tacSdk.init();
+  // you can also customize TAC and TON params here
+};
+const tacSdk = await TacSdk.create(sdkParams);
 
 // Create EVM payload
 const abi = new ethers.AbiCoder();
@@ -183,6 +183,6 @@ const transactionLinker = await tacSdk.sendCrossChainTransaction(
 );
 
 // Track transaction status
-const tracker = new TransactionStatus();
-const status = await tracker.getSimplifiedTransactionStatus(transactionLinker);
+const tracker = new OperationTracker();
+const status = await tracker.getSimplifiedOperationStatus(transactionLinker);
 ```

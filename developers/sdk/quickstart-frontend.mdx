@@ -41,9 +41,11 @@ const tonConnectUI = new TonConnectUI({
 <Step title="Create a TAC SDK instance">
 
 ```javascript
-const tacSdk = new TacSdk({
-  network: "TESTNET", // Use "MAINNET" for production
-});
+const sdkParams: SDKParams = {
+  network: Network.Testnet,
+  // you can also customize TAC and TON params here
+};
+const tacSdk = await TacSdk.create(sdkParams);
 ```
 
 </Step>
@@ -81,11 +83,10 @@ const assets: AssetBridgingData[] = [
   },
 ];
 
-const tacSdk = new TacSdk({
+const sdkParams: SDKParams = {
   network: Network.Testnet,
-  delay: 3,
-});
-await tacSdk.init();
+};
+const tacSdk = await TacSdk.create(sdkParams);
 
 //Send transaction via tonConnect or mnemonic
 const tonConnectUI = new TonConnectUI({

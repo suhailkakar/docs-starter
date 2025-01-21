@@ -1,4 +1,4 @@
-The TAC-SDK provides comprehensive tools for tracking the status of cross-chain transactions through their entire lifecycle. This tracking system uses the TransactionStatus class to monitor transactions from initiation to completion.
+The TAC-SDK provides comprehensive tools for tracking the status of cross-chain transactions through their entire lifecycle. This tracking system uses the OperationTracker class to monitor transactions from initiation to completion.
 
 ## Getting Started
 
@@ -6,7 +6,7 @@ The TAC-SDK provides comprehensive tools for tracking the status of cross-chain 
    First, obtain the `operationId` using the `transactionLinker` structure:
 
 ```typescript
-const tracker = new TransactionStatus();
+const tracker = new OperationTracker();
 const operationId = await tracker.getOperationId(transactionLinker);
 ```
 
@@ -17,7 +17,7 @@ Note: If you receive an empty response string, it means validators haven't recei
 Once you have the `operationId`, track the transaction status:
 
 ```typescript
-const status = await tracker.getStatusTransaction(operationId);
+const status = await tracker.getOperationStatus(operationId);
 ```
 
 ## Transaction Status Lifecycle
@@ -51,7 +51,7 @@ const status = await tracker.getStatusTransaction(operationId);
 For easier monitoring, use the simplified status method:
 
 ```typescript
-const simplifiedStatus = await tracker.getSimpifiedTransactionStatus(
+const simplifiedStatus = await tracker.getSimplifiedOperationStatus(
   transactionLinker
 );
 ```
