@@ -25,7 +25,7 @@ Message {
 
 <Steps>
 <Step title="Message Creation">
-The process begins when a user interacts with a TAC proxy. Their action triggers the creation of a cross-chain message containing all necessary transaction details, including asset information and the intended EVM operation. This message serves as the instruction set for the entire cross-chain operation.
+The process begins when a user interacts with a TAC adaptor. Their action triggers the creation of a cross-chain message containing all necessary transaction details, including asset information and the intended EVM operation. This message serves as the instruction set for the entire cross-chain operation.
 </Step>
 
 <Step title="Sequencer Processing">
@@ -80,10 +80,10 @@ The TAC Adaptor system comes to life through the CrossChainLayer.receiveMessage(
 
 <Steps>
 <Step title="Token Transfers">
-When users transfer tokens between chains, the process begins on TON with asset locking in the bridge. The cross-chain message travels through the sequencer network, resulting in equivalent token minting on the EVM side.
+When users transfer tokens between chains, the process begins on TON with TON native asset locking in the TAC Adaptor. The cross-chain message travels through the sequencer network, resulting in equivalent token minting on the EVM side.
 </Step>
 
 <Step title="Contract Interactions">
-For EVM contract interactions, users start with the TON proxy. Their request becomes a cross-chain message that sequencers validate and process. The EVM proxy then executes the contract call, with results flowing back to TON.
+For EVM contract interactions, users start with the TON Adaptor entry point. Their request becomes a cross-chain message that sequencers validate and process. The EVM proxy then executes the contract call, with results flowing back to TON.
 </Step>
 </Steps>

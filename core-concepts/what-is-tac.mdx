@@ -80,34 +80,6 @@ Security starts with thorough message validation. Sequencers carefully index and
 
 TAC includes robust protection mechanisms for failed transactions. When a transaction fails, the system automatically returns assets to the sender and prevents forwarding to the target chain. A special rollback process handles these cases, ensuring user funds remain secure throughout the process.
 
-### API Access
-
-On the frontend side, developers can access the TON network through two public endpoints:
-
-- Mainnet: https://toncenter.com/api/v2/jsonRPC
-- Testnet: https://testnet.toncenter.com/api/v2/jsonRPC
-
-To deploy Solidity code and directly access the TAC EVM Layer, developers can rely on public RPC endpoints that implements the standard EVM JSON-RPC interface:
-
-- Mainnet: to-be-defined
-- Testnet (Turin): [Coming Soon - later this week]
-
-Third party providers like Anrk, offers private RPC endpoints and agumented APIs.
-
-## Network Parameters
-
-Here are the key parameters of the TAC EVM network:
-
-### Testnet (Turin)
-
-- ChainId: [Coming Soon - later this week]
-- Blocktime: 4 seconds
-- Explorer: [Coming Soon - later this week]
-
-### Mainnet
-
-- to-be-defined
-
 ### TAC Adaptor Consensus Architecture
 
 The network operates on a carefully designed consensus system requiring 66% agreement within sequencer groups. This high threshold ensures security while maintaining efficiency. Cross-group consensus adds another layer of validation, with a 24-hour execution window providing ample time for transaction completion while maintaining network responsiveness.
@@ -126,6 +98,6 @@ During Validation, groups form Merkle trees and work to reach consensus both int
 
 ## Benefits
 
-TAC creates value for multiple stakeholders in the blockchain ecosystem. Users gain the ability to use their familiar TON wallet while accessing the vast world of EVM applications deployed on the TAC EVM Layer, without dealing with complex routing processes. Developers benefit from easy integration paths and automatic proxy generation, backed by secure message routing and a comprehensive SDK.
+TAC creates value for multiple stakeholders in the blockchain ecosystem. Users gain the ability to use their TON native assets while accessing the vast world of EVM applications deployed on the TAC EVM Layer, without dealing with complex routing processes. Developers benefit from easy integration paths and automatic proxy generation, backed by secure message routing and a comprehensive SDK.
 
 For the broader ecosystem, TAC significantly increases TON's utility by making EVM applications accessible to its users. The system's security architecture and scalable design ensure it can grow with increasing demand while maintaining high security standards.

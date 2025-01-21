@@ -3,11 +3,16 @@ title: Token OPS
 description: Learn about TAC token operations.
 ---
 
-TAC accommodates two distinct categories of tokens in its ecosystem. The first category consists of Native TAC-originated tokens, which includes liquidity provider tokens and tokens emitted by dApps. While these tokens are expected to follow the ERC20 standard, this isn't directly enforced at the protocol level. The second category comprises tokens bridged from TON, which operate under CCL control on the TAC side and are guaranteed to be ERC20-compliant. These bridged tokens typically maintain 9 decimals rather than the standard 18.
+<Warning>
+  According to the new Telegram guidelines, only tokens native to the TON
+  blockchain can be used in Telegram Mini Apps starting February 1, 2025.
+</Warning>
+
+TAC's EVM Layer is a permissionless layer 1 and it supports Native TAC-originated tokens, which includes liquidity provider tokens and tokens emitted by dApps, while these tokens are expected to follow the ERC20 standard, this isn't directly enforced at the protocol level, and tokens bridged from TON, which operate under TAC Adaptor on the TAC side and are guaranteed to be ERC20-compliant. These tokens typically maintain 9 decimals.
 
 ## Token Implementation Requirements
 
-All tokens within the system must implement the IERC20 interface standard. When deploying TON-origin tokens in TAC, the system validates several standard ERC20 parameters, including:
+When deploying TON-origin tokens in TAC, the system validates several standard ERC20 parameters, including:
 
 - name (string)
 - symbol (string)
@@ -16,11 +21,16 @@ All tokens within the system must implement the IERC20 interface standard. When 
 - image (string)
 - l1Address (string) - A custom parameter specifically for TON jetton token address
 
-An important consideration regarding metadata is its upgradeability. While all metadata fields except l1Address can be modified from the TON side, these changes are not currently reflected on the TAC side. The metadata remains static from the moment it first appears in the TAC Adaptor environment.
+<Note>
+  While all metadata fields except l1Address can be modified from the TON side,
+  these changes are not currently reflected on the TAC side. The metadata
+  remains static from the moment it first appears in the TAC Adaptor
+  environment.
+</Note>
 
 ## Token Synchronization Process
 
-Synchronization occurs automatically within the system. When a user attempts to execute any transaction with tokens, the sequencer automatically creates necessary tokens if they don't exist. This process involves the sequencer creating a token deployment operation and verifying the token's existence at the blockchain level.
+Synchronization occurs automatically within the system. When a user attempts to execute any transaction with TON native tokens, the sequencer automatically creates wrapped version of the tokens on TAC if they don't exist. This process involves the sequencer creating a token deployment operation and verifying the token's existence at the blockchain level.
 
 ## TON to TAC Transfer Process
 
@@ -32,11 +42,17 @@ When transferring from TAC to TON, a user initiates an operation through the TAC
 
 ## Liquidity Management
 
-Liquidity flows from TON into TAC dApps through a structured process. For instance, when creating a Uniswap trading pair (TokenA/TokenB) on TAC, users first initiate two separate transactions to send each token from their wallet to CCL. If either token doesn't exist on TAC, it's automatically deployed. These bridged tokens then provide liquidity in the Uniswap pair.
+When users provide liquidity to a Curve trading pair (TokenA/TokenB) on TAC using TON-origin tokens, the native tokens remain locked in the TAC bridge on the TON blockchain. The TAC system mints wrapped versions of these tokens on the TAC EVM chain, which are then supplied to the liquidity pool.
+
+This design enables the original TON-native tokens to be directly accessible for use within TON dApps, while their wrapped EVM versions provide liquidity on TAC. Unifying the liquidity across both chains in this manner offers several advantages such as improved capital efficiency and a seamless user experience.
 
 ## Token Decimal Management
 
-The system handles decimal precision differences between chains carefully. TON-origin tokens typically use 9 decimals and maintain this precision when bridged to TAC. The EVM-based TAC environment naturally accommodates these tokens alongside standard 18-decimal tokens. However, bridging back to TON presents challenges, particularly for 18-decimal tokens originating in TAC (such as LP tokens). To address this, strict limits are implemented on unbridging to TON to prevent potential numerical overflow issues.
+TAC handles decimal differences between TON and EVM tokens smoothly. TON tokens usually have 9 decimals, and they keep this precision when bridged to TAC. The TAC EVM environment supports these tokens alongside the typical 18-decimal EVM tokens.
+
+But if you're thinking about bridging 18-decimal TAC tokens (like LP tokens) back to TON, there are some limitations in place. This is to avoid any potential issues with numerical overflow.
+
+While the TAC EVM side allows 18-decimal tokens, the TON side isn't really set up for that. So if you're planning to use those kinds of tokens, it's best to stick to the EVM environment for now.
 
 ## Smart Contract Architecture
 
@@ -54,7 +70,7 @@ Consider the process of transferring FNZ tokens from TON to TAC. The user sends 
 
 ### LP Token Operations
 
-In Uniswap v2 scenarios, the system handles two transactions for TVM tokens. These are combined into a single Merkle message containing token deployment and transfer instructions. When Uniswap deploys a new LP token, the system records it and manages any necessary unlocking or burning events. The process concludes with liquidity transfer and new token appearance on TON.
+In Curve scenarios, the system handles two transactions for TVM tokens. These are combined into a single Merkle message containing token deployment and transfer instructions. When Curve deploys a new LP token, the system records it and manages any necessary unlocking or burning events. The process concludes with liquidity transfer and new token appearance on TON.
 
 ### Token Swaps
 

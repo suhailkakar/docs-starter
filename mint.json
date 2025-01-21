@@ -31,8 +31,8 @@
       "url": "developers/api-references"
     },
     {
-      "name": "Validators",
-      "url": "validators"
+      "name": "Run a Node",
+      "url": "run-node"
     }
   ],
   "topbarCtaButton": {
@@ -77,9 +77,9 @@
     {
       "group": "References",
       "pages": [
+        "references/network-details",
         "references/contract-addresses",
-        "references/example-applications",
-        "references/awesome-tac"
+        "references/example-applications"
       ]
     },
     {
@@ -93,8 +93,8 @@
         {
           "group": "Quickstart",
           "pages": [
-            "developers/sdk/quickstart-frontend",
-            "developers/sdk/quickstart-onchain"
+            "developers/sdk/quickstart-onchain",
+            "developers/sdk/quickstart-frontend"
           ]
         },
         {
@@ -120,11 +120,7 @@
 
     {
       "group": "Guides",
-      "pages": [
-        "developers/guides/hello-world",
-        "developers/guides/token",
-        "developers/guides/uniswap-v2"
-      ]
+      "pages": ["developers/guides/hello-world", "developers/guides/uniswap-v2"]
     },
     {
       "group": "API References",
@@ -186,7 +182,7 @@
     },
     {
       "group": "",
-      "pages": ["validators/join-network"]
+      "pages": ["run-node/join-network"]
     }
   ],
   "theme": "prism",
