@@ -17,11 +17,11 @@ The proxy system operates on both chains:
 
 ### TON Side Proxy
 
-On the TON chain, the proxy app receives your TON transaction and prepares it for the TAC Adaptor (on EVM side). When you interact with an EVM application, the TON proxy:
+On the TON chain, the proxy app receives your TON transaction and prepares it for the TAC Adapter (on EVM side). When you interact with an EVM application, the TON proxy:
 
 1. Accepts your transaction from your TON wallet
 2. Formats the call data appropriately
-3. Locks any required assets in the adaptor wallet
+3. Locks any required assets in the Adapter wallet
 4. Sends the formatted message to the sequencer network\*\*\*\*
 5. Monitors transaction status and handles confirmations
 
@@ -33,7 +33,7 @@ The EVM proxy connects TAC and the target application:
 2. Handles asset unlocking or minting
 3. Interacts with the target EVM application
 4. Processes return data
-5. Sends results back through the TAC Adaptor
+5. Sends results back through the TAC Adapter
 
 ## Message Flow
 
@@ -41,7 +41,7 @@ When you interact with an EVM application through TAC, here's what happens:
 
 <Steps>
 <Step title="Transaction Initiation">
-You send a transaction using your TON wallet to TAC Adaptor. The proxy formats your request and prepares any assets for transfer through the sequencer network.
+You send a transaction using your TON wallet to TAC Adapter. The proxy formats your request and prepares any assets for transfer through the sequencer network.
 </Step>
 
 <Step title="Message Transfer">
@@ -65,7 +65,7 @@ Proxy apps manage asset transfers securely between chains:
 
 ### Asset Locking
 
-When sending assets from TON to EVM, the TON proxy locks them in the TAC adaptor. This ensures assets can't be double-spent and maintains the correct token supply across chains.
+When sending assets from TON to EVM, the TON proxy locks them in the TAC Adapter. This ensures assets can't be double-spent and maintains the correct token supply across chains.
 
 ### Asset Minting and Unlocking
 

@@ -1,13 +1,13 @@
 ---
-title: TAC Adaptor
+title: TAC Adapter
 description: "Understanding how messages move between TON and EVM chains in TAC"
 ---
 
-The TAC Adaptor is the backbone of TAC, enabling secure communication between TON and EVM chains. This system ensures reliable message delivery, asset security, and proper transaction execution across different blockchains.
+The TAC Adapter is the backbone of TAC, enabling secure communication between TON and EVM chains. This system ensures reliable message delivery, asset security, and proper transaction execution across different blockchains.
 
 ## Message Structure
 
-Every message in the TAC Adaptor contains essential information needed for cross-chain operations. The message includes a timestamp from the TON blockchain, target contract address, method name, and arguments. It also tracks token amounts for minting and unlocking operations, ensuring accurate asset transfer across chains.
+Every message in the TAC Adapter contains essential information needed for cross-chain operations. The message includes a timestamp from the TON blockchain, target contract address, method name, and arguments. It also tracks token amounts for minting and unlocking operations, ensuring accurate asset transfer across chains.
 
 ```solidity
 Message {
@@ -25,7 +25,7 @@ Message {
 
 <Steps>
 <Step title="Message Creation">
-The process begins when a user interacts with a TAC adaptor. Their action triggers the creation of a cross-chain message containing all necessary transaction details, including asset information and the intended EVM operation. This message serves as the instruction set for the entire cross-chain operation.
+The process begins when a user interacts with a TAC Adapter. Their action triggers the creation of a cross-chain message containing all necessary transaction details, including asset information and the intended EVM operation. This message serves as the instruction set for the entire cross-chain operation.
 </Step>
 
 <Step title="Sequencer Processing">
@@ -72,18 +72,18 @@ When handling assets, the system maintains strict validation protocols. Every as
 
 TAC's error handling system ensures user assets remain secure even when transactions fail. If a transaction cannot complete, the system automatically returns locked assets to the sender and prevents the message from forwarding to the other chain. A specialized rollback process handles these cases, collecting failed transactions into new Merkle trees for proper resolution.
 
-## TAC Adaptor Implementation
+## TAC Adapter Implementation
 
-The TAC Adaptor system comes to life through the CrossChainLayer.receiveMessage() method. This crucial component verifies message uniqueness, validates proofs, and manages asset operations before calling target contract methods. During execution, it handles token minting or unlocking, executes the intended contract calls, and manages any return messages needed.
+The TAC Adapter system comes to life through the CrossChainLayer.receiveMessage() method. This crucial component verifies message uniqueness, validates proofs, and manages asset operations before calling target contract methods. During execution, it handles token minting or unlocking, executes the intended contract calls, and manages any return messages needed.
 
 ## Common Scenarios
 
 <Steps>
 <Step title="Token Transfers">
-When users transfer tokens between chains, the process begins on TON with TON native asset locking in the TAC Adaptor. The cross-chain message travels through the sequencer network, resulting in equivalent token minting on the EVM side.
+When users transfer tokens between chains, the process begins on TON with TON native asset locking in the TAC Adapter. The cross-chain message travels through the sequencer network, resulting in equivalent token minting on the EVM side.
 </Step>
 
 <Step title="Contract Interactions">
-For EVM contract interactions, users start with the TON Adaptor entry point. Their request becomes a cross-chain message that sequencers validate and process. The EVM proxy then executes the contract call, with results flowing back to TON.
+For EVM contract interactions, users start with the TON Adapter entry point. Their request becomes a cross-chain message that sequencers validate and process. The EVM proxy then executes the contract call, with results flowing back to TON.
 </Step>
 </Steps>

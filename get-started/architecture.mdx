@@ -10,7 +10,7 @@ TAC creates a compatibility layer that connects TON with EVM-compatible applicat
 TAC consists of three main components:
 
 1. TAC EVM: A dPoS Layer1 EVM chain built on CosmosSDK with Ethermint and re-secured by Babylon Bitcoin Staking
-2. TAC Adaptor: A decentralized message routing layer on both TON and EVM sides secured by a set of sequencers and TON LSTs with proof of stake
+2. TAC Adapter: A decentralized message routing layer on both TON and EVM sides secured by a set of sequencers and TON LSTs with proof of stake
 3. Proxy Apps: set of smart contracts (TON and TAC EVM) that enable direct application interaction
 
 <Frame>
@@ -39,11 +39,11 @@ On top of the dPoS consensus that secure the network at the next block, TAC EVM 
 
 TAC EVM Layer, being built on Tendermint-Core, cannot allow re-orgs.
 
-## TAC Adaptor
+## TAC Adapter
 
 ### Overview
 
-The TAC Adaptor connects TON with TAC EVM as a set of smart contracts handling:
+The TAC Adapter connects TON with TAC EVM as a set of smart contracts handling:
 
 - Transaction execution (call, mint, lock/unlock operations)
 - Data availability
@@ -109,7 +109,7 @@ Groups are selected through DAO voting or multisig processes. The system include
 DApp proxies are automatically generated for each application on both TON and EVM chains. These proxies enable:
 
 - Direct wallet interaction from TON
-- Message formatting for the TAC Adaptor
+- Message formatting for the TAC Adapter
 - Asset handling
 - EVM application interaction
 
@@ -120,8 +120,8 @@ Every transaction in TAC follows these stages:
 1. **Initialization**
 
 - User sends transaction through TON wallet (if necessary, through TON native assets)
-- DApp proxy creates a message for the TAC Adaptor
-- TON assets are locked in the TAC Adaptor
+- DApp proxy creates a message for the TAC Adapter
+- TON assets are locked in the TAC Adapter
 
 2. **Event Detection**
 
