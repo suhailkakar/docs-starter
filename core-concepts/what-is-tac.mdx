@@ -19,7 +19,7 @@ At the heart of TAC is a decentralized sequencer network that ensures secure mes
 
 ### Economic Security Model
 
-The network's security on both the TAC EVM Layer and TAC Adapter relies on real economic stake in the system. These groups of validators (EVM) & sequencers (Adapter) must stake collateral and actively participate in validation rounds. Good performance earns rewards, while incorrect operations face penalties. This economic model aligns incentives across the network, ensuring participants work to maintain security and efficiency.
+The network's security on both the TAC EVM Layer and TON Adapter relies on real economic stake in the system. These groups of validators (EVM) & sequencers (Adapter) must stake collateral and actively participate in validation rounds. Good performance earns rewards, while incorrect operations face penalties. This economic model aligns incentives across the network, ensuring participants work to maintain security and efficiency.
 
 ### Proxy Apps
 
@@ -51,7 +51,7 @@ With validation complete, the transaction moves to execution on the EVM side. Th
 
 ### Secure Message Routing
 
-TAC structures its transaction processing using epochs, a time-based system that ensures orderly processing of messages through the TAC Adapter. Each epoch is calculated using the formula:
+TAC structures its transaction processing using epochs, a time-based system that ensures orderly processing of messages through the TON Adapter. Each epoch is calculated using the formula:
 
 ```txt
 EpochId = (now - protocolDeployDate) / epochDuration
@@ -68,9 +68,9 @@ protocolDeployDate + (EpochId + 1) * epochDuration]
 
 TAC is a ComsosSDK + Etheremint Layer 1 secured by Tendermint-Core and Babylon Bitcoin Staking. As such, the TAC EVM Layer inherit all the security aspects of Ethermint Cosmos chains.
 
-## TAC Adapter Security
+## TON Adapter Security
 
-TAC uses a combination of message validation and transaction protection to ensure the security of transactions through the TAC Adapter:
+TAC uses a combination of message validation and transaction protection to ensure the security of transactions through the TON Adapter:
 
 ### Message Validation
 
@@ -80,11 +80,11 @@ Security starts with thorough message validation. Sequencers carefully index and
 
 TAC includes robust protection mechanisms for failed transactions. When a transaction fails, the system automatically returns assets to the sender and prevents forwarding to the target chain. A special rollback process handles these cases, ensuring user funds remain secure throughout the process.
 
-### TAC Adapter Consensus Architecture
+### TON Adapter Consensus Architecture
 
 The network operates on a carefully designed consensus system requiring 66% agreement within sequencer groups. This high threshold ensures security while maintaining efficiency. Cross-group consensus adds another layer of validation, with a 24-hour execution window providing ample time for transaction completion while maintaining network responsiveness.
 
-### TAC Adapter Economic Framework
+### TON Adapter Economic Framework
 
 TAC's economic model centers on maintaining network security through financial incentives. The DAO sets minimum stake requirements for participants, while a performance-based reward system encourages reliable operation. Regular stake evaluations and a comprehensive penalty system ensure all participants maintain high standards of service.
 

@@ -1,15 +1,15 @@
 ---
 title: Sequencer Network
-description: Deep dive into TAC's sequencer network - how it maintains secure communication through the TAC Adapter
+description: Deep dive into TAC's sequencer network - how it maintains secure communication through the TON Adapter
 ---
 
 The sequencer network is TAC's decentralized off-chain system based on proof-of-stake that ensures reliable and secure message delivery between TON and EVM chains.
 
 ## Understanding Sequencers
 
-Sequencers are nodes that form transaction trees, with one tree for TON and another for EVM. They use Merkle trees to organize messages in the TAC Adapter, collecting log messages from TON and events from the EVM side within specific time intervals set by the network.
+Sequencers are nodes that form transaction trees, with one tree for TON and another for EVM. They use Merkle trees to organize messages in the TON Adapter, collecting log messages from TON and events from the EVM side within specific time intervals set by the network.
 
-A sequencer takes data from smart contracts, part of the execution layer, and aggregates transactions received over time T (a global network parameter). This organized approach ensures orderly processing of all messages through the TAC Adapter.
+A sequencer takes data from smart contracts, part of the execution layer, and aggregates transactions received over time T (a global network parameter). This organized approach ensures orderly processing of all messages through the TON Adapter.
 
 ## Sequencer Groups
 
@@ -19,7 +19,7 @@ The network organizes sequencers into groups to enhance security and reliability
 
 - The signature counter for each proof increases as group members submit matching hashes. When signatures reach 66% of the group's required threshold, the tree advances to the CrossChainLayer smart contract.
 
-- At the TAC Adapter level, groups must achieve network-wide consensus. The tree is only applied for operations when enough groups submit identical trees, creating multiple layers of security.
+- At the TON Adapter level, groups must achieve network-wide consensus. The tree is only applied for operations when enough groups submit identical trees, creating multiple layers of security.
 
 ## Becoming a Sequencer Group
 
@@ -33,7 +33,7 @@ Groups can modify their collateral when changing proofs. If an incorrect proof i
 
 ## Message Validation
 
-The sequencer network ensures transaction integrity through comprehensive validation. When processing messages through the TAC Adapter, sequencers verify that:
+The sequencer network ensures transaction integrity through comprehensive validation. When processing messages through the TON Adapter, sequencers verify that:
 
 <Steps>
 <Step title="Asset Verification">
