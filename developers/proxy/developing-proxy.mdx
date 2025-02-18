@@ -191,7 +191,7 @@ function myProxyFunction(bytes calldata tacHeader, bytes calldata arguments)
     // 7. Form an OutMessage
     //    This is how you instruct TAC to deliver tokens or data back to TON
     OutMessageV1 memory outMsg = OutMessageV1({
-        queryId: header.queryId,
+        shardsKey: header.shardsKey,
         tvmTarget: header.tvmCaller, // the original user (TON wallet)
         tvmPayload: "",
         toBridge: tokensToBridge
@@ -216,7 +216,7 @@ When a user on TON sends a message via your Dapp (e.g., using the `tac-sdk` on t
 
 1. **Tokens** (if any) are automatically transferred from the CrossChainLayer contract to your proxy contract before the function call.
 2. The CrossChainLayer calls `myProxyFunction(tacHeader, arguments)` on your proxy contract.
-   - `tacHeader` is the encoded `TacHeaderV1` struct containing data like `queryId`, `operationId`, the user’s `tvmCaller` address on TON, etc.
+   - `tacHeader` is the encoded `TacHeaderV1` struct containing data like `shardsKey`, `operationId`, the user’s `tvmCaller` address on TON, etc.
    - `arguments` is a `bytes` array containing data you defined in the Dapp’s frontend (encoded via `tac-sdk` or manually using `ethers.AbiCoder`).
 3. Your proxy function processes the tokens, calls external contracts if necessary, and optionally prepares an `OutMessageV1` with tokens to be sent back to TON.
 4. The `_sendMessageV1(...)` function sends everything back to the CrossChainLayer so that tokens (and an optional message) can be bridged to TON.
@@ -339,7 +339,7 @@ import { TacProxyV1 } from "tac-l2-ccl/contracts/proxies/TacProxyV1.sol";
 
 contract TestProxy is TacProxyV1 {
     event InvokeWithCallback(
-        uint64 queryId,
+        uint64 shardsKey,
         uint256 timestamp,
         bytes32 operationId,
         string tvmCaller,
@@ -363,7 +363,7 @@ contract TestProxy is TacProxyV1 {
 
         // 3. Log an event for testing
         emit InvokeWithCallback(
-            header.queryId,
+            header.shardsKey,
             header.timestamp,
             header.operationId,
             header.tvmCaller,
@@ -382,7 +382,7 @@ contract TestProxy is TacProxyV1 {
         // 5. Create and send an OutMessage
         _sendMessageV1(
             OutMessageV1({
-                queryId: header.queryId,
+                shardsKey: header.shardsKey,
                 tvmTarget: header.tvmCaller,
                 tvmPayload: "",
                 toBridge: receivedTokens
@@ -469,7 +469,7 @@ describe("TestProxy with tac-l2-ccl", () => {
 
   it("Should correctly handle invokeWithCallback", async () => {
     // Prepare call parameters
-    const queryId = 1n;
+    const shardsKey = 1n;
     const operationId = ethers.encodeBytes32String("operationId");
     const extraData = "0x"; // untrusted data from the executor
     const timestamp = BigInt(Math.floor(Date.now() / 1000));
@@ -527,7 +527,7 @@ describe("TestProxy with tac-l2-ccl", () => {
 
     // 4. Use testSdk to simulate a cross-chain message
     const { receipt, deployedTokens, outMessages } = await testSdk.sendMessage(
-      queryId,
+      shardsKey,
       target,
       methodName,
       encodedArguments,
@@ -550,7 +550,7 @@ describe("TestProxy with tac-l2-ccl", () => {
     // - Check the outMessages array
     expect(outMessages.length).to.equal(1);
     const outMessage = outMessages[0];
-    expect(outMessage.queryId).to.equal(queryId);
+    expect(outMessage.shardsKey).to.equal(shardsKey);
     expect(outMessage.operationId).to.equal(operationId);
     expect(outMessage.callerAddress).to.equal(await proxyContract.getAddress());
     expect(outMessage.targetAddress).to.equal(tvmWalletCaller);
@@ -580,7 +580,7 @@ describe("TestProxy with tac-l2-ccl", () => {
         eventFound = true;
         const typedEvent =
           parsed as unknown as InvokeWithCallbackEvent.LogDescription;
-        expect(typedEvent.args.queryId).to.equal(queryId);
+        expect(typedEvent.args.shardsKey).to.equal(shardsKey);
         expect(typedEvent.args.timestamp).to.equal(timestamp);
         expect(typedEvent.args.operationId).to.equal(operationId);
         expect(typedEvent.args.tvmCaller).to.equal(tvmWalletCaller);
@@ -610,7 +610,7 @@ describe("TestProxy with tac-l2-ccl", () => {
 2. **Bridging Simulation**
 
    - Mint or lock tokens on the cross-chain layer.
-   - Create the parameters (`queryId`, `operationId`, etc.).
+   - Create the parameters (`shardsKey`, `operationId`, etc.).
 
 3. **Invoke Proxy**
 
