@@ -4,7 +4,9 @@ description: "Learn how to develop a TAC Proxy - the connectors between TON and 
 ---
 
 <Info>
-This process might be a little complicated, so please reach out to us on [Discord](https://discord.com/invite/tacbuild) if you have any questions.
+  This process might be a little complicated, so please reach out to us on
+  [Discord](https://discord.com/invite/tacbuild) if you have any questions.
+</Info>
 
 A **TAC Proxy** is a Solidity contract that receives cross-chain messages and tokens bridged from the TON blockchain. When a user on TON initiates a message (and potentially sends tokens), the TAC infrastructure delivers the tokens and data to your EVM-based contract’s function. The **proxy contract** then processes that data—often by calling another Dapp contract or by performing some bridging logic—and optionally sends tokens back to TON using the same TAC infrastructure.
 
