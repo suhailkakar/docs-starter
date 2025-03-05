@@ -79,7 +79,8 @@
       "pages": [
         "references/network-details",
         "references/contract-addresses",
-        "references/example-applications"
+        "references/example-applications",
+        "references/token-faucet"
       ]
     },
     {
