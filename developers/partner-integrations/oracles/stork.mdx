@@ -1,11 +1,10 @@
 ---
 title: Stork
-description: "Ultra low latency data on-chain"
 ---
 
 ## What is Stork?
 
-Stork is an oracle protocol that enables sub-second data feeds on-chain. The core technical principles of Stork are:
+Stork is an oracle protocol that enables sub-second data feeds onchain. The core technical principles of Stork are:
 
 - **Modularity**
 - **Low Latency**
@@ -23,17 +22,17 @@ Stork is implemented as a pull oracle. Stork continuously aggregates data from o
 
 Using Stork on TAC requires two primary steps:
 
-1. **Pulling data** from Stork and putting it on-chain via the Stork contract when it's needed.
+1. **Pulling data** from Stork and putting it onchain via the Stork contract when it's needed.
 2. **Reading data** from the Stork contract in your EVM contract.
 
 ### Pulling Data from Stork
 
-The easiest way to pull data from Stork and make it available on-chain is to use the Stork Chain Pusher and configure it to push any relevant assets to TAC. The Stork Chain Pusher will automatically listen to the Stork aggregator websocket, and push that data to the Stork contract on TAC whenever certain conditions are met. The following conditions are supported and can be combined:
+The easiest way to pull data from Stork and make it available onchain is to use the Stork Chain Pusher and configure it to push any relevant assets to TAC. The Stork Chain Pusher will automatically listen to the Stork aggregator websocket, and push that data to the Stork contract on TAC whenever certain conditions are met. The following conditions are supported and can be combined:
 
 1. **Percentage Change**: Push data when the price changes by a certain percentage.
 2. **Time Interval**: Push data at a regular interval.
 
-For more information on how to use the Stork Chain Pusher, please refer to [Putting Data On-Chain](https://docs.stork.network/introduction/putting-data-on-chain).
+For more information on how to use the Stork Chain Pusher, please refer to [Putting Data onchain](https://docs.stork.network/introduction/putting-data-onchain).
 
 ### Reading Data from the Stork Contract
 

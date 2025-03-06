@@ -177,7 +177,10 @@
       "pages": [
         {
           "group": "Oracles",
-          "pages": ["developers/partner-integrations/oracles/stork"]
+          "pages": [
+            "developers/partner-integrations/oracles/stork",
+            "developers/partner-integrations/oracles/redstone"
+          ]
         }
       ]
     },
