@@ -181,6 +181,11 @@
             "developers/partner-integrations/oracles/stork",
             "developers/partner-integrations/oracles/redstone"
           ]
+        },
+
+        {
+          "group": "Indexers",
+          "pages": ["developers/partner-integrations/indexers/goldsky"]
         }
       ]
     },
