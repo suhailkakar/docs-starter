@@ -36,7 +36,7 @@ npx create-next-app@latest uniswap-v2
 For this app, we will need many other dependencies like TAC SDK, TON connect, so go ahead and install them:
 
 ```bash
-npm install @ton/ton @tonconnect/ui @tonconnect/ui-react tac-sdk
+npm install @ton/ton @tonconnect/ui @tonconnect/ui-react @tonappchain/sdk
 ```
 
 ### Start the development server
@@ -273,7 +273,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { CHAIN, useTonWallet } from "@tonconnect/ui-react";
 import ConnectWallet from "./connect-wallet";
-import { TacSdk } from "tac-sdk";
+import { TacSdk } from "@tonappchain/sdk";
 import { ethers } from "ethers";
 import { toNano } from "@ton/ton";
 import { Network, RawSender } from "@/lib/sender";

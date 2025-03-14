@@ -10,7 +10,7 @@ This guide will help you start building/modifying your EVM frontend with TAC SDK
 Install the TAC SDK using npm:
 
 ```bash
-npm install tac-sdk
+npm install @tonappchain/sdk
 ```
 
 ## Basic Setup
@@ -21,7 +21,7 @@ Once you've installed the SDK, you can start building. Here's a basic setup to g
 <Step title="Import dependencies">
 
 ```javascript
-import { TacSdk } from "tac-sdk";
+import { TacSdk } from "@tonappchain/sdk";
 import { TonConnectUI } from "@tonconnect/ui";
 import { ethers } from "ethers";
 ```
@@ -55,7 +55,7 @@ const tacSdk = await TacSdk.create(sdkParams);
 Here's a simple example of making a cross-chain transaction:
 
 ```javascript
-import { TacSdk } from "tac-sdk";
+import { TacSdk } from "@tonappchain/sdk";
 import { TonConnectUI } from "@tonconnect/ui";
 import { ethers } from "ethers";
 

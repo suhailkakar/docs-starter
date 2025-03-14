@@ -8,7 +8,7 @@ description: "Learn how to send transactions using TAC SDK"
   repository](https://github.com/TacBuild/tac-sdk).
 </Info>
 
-The TAC-SDK provides two approaches for sending transactions:
+The SDK provides two approaches for sending transactions:
 
 - Using TonConnect
 - Using a Raw Wallet via mnemonic
@@ -17,7 +17,7 @@ The TAC-SDK provides two approaches for sending transactions:
 
 ```typescript
 import { TonConnectUI } from "@tonconnect/ui";
-import { TonConnectSender } from "tac-sdk";
+import { TonConnectSender } from "@tonappchain/sdk";
 
 // Initialize TonConnect
 const tonConnect = new TonConnectUI({
@@ -87,7 +87,7 @@ const result = await tacSdk.sendCrossChainTransaction(
 ### Complete Example
 
 ```typescript
-import { TacSdk } from "tac-sdk";
+import { TacSdk } from "@tonappchain/sdk";
 import { TonConnectUI } from "@tonconnect/ui";
 import { ethers } from "ethers";
 

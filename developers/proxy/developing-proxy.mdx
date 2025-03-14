@@ -212,12 +212,12 @@ function myProxyFunction(bytes calldata tacHeader, bytes calldata arguments)
 
 ## How the Cross-Chain Call Works
 
-When a user on TON sends a message via your Dapp (e.g., using the `tac-sdk` on the frontend), the **CrossChainLayer** contract on EVM receives bridged tokens and data from the TON side. Then:
+When a user on TON sends a message via your Dapp (e.g., using the `@tonappchain/sdk` on the frontend), the **CrossChainLayer** contract on EVM receives bridged tokens and data from the TON side. Then:
 
 1. **Tokens** (if any) are automatically transferred from the CrossChainLayer contract to your proxy contract before the function call.
 2. The CrossChainLayer calls `myProxyFunction(tacHeader, arguments)` on your proxy contract.
    - `tacHeader` is the encoded `TacHeaderV1` struct containing data like `shardsKey`, `operationId`, the user’s `tvmCaller` address on TON, etc.
-   - `arguments` is a `bytes` array containing data you defined in the Dapp’s frontend (encoded via `tac-sdk` or manually using `ethers.AbiCoder`).
+   - `arguments` is a `bytes` array containing data you defined in the Dapp’s frontend (encoded via `@tonappchain/sdk` or manually using `ethers.AbiCoder`).
 3. Your proxy function processes the tokens, calls external contracts if necessary, and optionally prepares an `OutMessageV1` with tokens to be sent back to TON.
 4. The `_sendMessageV1(...)` function sends everything back to the CrossChainLayer so that tokens (and an optional message) can be bridged to TON.
 
@@ -296,9 +296,9 @@ const myProxyFunctionArguments = abiCoder.encode(
 
 ---
 
-## Specifying the Function Name in `tac-sdk`
+## Specifying the Function Name in `@tonappchain/sdk`
 
-When using the `tac-sdk` to create messages for bridging, you must provide:
+When using the `@tonappchain/sdk` to create messages for bridging, you must provide:
 
 - `target`: the address of your Proxy contract.
 - `method_name`: the **complete function signature**, e.g. `"myProxyFunction(bytes,bytes)"`.

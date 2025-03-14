@@ -15,7 +15,7 @@ After sending a cross-chain transaction, you can track its status using the Oper
 ### Initialize Tracker
 
 ```typescript
-import { OperationTracker } from "tac-sdk";
+import { OperationTracker } from "@tonappchain/sdk";
 
 const tracker = new OperationTracker();
 ```
@@ -80,7 +80,7 @@ switch (simplifiedStatus) {
 ### Complete Tracking Example
 
 ```typescript
-import { OperationTracker, SimplifiedStatuses } from "tac-sdk";
+import { OperationTracker, SimplifiedStatuses } from "@tonappchain/sdk";
 
 async function trackTransaction(transactionLinker) {
   const tracker = new OperationTracker();
