@@ -23,7 +23,7 @@ Key Benefits of APRO Data Service
 - Hybrid Node Approach
   Introducing a Hybrid node approach that combines on-chain and off-chain computing resources to improve computing efficiency and performance.
 
-- Multi-Network Network Communication Scheme
+- Multi-Network Communication Scheme
   Establishing a multi-centralized network communication scheme ensures network stability and reliability while reducing the risk of single-point failures.
 
 - TVWAP Price Discovery Mechanism
@@ -106,7 +106,7 @@ This example contract obtains the latest price answer from the BTC / USD feed on
 
 ## EVM Guides
 
-This section provides essential guides for integrating APRO Price Feeds on EVM-compatible blockchains. Whether you're working with smart contracts or using APIs to fetch price data, these guides will help you implement APRO’s oracle solutions effectively.
+This section provides essential guides for integrating APRO Price Feeds on EVM-compatible blockchains. Whether you're working with smart contracts or using APIs to fetch price data, these guides will help you implement APRO's oracle solutions effectively.
 
 ### Using Price Feed
 
@@ -114,7 +114,7 @@ Learn how to read price feeds on-chain with Solidity and off-chain using Web3.js
 
 The code for reading Data Push is the same across all EVM-compatible blockchains and price feed types. You choose different types of price feed for different uses, but the request and response format are the same. To read a price feed, specify the following variables:
 
-- RPC endpoint URL: This determines which network that your smart contracts will run on. You can use a node provider service or point to your xown client. If you are using a Web3 wallet, it is already configured with the RPC endpoints for several networks and the [Remix ID](https://remix-project.org/?lang=zh) will automatically detect them for you.
+- RPC endpoint URL: This determines which network your smart contracts will run on. You can use a node provider service or point to your own client. If you are using a Web3 wallet, it is already configured with the RPC endpoints for several networks and the [Remix IDE](https://remix-project.org/) will automatically detect them for you.
 
 - Feed contract address: This determines which Price Feed your smart contract will read. Contract addresses are different for each network. You can find the available contract addresses on the following pages:
   [Price Feed Contract Addresses](#Price-Feed-Contract)
@@ -408,7 +408,7 @@ function version() external view returns (uint256)
 
 ## Price Feed Contract<a id="Price-Feed-Contract"></a>
 
-apro is deployed on the TAC test chains as the follow
+APRO is deployed on the TAC test chains as follows:
 
 |   Pair   | Deviation | Heartbeat |                   Address                    |
 | :------: | :-------: | :-------: | :------------------------------------------: |
@@ -417,4 +417,4 @@ apro is deployed on the TAC test chains as the follow
 
 For inquiries regarding Price Feeds for additional chains, check out the [Price Feed Contract Documentation](https://docs.apro.com/en/data-push/price-feed-contract).
 
-And ,you can also be viewed through our browser about for [Tac-test details](https://www.apro.com/data-push?chain=tac-test)
+You can also view details through our browser for [Tac testnet details](https://www.apro.com/data-push?chain=tac-test)
