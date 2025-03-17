@@ -1,10 +1,8 @@
 ---
-title: APRO oracle integration Guide
+title: APRO
 description: Fast integration of APRO predictor services into TAC chain
 ---
 
-# What is APRO
-APRO Oracle: Secure Off-Chain & On-Chain
 APRO is building a secure platform by combining off-chain processing with on-chain verification, extending both data access and computational capabilities. This forms the foundation of APRO Data Service, improving data accuracy and efficiency while offering the flexibility to create custom solutions tailored to the specific needs of DApp businesses. Currently, we support 161 Price Feed services across 15 major blockchain networks:
 
 Data Push: APRO Data Push uses a "Push-Based" data model to deliver Price Feed services. Decentralized independent node operators continuously gather and push data updates to the blockchain when certain price thresholds or time intervals are met. This method improves blockchain scalability, supports various data products, and provides timely updates.
@@ -12,40 +10,44 @@ Data Push: APRO Data Push uses a "Push-Based" data model to deliver Price Feed s
 We continually refine and optimize our platform to deliver enhanced services and experiences, driving forward the development and application of blockchain technology.
 
 Key Benefits of APRO Data Service
+
 - Advantages of APRO Combination of Off-Chain Computing and On-Chain Verification
-APRO platform integrates off-chain computing with on-chain verification to extend computing capabilities and data access while ensuring system security and reliability.
+  APRO platform integrates off-chain computing with on-chain verification to extend computing capabilities and data access while ensuring system security and reliability.
 
 - Customization of Secure and Trustworthy Computing Logic
-DApp businesses can customize computing logic according to their needs and run it on the APRO platform, achieving personalized business logic processing without concerns about security issues. 
+  DApp businesses can customize computing logic according to their needs and run it on the APRO platform, achieving personalized business logic processing without concerns about security issues.
 
 - Enhancement of Oracle Network Security and Stability
-We focus on enhancing the security and stability of the Oracle network through various measures to ensure continuous service capability.
+  We focus on enhancing the security and stability of the Oracle network through various measures to ensure continuous service capability.
 
 - Hybrid Node Approach
-Introducing a Hybrid node approach that combines on-chain and off-chain computing resources to improve computing efficiency and performance.
+  Introducing a Hybrid node approach that combines on-chain and off-chain computing resources to improve computing efficiency and performance.
 
 - Multi-Network Network Communication Scheme
-Establishing a multi-centralized network communication scheme ensures network stability and reliability while reducing the risk of single-point failures. 
+  Establishing a multi-centralized network communication scheme ensures network stability and reliability while reducing the risk of single-point failures.
 
 - TVWAP Price Discovery Mechanism
-Applying the TVWAP price discovery mechanism ensures fairness and accuracy of data prices, preventing data tampering and malicious manipulation. 
+  Applying the TVWAP price discovery mechanism ensures fairness and accuracy of data prices, preventing data tampering and malicious manipulation.
 
-# Data Push
+## Data Push
+
 - Data Push: Threshold-Based Data Updates
-APRO Data Push offers a "Push-Based" data model, which we use to provide Price Feed services. In this model, decentralized independent node operators continuously aggregate and push data updates to the blockchain when specific price thresholds or heartbeat intervals are reached. This approach enhances blockchain scalability, supports a broader range of data products, and ensures timely updates.
+  APRO Data Push offers a "Push-Based" data model, which we use to provide Price Feed services. In this model, decentralized independent node operators continuously aggregate and push data updates to the blockchain when specific price thresholds or heartbeat intervals are reached. This approach enhances blockchain scalability, supports a broader range of data products, and ensures timely updates.
 
 - Trusted Data for DeFi
-APRO Data Push Model is widely utilized in various applications, especially in DeFi protocols and smart contracts, providing highly trusted, real-time, and secure data. 
+  APRO Data Push Model is widely utilized in various applications, especially in DeFi protocols and smart contracts, providing highly trusted, real-time, and secure data.
 
 - Reliable Data Transmission
-The APRO Data Push model employs multiple high-quality data transmission methods, leveraging a hybrid node architecture, multi-centralized communication networks, the TVWAP price discovery mechanism, and a self-managed multi-signature framework. This ensures the delivery of accurate, tamper-resistant data, safeguarded against vulnerabilities or oracle-based attacks, ensuring reliability across diverse use cases.
+  The APRO Data Push model employs multiple high-quality data transmission methods, leveraging a hybrid node architecture, multi-centralized communication networks, the TVWAP price discovery mechanism, and a self-managed multi-signature framework. This ensures the delivery of accurate, tamper-resistant data, safeguarded against vulnerabilities or oracle-based attacks, ensuring reliability across diverse use cases.
 
-# Getting Started
+## Getting Started
+
 You can use APRO Data Push to connect your smart contracts to asset pricing data. These data feeds aggregate information from many independent APRO node operators. Each price feed has an on-chain address and functions that enable contracts to read real-time pricing data directly from that address.
 
 This section explains the Data Push, where APRO pushes real-time data to your contracts, allowing for immediate access to pricing updates without requiring frequent manual requests. This approach optimizes performance by reducing on-chain calls and enhances efficiency for applications that need continuous updates.
 
 You'll learn how to read Data Feeds and store the value on-chain using Solidity. The code for reading Data Feeds on Tac or other EVM-compatible blockchains remains consistent across different chains and data feed types. You can choose various types of feeds depending on your use case, but the request and response format stays the same. However, the answer's decimal length and expected value ranges might differ depending on the feed you are using.
+
 ```Solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.7;
@@ -58,7 +60,7 @@ import {AggregatorV3Interface} from "./AggregatorV3Interface.sol";
  * THIS IS AN EXAMPLE CONTRACT THAT USES UN-AUDITED CODE.
  * DO NOT USE THIS CODE IN PRODUCTION.
  */
- 
+
 
 contract DataConsumer {
     AggregatorV3Interface internal dataFeed;
@@ -99,13 +101,15 @@ contract DataConsumer {
 }
 
 ```
+
 This example contract obtains the latest price answer from the BTC / USD feed on the Tac testnet.
 
-# EVM Guides
+## EVM Guides
 
 This section provides essential guides for integrating APRO Price Feeds on EVM-compatible blockchains. Whether you're working with smart contracts or using APIs to fetch price data, these guides will help you implement APRO’s oracle solutions effectively.
 
-## Using Price Feed
+### Using Price Feed
+
 Learn how to read price feeds on-chain with Solidity and off-chain using Web3.js. This guide walks you through setting up your RPC endpoint, selecting the right Price Feed contract address, and interacting with data feeds for real-time price updates.
 
 The code for reading Data Push is the same across all EVM-compatible blockchains and price feed types. You choose different types of price feed for different uses, but the request and response format are the same. To read a price feed, specify the following variables:
@@ -113,15 +117,19 @@ The code for reading Data Push is the same across all EVM-compatible blockchains
 - RPC endpoint URL: This determines which network that your smart contracts will run on. You can use a node provider service or point to your xown client. If you are using a Web3 wallet, it is already configured with the RPC endpoints for several networks and the [Remix ID](https://remix-project.org/?lang=zh) will automatically detect them for you.
 
 - Feed contract address: This determines which Price Feed your smart contract will read. Contract addresses are different for each network. You can find the available contract addresses on the following pages:
-[Price Feed Contract Addresses](#Price-Feed-Contract)
+  [Price Feed Contract Addresses](#Price-Feed-Contract)
 
 The examples in this document indicate these variables, but you can modify the examples to work on different networks and read different feeds.
 This guide shows example code that reads Price Feed using the following languages:
 
-### Onchain consumer contracts
+#### Onchain consumer contracts
+
 These code examples demonstrate how to deploy a consumer contract on-chain that reads a data feed and stores the value.
-#### Solidity
+
+##### Solidity
+
 To consume price data, your smart contract should reference AggregatorV3Interface, which defines the external functions implemented by Data Feeds.
+
 ```Solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.7;
@@ -204,16 +212,17 @@ contract DataConsumer {
     }
 }
 ```
+
 The latestRoundData function returns five values representing information about the latest price data. See the Price Feed API Reference for more details.
 
-
-### Offchain reads using Web3.js
+#### Offchain reads using Web3.js
 
 These code examples demonstrate how to read data feeds directly off-chain using Web3 packages for each language.
 
-#### Javascript
+##### Javascript
 
 This example uses [web3.js](https://web3js.readthedocs.io/en/v1.10.0/) to retrieve feed data from the BTC / USD feed on the Tac testnet.
+
 ```Javascript
 /**
  * THIS IS EXAMPLE CODE THAT USES HARDCODED VALUES FOR CLARITY.
@@ -283,14 +292,16 @@ priceFeed.methods
     })
 ```
 
-## Price Feed API Reference
+### Price Feed API Reference
+
 A technical reference for using the AggregatorV3Interface to fetch price data. This guide explains how to retrieve feed details like round data, descriptions, and decimal precision, ensuring you can accurately integrate APRO Price Feeds into your dApps.
 
-When you use price feed, retrieve the feeds through the AggregatorV3Interface and the proxy address. 
+When you use price feed, retrieve the feeds through the AggregatorV3Interface and the proxy address.
 
-### AggregatorV3Interface
+#### AggregatorV3Interface
 
 Import this interface to your contract and use it to run functions in the proxy contract. Create the interface object by pointing to the proxy address. For example, on Tac you could create the interface object in the constructor of your contract using the following example:
+
 ```solidity
 /**
  * Network: Tac testnet
@@ -301,6 +312,7 @@ constructor() {
   priceFeed = AggregatorV3Interface(0xA840DA91be3f707E8774A04Fc9e346d236F5dbBD);
 }
 ```
+
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity >0.8.0;
@@ -328,34 +340,46 @@ interface AggregatorV3Interface {
 
 }
 ```
-### Functions in AggregatorV3Interface
-| Name                  | Description                                                          |
-|-----------------------|----------------------------------------------------------------------|
-| `decimals`            | The number of decimals in the response.                              |
-| `description`         | The description of the aggregator that the proxy points to.          |
-| `getRoundData`        | Get data from a specific round.                                      |
-| `version`             | The version representing the type of aggregator the proxy points to. |
 
-#### decimals
+#### Functions in AggregatorV3Interface
+
+| Name           | Description                                                          |
+| -------------- | -------------------------------------------------------------------- |
+| `decimals`     | The number of decimals in the response.                              |
+| `description`  | The description of the aggregator that the proxy points to.          |
+| `getRoundData` | Get data from a specific round.                                      |
+| `version`      | The version representing the type of aggregator the proxy points to. |
+
+##### decimals
+
 Get the number of decimals present in the response value.
+
 ```solidity
 function decimals() external view returns (uint8);
 ```
+
 - `RETURN`: The number of decimals.
 
-#### description
+##### description
+
 Get the description of the underlying aggregator that the proxy points to.
+
 ```solidity
 function description() external view returns (string memory);
 ```
+
 - `RETURN`: The description of the underlying aggregator.
-#### getRoundData
+
+##### getRoundData
+
 Get data about a specific round, using the roundId.
+
 ```solidity
 function getRoundData(
   uint80 _roundId
 ) external view returns (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound);
 ```
+
 Parameters:
 
 - `_roundId`: The round Id
@@ -370,26 +394,27 @@ Return values:
 
 - `updatedAt`: Timestamp of when the round was updated
 
-- `answeredInRound`:  The round Id of the round in which the answer  was computed
+- `answeredInRound`: The round Id of the round in which the answer was computed
 
+##### version
 
-#### version
 The version representing the type of aggregator the proxy points to.
+
 ```solidity
 function version() external view returns (uint256)
 ```
+
 - `RETURN`: The version number.
 
-
-# Price Feed Contract<a id="Price-Feed-Contract"></a>
+## Price Feed Contract<a id="Price-Feed-Contract"></a>
 
 apro is deployed on the TAC test chains as the follow
 
-| Pair       | Deviation | Heartbeat | Address                                      |
-|:----------:|:---------:|:---------:|:--------------------------------------------:|
-| BTC/USD    |   0.5%    | 1h        | `0xA840DA91be3f707E8774A04Fc9e346d236F5dbBD` |
-| USDT/USD   |   0.1%    | 24h       | `0x8A880Cd417E6782B2d764e54D2e929dbD6f92373` |
+|   Pair   | Deviation | Heartbeat |                   Address                    |
+| :------: | :-------: | :-------: | :------------------------------------------: |
+| BTC/USD  |   0.5%    |    1h     | `0xA840DA91be3f707E8774A04Fc9e346d236F5dbBD` |
+| USDT/USD |   0.1%    |    24h    | `0x8A880Cd417E6782B2d764e54D2e929dbD6f92373` |
 
-For inquiries regarding Price Feeds for additional chains, check out the [Price Feed Contract Documentation](https://docs.apro.com/en/data-push/price-feed-contract). 
+For inquiries regarding Price Feeds for additional chains, check out the [Price Feed Contract Documentation](https://docs.apro.com/en/data-push/price-feed-contract).
 
 And ,you can also be viewed through our browser about for [Tac-test details](https://www.apro.com/data-push?chain=tac-test)

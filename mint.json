@@ -179,7 +179,8 @@
           "group": "Oracles",
           "pages": [
             "developers/partner-integrations/oracles/stork",
-            "developers/partner-integrations/oracles/redstone"
+            "developers/partner-integrations/oracles/redstone",
+            "developers/partner-integrations/oracles/apro"
           ]
         },
 
