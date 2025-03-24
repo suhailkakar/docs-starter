@@ -18,7 +18,8 @@
             "pages": [
               "get-started/introduction",
               "get-started/what-is-tac",
-              "get-started/architecture"
+              "get-started/architecture", 
+              "get-started/faqs"
             ]
           },
           {
@@ -121,7 +122,6 @@
           {
             "group": "SDK ",
             "pages": [
-              "developers/sdk/api-reference",
               "developers/sdk/types"
             ]
           },
@@ -179,13 +179,8 @@
             ]
           }
         ]
-      },
-      {
-        "tab": "FAQs",
-        "pages": [
-          "faqs/all-faqs"
-        ]
       }
+    
     ],
 
 
