@@ -1,19 +1,25 @@
 ---
-title: Proxy Apps
-description: "Learn about TAC Proxy Apps - the connectors between TON and EVM applications"
+title: Proxy Contracts
+description: "Learn about TAC proxy contracts - the connectors between TON and EVM applications"
 ---
 
-Proxy Apps handles all cross-chain complexities while providing a native experience for users.
+Proxy contracts handles all cross-chain complexities while providing a native experience for users. On EVM, Proxy contracts are written in Solidity and deployed on the TAC EVM Layer. On TON, everything is handled by TAC SDK. **You don't need to build your own proxy on TON side**.
 
-## Understanding Proxy Apps
+<Info>
+TAC team can help you build and deploy the contracts for your projects. [Contact us](https://t.me/tac_dev) to get started.
+</Info>
 
-A proxy app is a lightweight smart contract that processes calls between different parts of the TAC system. On EVM (TAC EVM Layer), it manages interactions between the execution layer and the target application.
+## Understanding proxy contracts
 
-When you want to interact with an EVM application through TAC, you don't need to understand the underlying cross-chain mechanics. The proxy apps handle all the necessary translations and communications automatically.
+A proxy contract is a lightweight smart contract that processes calls between different parts of the TAC system. On EVM (TAC EVM Layer), it manages interactions between the execution layer and the target application.
 
-## How Proxy Apps Work
 
-The proxy system operates on both chains:
+
+When you want to interact with an EVM application through TAC, you don't need to understand the underlying cross-chain mechanics. The proxy contracts handle all the necessary translations and communications automatically.
+
+## How Proxy Contracts Work
+
+The proxy system operates on both EVM and TON chains:
 
 ### TON Side Proxy
 
@@ -22,8 +28,12 @@ On the TON chain, the proxy app receives your TON transaction and prepares it fo
 1. Accepts your transaction from your TON wallet
 2. Formats the call data appropriately
 3. Locks any required assets in the Adapter wallet
-4. Sends the formatted message to the sequencer network\*\*\*\*
+4. Sends the formatted message to the sequencer network
 5. Monitors transaction status and handles confirmations
+
+<Warning>
+  Everything on TON side is handled by TAC SDK. You don't need to build your own proxy on TON side.
+</Warning>
 
 ### EVM Side Proxy
 
@@ -61,7 +71,7 @@ Results from the EVM application flow back through the same path in reverse, eve
 
 ## Asset Handling
 
-Proxy apps manage asset transfers securely between chains:
+Proxy contracts manage asset transfers securely between chains:
 
 ### Asset Locking
 
@@ -73,7 +83,7 @@ The EVM proxy handles asset representation on the EVM side. It can mint new toke
 
 ## Security Considerations
 
-Proxy apps incorporate several security measures:
+Proxy contracts incorporate several security measures:
 
 ### Asset Validation
 
@@ -85,34 +95,6 @@ Before executing any operations, the EVM proxy validates that the transaction ha
 
 ### Failure Handling
 
-If a transaction fails at any point, proxy apps ensure assets are returned to their owners. The rollback process is automatic and secure, protecting users from losing funds due to failed transactions.
+If a transaction fails at any point, proxy contracts ensure assets are returned to their owners. The rollback process is automatic and secure, protecting users from losing funds due to failed transactions.
 
-## For Developers
 
-### Testing
-
-Before deploying to mainnet, test your integration using our testnet:
-
-1. Deploy your application to TAC EVM testnet (Turin)
-2. Build the proxy app
-3. Test interactions using test tokens
-4. Verify both TON and EVM side behavior
-
-## Common Use Cases
-
-### Token Swaps
-
-Users can swap tokens on EVM DEXes directly from their TON wallet. The proxy apps handle all the necessary asset locking, unlocking, and message routing automatically.
-
-### NFT Markets
-
-<Info>
-  TAC doesn't support NFTs yet, but ut it is on roadmap, and we will support it
-  soon.
-</Info>
-
-Browse and purchase TON NFTs on EVM marketplaces using TON currency. Proxy apps manage the currency conversion and NFT transfer process seamlessly.
-
-### DeFi Integration
-
-Access EVM DeFi protocols through your TON wallet. Proxy apps translate your actions into the appropriate protocol interactions on the EVM side.

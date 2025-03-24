@@ -1,0 +1,207 @@
+---
+title: Building Your First Hybrid App with TAC
+---
+
+If you're a Solidity developer looking to reach Telegram's massive user base—over **1 billion** monthly active users—without abandoning your existing tools and knowledge, you've come to the right place.
+
+TAC is a Layer 1 blockchain with a novel TON Adapter that creates a bridge between Ethereum's developer ecosystem and TON's growing user base. At its core, TAC enables you to build what we call "hybrid apps"—applications where users interact through their TON wallets, but your application logic runs on familiar EVM infrastructure.
+
+## What is a Hybrid App?
+
+A hybrid app in the TAC context is an application that:
+
+- Presents itself as a native TON application to end users
+- Allows users to interact using their TON wallets or via Telegram Mini Apps
+- Executes its core business logic on the TAC EVM Layer
+- Utilizes cross-chain messaging through the TON Adapter for secure communication
+
+This approach combines the best of both worlds: your existing Solidity code and EVM tooling with TON's user-friendly interface and massive distribution potential.
+
+## Why Build a Hybrid App?
+
+Building a hybrid app with TAC offers several key advantages:
+
+1. Access to Telegram's User Base: Telegram has over 950 million monthly active users, representing a massive opportunity for dApp adoption.
+2. Leverage Existing Code: You can deploy your Solidity contracts with minimal modifications, preserving your investment in EVM-based code.
+3. Familiar Development Experience: Continue using tools like Hardhat, Foundry, and Ethers.js that you already know.
+4. Seamless User Experience: End users interact with your app through familiar TON wallets without needing to understand the cross-chain complexity happening behind the scenes.
+5. EVM Capabilities on TON: Bring advanced DeFi mechanisms and other EVM-native functionality to TON users without needing to reimplement them in FunC.
+
+## Prerequisites
+
+To follow this guide, you should have:
+
+- Basic knowledge of Solidity and smart contract development
+- Familiarity with JavaScript and frontend development
+- Understanding of blockchain fundamentals
+- Node.js and npm/yarn installed on your machine
+
+<Info>
+  Prior experience with TON is not required - we'll cover the TON-specific
+  aspects as we go.
+</Info>
+
+Let's get started by understanding the architecture that makes hybrid apps possible.
+
+## Understanding the Architecture
+
+Before diving into code, it's important to understand the architecture that makes hybrid apps possible. TAC's architecture consists of three key components working in harmony to create a seamless bridge between TON and EVM ecosystems.
+
+### The Three Core Components
+
+<Frame>![TAC Architecture](/images/architecture-1.png)</Frame>
+
+- TAC EVM Layer: This is a fully-fledged EVM Layer 1 built on CosmosSDK with Ethermint, secured by delegated Proof of Stake (dPoS) and Babylon Bitcoin Staking. This is where your Solidity smart contracts live and execute. It provides complete EVM equivalence, meaning your existing Ethereum code works without modification.
+
+- TON Adapter: The heart of TAC's cross-chain capability, the TON Adapter is a decentralized message routing system that securely transfers messages and assets between TON and the TAC EVM Layer. It consists of a network of sequencers that validate, process, and execute cross-chain messages.
+
+- Proxy Apps: These are smart contracts that exist on both TON and TAC EVM chains, serving as the connectors that enable direct communication. On TON, the proxy app receives user transactions and prepares them for the TON Adapter. On the EVM side, the proxy receives verified messages and interacts with your target application.
+  - _The TAC SDK handles all the proxy from the TON side, you only need to build the proxy on the EVM side._
+
+### How Cross-Chain Messages Flow
+
+Understanding the flow of a transaction in a hybrid app is crucial for effective development:
+
+<Steps>
+<Step title="User Interaction Begins on TON">
+  - A user interacts with your application through their TON wallet
+  - Their transaction is sent to a TON-side proxy contract
+</Step>
+<Step title="Their transaction is sent to a TON-side proxy contract">
+  - The TON proxy formats the request and prepares any assets for transfer
+  - It creates a message containing transaction details and sends it through the TON Adapter
+  - Sequencers in the TON Adapter network validate and process the message
+</Step>
+
+<Step title="EVM Execution">
+  - The validated message reaches the EVM-side proxy - The proxy processes any
+  asset operations (minting equivalent tokens on the EVM side) - It calls your
+  target application with the requested action
+</Step>
+
+<Step title="Return Trip (if needed)">
+  - Results from your EVM application can flow back through the same path in reverse
+  - The EVM proxy creates a return message
+  - Sequencers validate and process the return message
+  - The TON proxy delivers results to the user's TON wallet
+</Step>
+</Steps>
+
+### Message Structure and Validation
+
+At the core of this architecture is the message structure that moves between chains:
+
+```sol
+Message {
+   uint32 timestamp;        // Transaction timestamp from TON blockchain
+   address target;          // Target smart contract address
+   string methodName;       // Method to call on target contract
+   bytes arguments;         // Method arguments
+   string caller;          // Original caller's address
+   TokenAmount mint;       // Tokens locked on TON
+   TokenAmount unlock;     // Tokens burned on TON
+}
+```
+
+These messages undergo rigorous validation:
+
+- Asset Verification: Sequencers validate that all transferred assets match the message parameters exactly.
+- Consensus Process: Multiple sequencers must reach agreement (66% consensus within groups) before a message is executed.
+- Merkle Tree Formation: Validated messages are compiled into Merkle trees, with the root hash serving as the foundation for network-wide consensus.
+
+### Dealing with Assets
+
+When your hybrid app involves token transfers, TAC handles this automatically:
+
+1. TON to EVM: When tokens are sent from TON, they are locked in the adaptor wallet on the TON side, and equivalent tokens are minted on the EVM side.
+2. EVM to TON: When sending tokens back, they are either burned (if they originated on TON) or locked (if they originated on EVM) and then released on the TON side.
+
+This architecture creates a secure and efficient pathway for building applications that combine TON's user reach with the rich functionality of the EVM ecosystem. In the next section, we'll set up our development environment to start building on this architecture.
+
+## Setting Up Your Development Environment
+
+To build a hybrid app with TAC, you'll need to set up a development environment that supports both Solidity development for the EVM side and frontend development for the TON side. In this guide, we'll use Foundry for Solidity development and Next.js for our frontend.
+
+### Prerequisites
+
+Before we begin, ensure you have the following installed:
+
+- Node.js (v16 or later) and npm/yarn
+- Git
+
+### Install Foundry
+
+Foundry is a fast, portable, and modular toolkit for Ethereum application development. We'll use it to compile, deploy, and test our Solidity contracts.
+
+Install Foundry by running:
+
+```bash
+curl -L https://foundry.paradigm.xyz | bash
+```
+
+After installation, run:
+
+```bash
+foundryup
+```
+
+Verify the installation was successful:
+
+```bash
+forge --version
+```
+
+You should see output showing the installed version of Forge, Foundry's command-line interface.
+
+### Setting Up a Foundry Project
+
+Let's create a new Foundry project for our hybrid app:
+
+<Steps>
+<Step title="Create a new project">
+```bash
+forge init hybrid-token-app
+cd hybrid-token-app
+```
+
+This creates a new directory with the basic Foundry project structure:
+
+```
+.
+├── lib
+├── script
+├── src
+└── test
+foundry.toml
+```
+
+</Step>
+
+</Steps>
+
+### Setting Up a Next.js Project
+
+Now, let's set up a Next.js project for our frontend:
+
+<Steps>
+<Step title="Create a new Next.js project">
+```bash
+npx create-next-app@latest token-transfer-frontend
+cd token-transfer-frontend
+```
+
+Follow the prompts, selecting TypeScript, ESLint, Tailwind CSS, and other options as desired.
+
+</Step>
+
+<Step title="Install dependencies">
+
+These packages provide:
+
+- @ton/ton: Core TON SDK
+- @tonconnect/ui and @tonconnect/ui-react: TON wallet connection
+- tac-sdk: TAC's cross-chain messaging SDK
+
+</Step>
+
+</Steps>

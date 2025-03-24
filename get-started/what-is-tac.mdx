@@ -5,7 +5,10 @@ description: "Learn more about TAC - how it works and why it exists"
 
 TAC is a Network Extension for TON that expand its compatibility with the Ethereum Virtual Machine (EVM). It enables users to access EVM applications directly through their TON wallets, eliminating the need for managing multiple wallets or using traditional bridges.
 
-## Key Features
+<Frame>
+  <img src="/images/architecture-1.png" alt="TAC Architecture" />
+</Frame>
+
 
 Here are the key features of TAC and how they work:
 
@@ -24,6 +27,8 @@ The network's security on both the TAC EVM Layer and TON Adapter relies on real 
 ### Proxy Apps
 
 TAC provides a flexible approach to use or develop proxy smart contracts on both TON and EVM networks. These proxies handle all the complexities of message routing behind the scenes, making EVM apps feel native to TON users. When someone wants to interact with an EVM application, they simply use their TON wallet as they normally would - the proxy contracts take care of everything else.
+
+Proxy contracts on EVM can be writtin in Solidity and deployed on the TAC EVM Layer. On TON, proxy part is handled by TAC SDK.
 
 ## How TAC Works
 
@@ -64,9 +69,6 @@ Sequencers handle messages within specific timeframes defined by:
 protocolDeployDate + (EpochId + 1) * epochDuration]
 ```
 
-## TAC EVM Network Security
-
-TAC is a ComsosSDK + Etheremint Layer 1 secured by Tendermint-Core and Babylon Bitcoin Staking. As such, the TAC EVM Layer inherit all the security aspects of Ethermint Cosmos chains.
 
 ## TON Adapter Security
 

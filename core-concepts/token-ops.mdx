@@ -64,6 +64,8 @@ Token address pairing follows a deterministic approach. For tokens originating f
 
 ## Practical Implementation Examples
 
+Here are some practical examples of how to interact with TAC using TON-origin tokens.
+
 ### TON Token Deposits
 
 Consider the process of transferring FNZ tokens from TON to TAC. The user sends FNZ tokens to the Jetton Proxy contract wallet, which handles all token transfer operations. Sequencers monitor these transfers and create a MerkleMsg containing metadata for token deployment, minting instructions, and any necessary unlock parameters. All operations occur within a single transaction.
