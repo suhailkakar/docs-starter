@@ -247,6 +247,11 @@
           "icon": "telegram"
         },
         {
+          "anchor": "Discord",
+          "href": "https://discord.gg/tacbuild",
+          "icon": "discord"
+        },
+        {
           "anchor": "X (Twitter)",
           "href": "https://x.com/TacBuild",
           "icon": "twitter"
