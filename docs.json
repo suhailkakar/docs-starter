@@ -16,27 +16,34 @@
           {
             "group": "Get Started",
             "pages": [
-              "get-started/introduction",
-              "get-started/what-is-tac",
-              "get-started/architecture", 
-              "get-started/faqs"
+              "home/get-started/introduction",
+              "home/get-started/what-is-tac",
+              "home/get-started/architecture", 
+              "home/get-started/faqs"
             ]
           },
           {
             "group": "Core Concepts",
             "pages": [
-              "core-concepts/cross-chain-messaging",
-              "core-concepts/proxy-apps",
-              "core-concepts/sequencer-network",
-              "core-concepts/token-ops"
+              "home/core-concepts/cross-chain-messaging",
+              "home/core-concepts/proxy-apps",
+              "home/core-concepts/sequencer-network",
+              "home/core-concepts/token-ops"
             ]
           },
           {
             "group": "Contribute",
             "pages": [
-              "contribute/contribute",
-              "contribute/join-network"
+              "home/contribute/contribute",
+              "home/contribute/join-network"
             ]
+          }, 
+          {
+            "group": "Network Information",
+            "pages": [
+                 "home/network/network-details",
+                 "home/network/contract-addresses"
+         ]
           }
         ]
       },
@@ -87,28 +94,20 @@
             ]
           },
           {
-            "group": "Implementation Guides",
-            "pages": [
-              "developers/build/guides/hello-world",
-              "developers/build/guides/first-tac-app",
-              "developers/build/guides/uniswap-v2"
-            ]
-          },
-          {
             "group": "Partner Integrations",
             "pages": [
               {
                 "group": "Oracles",
                 "pages": [
-                  "developers/build/integrations/oracles/stork",
-                  "developers/build/integrations/oracles/redstone",
-                  "developers/build/integrations/oracles/apro"
+                  "build/integrations/oracles/stork",
+                  "build/integrations/oracles/redstone",
+                  "build/integrations/oracles/apro"
                 ]
               },
               {
                 "group": "Indexers",
                 "pages": [
-                  "developers/build/integrations/indexers/goldsky"
+                  "build/integrations/indexers/goldsky"
                 ]
               }
             ]
