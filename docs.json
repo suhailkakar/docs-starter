@@ -117,65 +117,9 @@
         "tab": "Learn",
         "groups": [
           {
-            "group": "Get Started",
+            "group": "Learn",
             "pages": [
-              "developers/sdk/introduction",
-              {
-                "group": "Quickstart",
-                "pages": [
-                  "developers/sdk/quickstart-onchain",
-                  "developers/sdk/quickstart-frontend"
-                ]
-              },
-              {
-                "group": "Core Concepts",
-                "pages": [
-                  "developers/sdk/core/sharded-messages",
-                  "developers/sdk/core/transaction-tracking"
-                ]
-              },
-              {
-                "group": "Usage Guide",
-                "pages": [
-                  "developers/sdk/usage/creating-instance",
-                  "developers/sdk/usage/sending-transactions",
-                  "developers/sdk/usage/transaction-status"
-                ]
-              },
-              "developers/sdk/changelog"
-            ]
-          },
-          {
-            "group": "Guides",
-            "pages": [
-              "developers/guides/hello-world",
-              "developers/guides/first-tac-app",
-              "developers/guides/uniswap-v2"
-            ]
-          },
-          {
-            "group": "Proxy",
-            "pages": [
-              "developers/proxy/developing-proxy"
-            ]
-          },
-          {
-            "group": "Partner Integrations",
-            "pages": [
-              {
-                "group": "Oracles",
-                "pages": [
-                  "developers/partner-integrations/oracles/stork",
-                  "developers/partner-integrations/oracles/redstone",
-                  "developers/partner-integrations/oracles/apro"
-                ]
-              },
-              {
-                "group": "Indexers",
-                "pages": [
-                  "developers/partner-integrations/indexers/goldsky"
-                ]
-              }
+              "learn/introduction"
             ]
           }
         ]
@@ -277,8 +221,8 @@
     ],
     "primary": {
       "type": "button",
-      "label": "Telegram",
-      "href": "https://t.me/TACbuild"
+      "label": "Discord",
+      "href": "https://discord.gg/tacbuild"
     }
   },
   "footer": {
