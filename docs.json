@@ -69,9 +69,17 @@
                   "build/frontend/core/initialization",
                   "build/frontend/core/wallet",
                   "build/frontend/core/sending-transaction",
-                  "build/frontend/core/transaction-tracking"
-
-
+                  "build/frontend/core/transaction-tracking",
+                  "build/frontend/core/asset-bridging"
+                ]
+              },
+              {
+                "group": "Advanced Usage",
+                "pages":[
+                  "build/frontend/usage/cross-chain-operations",
+                  "build/frontend/usage/simulation-testing",
+                  "build/frontend/usage/token-address-mapping",
+                  "build/frontend/usage/error-handling"
                 ]
 
               },
