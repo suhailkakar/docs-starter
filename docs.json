@@ -31,7 +31,6 @@
               "core-concepts/token-ops"
             ]
           },
-     
           {
             "group": "Contribute",
             "pages": [
@@ -47,45 +46,44 @@
           {
             "group": "Get Started",
             "pages": [
-              "developers/sdk/introduction",
-              {
-                "group": "Quickstart",
-                "pages": [
-                  "developers/sdk/quickstart-onchain",
-                  "developers/sdk/quickstart-frontend"
-                ]
-              },
+              "build/get-started/introduction",
+              "developers/build/quick-start"
+            ]
+          },
+          {
+            "group": "Smart Contracts",
+            "pages": [
+              "build/smart-contracts/introduction",
+              "build/smart-contracts/deploy-to-tac",
+              "build/smart-contracts/build-a-proxy"
+            ]
+          },
+          {
+            "group": "TAC SDK (Frontend)",
+            "pages": [
+              "build/frontend/introduction",
+              "build/frontend/installation",
               {
                 "group": "Core Concepts",
-                "pages": [
-                  "developers/sdk/core/sharded-messages",
-                  "developers/sdk/core/transaction-tracking"
+                "pages":[
+                  "build/frontend/core/initialization",
+                  "build/frontend/core/wallet",
+                  "build/frontend/core/sending-transaction",
+                  "build/frontend/core/transaction-tracking"
+
+
                 ]
+
               },
-              {
-                "group": "Usage Guide",
-                "pages": [
-                  "developers/sdk/usage/creating-instance",
-                  "developers/sdk/usage/sending-transactions",
-                  "developers/sdk/usage/transaction-status"
-                ]
-              },
-          
-              "developers/sdk/changelog"
+             "build/frontend/changelog"
             ]
           },
           {
-            "group": "Guides",
+            "group": "Implementation Guides",
             "pages": [
-              "developers/guides/hello-world",
-              "developers/guides/first-tac-app",
-              "developers/guides/uniswap-v2"
-            ]
-          },
-          {
-            "group": "Proxy",
-            "pages": [
-              "developers/proxy/developing-proxy"
+              "developers/build/guides/hello-world",
+              "developers/build/guides/first-tac-app",
+              "developers/build/guides/uniswap-v2"
             ]
           },
           {
@@ -94,15 +92,15 @@
               {
                 "group": "Oracles",
                 "pages": [
-                  "developers/partner-integrations/oracles/stork",
-                  "developers/partner-integrations/oracles/redstone",
-                  "developers/partner-integrations/oracles/apro"
+                  "developers/build/integrations/oracles/stork",
+                  "developers/build/integrations/oracles/redstone",
+                  "developers/build/integrations/oracles/apro"
                 ]
               },
               {
                 "group": "Indexers",
                 "pages": [
-                  "developers/partner-integrations/indexers/goldsky"
+                  "developers/build/integrations/indexers/goldsky"
                 ]
               }
             ]
@@ -183,7 +181,6 @@
           {
             "group": "Network Information",
             "pages": [
-            
                  "references/network-details",
                  "references/contract-addresses"
          ]
@@ -249,10 +246,7 @@
           }
         ]
       }
-    
     ],
-
-
     "global": {
       "anchors": [
         {

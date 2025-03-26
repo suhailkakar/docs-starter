@@ -1,0 +1,151 @@
+---
+title: Installing TAC SDK
+
+---
+
+Getting started with TAC's frontend SDK is straightforward. This guide will walk you through the installation process and initial setup.
+
+## Installation
+
+Install the TAC SDK using npm or yarn:
+<CodeGroup filename="">
+  ```bash npm
+  npm install @tonappchain/sdk
+  ```
+  ```bash yarn 
+  yarn add @tonappchain/sdk
+  ```
+</CodeGroup>
+
+You'll also need to install peer dependencies if you haven't already:
+<CodeGroup>
+  ```bash npm
+  npm install @ton/ton @tonconnect/ui ethers
+  ```
+    ```bash yarn 
+  yarn add @ton/ton @tonconnect/ui ethers
+  ```
+</CodeGroup>
+
+## Basic Setup
+
+Once you've installed the SDK, you can create an instance of TACK SDK in your application:
+
+```tsx
+import { TacSdk, Network } from '@tonappchain/sdk';
+
+async function initializeSdk() {
+  // Create SDK instance
+  const tacSdk = await TacSdk.create({
+    network: Network.TESTNET
+    // Default configuration uses public endpoints
+  });
+  
+  return tacSdk;
+}
+```
+
+## Configuration Options
+
+The SDK can be configured with several options: 
+```tsx
+import { TacSdk, Network } from '@tonappchain/sdk';
+
+async function initializeWithOptions() {
+  const tacSdk = await TacSdk.create({
+    // Required: Specify the network
+    network: Network.TESTNET, // or Network.MAINNET for production
+    
+    // Optional: Add delay in seconds for requests (default: 0)
+    delay: 3,
+    
+    // Optional: Custom TON parameters
+    TONParams: {
+      // Custom contract opener if needed
+    },
+    
+    // Optional: Custom TAC parameters
+    TACParams: {
+      // Custom TAC parameters if needed
+    }
+  });
+  
+  return tacSdk;
+}
+```
+
+### Advanced Configuration: Custom TON Provider
+
+By default, the SDK uses public TON endpoints. For production applications, you might want to use your own endpoints:
+
+```tsx 
+import { TacSdk, Network } from '@tonappchain/sdk';
+import { TonClient } from '@ton/ton';
+
+async function initializeWithCustomProvider() {
+  const tacSdk = await TacSdk.create({
+    network: Network.TESTNET,
+    delay: 1,
+    TONParams: {
+      contractOpener: new TonClient({
+        endpoint: "https://testnet.toncenter.com/api/v2/jsonRPC",
+        apiKey: "your_api_key" // Optional but recommended for production
+      })
+    }
+  });
+  
+  return tacSdk;
+}
+```
+
+### Advanced Configuration: LiteClient (Node.js Only)
+For Node.js environments, you can use lite clients for improved performance:
+```tsx
+import { TacSdk, Network, liteClientOpener } from '@tonappchain/sdk';
+
+async function initializeWithLiteClient() {
+  // Your own lite client servers configuration
+  const liteClientServers = [/* your lite client servers */];
+  
+  const tacSdk = await TacSdk.create({
+    network: Network.TESTNET,
+    TONParams: {
+      contractOpener: await liteClientOpener({ 
+        liteservers: liteClientServers 
+      }),
+    },
+  });
+  
+  // IMPORTANT: Close connections when done
+  // tacSdk.closeConnections();
+  
+  return tacSdk;
+}
+```
+
+
+<Warning>
+  When using custom Lite Clients, don't forget to call `tacSdk.closeConnections()` when you're done to prevent your application from hanging.
+</Warning>
+
+## Verifying the Installation
+To verify that everything is set up correctly, you can check the initialization:
+
+```tsx
+import { TacSdk, Network } from '@tonappchain/sdk';
+
+async function verifySetup() {
+  try {
+    const tacSdk = await TacSdk.create({
+      network: Network.TESTNET
+    });
+    
+    console.log("TAC SDK initialized successfully!");
+    return tacSdk;
+  } catch (error) {
+    console.error("TAC SDK initialization failed:", error);
+    throw error;
+  }
+}
+```
+

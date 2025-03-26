@@ -1,0 +1,72 @@
+Welcome to the TAC developer guides. If you're an EVM developer looking to expand your reach to TON's ecosystem and Telegram's 950M+ users, you're in the right place.
+<Note>
+  This section is designed for developers who are already familiar with Solidity and JavaScript/TypeScript. If you're new to blockchain development, we recommend starting with the Learn section.
+</Note>
+The Building Blocks of a TAC Application
+Building a hybrid dApp on TAC involves two primary components:
+<CardGroup cols={2}>
+  <Card title="Smart Contracts" icon="code" href="/developers/build/smart-contracts/introduction">
+    Deploy your existing Solidity contracts on TAC's EVM Layer
+  </Card>
+  <Card title="Frontend SDK" icon="browser" href="/developers/build/sdk/introduction">
+    Use our SDK to connect TON wallets to your EVM contracts
+  </Card>
+</CardGroup>
+
+### How it Works
+<Steps>
+  <Step title="Deploy Your Smart Contracts">
+    First, deploy your existing Solidity contracts on TAC's EVM Layer. You can use all the familiar tools like Hardhat, Truffle, or Remix.
+  </Step>
+  <Step title="Build a Proxy Contract">
+    TAC uses proxy contracts to route transactions between TON and your EVM contracts. You can build a custom proxy or use our templates.
+  </Step>
+  <Step title="Integrate the TAC SDK">
+    Add the TAC SDK to your frontend to enable TON wallet connections and transaction routing through the TON Adapter.
+  </Step>
+  <Step title="Launch Your Hybrid dApp">
+    With contracts deployed and frontend integrated, users can interact with your dApp directly from their TON wallets!
+  </Step>
+</Steps>
+
+### Who Should Use TAC?
+
+TAC is ideal for:
+
+- Existing EVM projects wanting to reach Telegram's massive user base
+- DeFi protocols looking to tap into TON's growing liquidity and user activity
+- NFT marketplaces expanding to new audiences
+- Social applications leveraging Telegram's network effects
+
+### Getting Started
+Ready to build? Our quick start guide will help you deploy your first contract and connect it to TON in minutes:
+
+<div className="mt-8">
+  <Button size="lg" href="/developers/build/quick-start">
+    Start Building Now →
+  </Button>
+</div>
+
+#### Example Projects
+Looking for inspiration? Check out these example projects built on TAC:
+<CardGroup cols={3}>
+  <Card title="Token Swap" icon="arrow-right-arrow-left" href="/developers/build/guides/uniswap-v2">
+    Deploy and connect to a Uniswap-style DEX
+  </Card>
+  <Card title="NFT Collection" icon="image" href="/developers/build/guides/first-tac-app">
+    Create an NFT collection with TON wallet support
+  </Card>
+  <Card title="Simple dApp" icon="rocket" href="/developers/build/guides/hello-world">
+    Build your first hybrid dApp with TAC
+  </Card>
+</CardGroup>
+
+#### Need Help?
+
+If you have questions or need help with your project, join our developer community:
+
+- Telegram Developer Chat
+- Discord Server
+- GitHub Discussions
+
+Our team and community are ready to help you build the next great application on TAC!
