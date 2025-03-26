@@ -14,7 +14,7 @@ This guide provides a deeper dive into cross-chain operations with the TAC SDK, 
 When a cross-chain operation is initiated, it follows this general flow:
 
 - Initiation on TON: Transaction begins on TON, with data and/or assets
-- Sequencer Processing: TAC Adaptor's sequencer network validates and processes the message
+- Sequencer Processing: TON Adapter's sequencer network validates and processes the message
 - Consensus Formation: Sequencers form Merkle trees and reach consensus
 - EVM Execution: The validated message is executed on the TAC EVM side
 - Return Path (Optional): Results or assets may be returned to TON
@@ -237,7 +237,7 @@ Cross-chain operations introduce unique security considerations:
 
 ## Handling Failed Transactions
 
-If a transaction fails on the EVM side, the TAC Adaptor automatically handles the rollback of assets to the TON side. However, your application should still provide appropriate feedback to users:
+If a transaction fails on the EVM side, the TON Adapter automatically handles the rollback of assets to the TON side. However, your application should still provide appropriate feedback to users:
 
 ```tsx 
 // Track for failures

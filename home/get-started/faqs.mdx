@@ -49,7 +49,7 @@ This process ensures secure, validated communication between the two chains.
 </Accordion>
 <Accordion title="How does TAC handle token transfers between chains?">
 TAC manages token transfers through a lock-and-mint/burn-and-release mechanism:
-1. When sending tokens from TON to TAC, the tokens are locked in the TAC Adapter on TON, and equivalent tokens are minted on TAC
+1. When sending tokens from TON to TAC, the tokens are locked in the TON Adapter on TON, and equivalent tokens are minted on TAC
 2. When sending tokens from TAC to TON, the tokens are burned on TAC, and the original tokens are unlocked on TON
 3. The entire process is handled by the sequencer network, which ensures the correct amount of tokens are locked/unlocked and minted/burned
 4. Token metadata is preserved across chains, with TON jettons represented as ERC20 tokens on TAC
