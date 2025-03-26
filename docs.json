@@ -68,29 +68,29 @@
           {
             "group": "TAC SDK (Frontend)",
             "pages": [
-              "build/frontend/introduction",
-              "build/frontend/installation",
+              "build/sdk/introduction",
+              "build/sdk/installation",
               {
                 "group": "Core Concepts",
                 "pages":[
-                  "build/frontend/core/initialization",
-                  "build/frontend/core/wallet",
-                  "build/frontend/core/sending-transaction",
-                  "build/frontend/core/transaction-tracking",
-                  "build/frontend/core/asset-bridging"
+                  "build/sdk/core/initialization",
+                  "build/sdk/core/wallet",
+                  "build/sdk/core/sending-transaction",
+                  "build/sdk/core/transaction-tracking",
+                  "build/sdk/core/asset-bridging"
                 ]
               },
               {
                 "group": "Advanced Usage",
                 "pages":[
-                  "build/frontend/usage/cross-chain-operations",
-                  "build/frontend/usage/simulation-testing",
-                  "build/frontend/usage/token-address-mapping",
-                  "build/frontend/usage/error-handling"
+                  "build/sdk/usage/cross-chain-operations",
+                  "build/sdk/usage/simulation-testing",
+                  "build/sdk/usage/token-address-mapping",
+                  "build/sdk/usage/error-handling"
                 ]
 
               },
-             "build/frontend/changelog"
+             "build/sdk/changelog"
             ]
           },
           {
