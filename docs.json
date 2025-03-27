@@ -54,7 +54,7 @@
             "group": "Get Started",
             "pages": [
               "build/get-started/introduction",
-              "developers/build/quick-start"
+              "build/get-started/quick-start"
             ]
           },
           {
