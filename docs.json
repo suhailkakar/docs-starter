@@ -1,0 +1,234 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "palm",
+  "name": "TAC",
+  "colors": {
+    "primary": "#91029B",
+    "light": "#91029B",
+    "dark": "#91029B"
+  },
+  "favicon": "./favicon.jpg",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "home/get-started/introduction",
+              "home/get-started/what-is-tac",
+              "home/get-started/architecture",
+              "home/get-started/faqs"
+            ]
+          },
+          {
+            "group": "Core Concepts",
+            "pages": [
+              "home/core-concepts/cross-chain-messaging",
+              "home/core-concepts/proxy-apps",
+              "home/core-concepts/sequencer-network",
+              "home/core-concepts/token-ops"
+            ]
+          },
+          {
+            "group": "Contribute",
+            "pages": [
+              "home/contribute/contribute",
+              "home/contribute/join-network"
+            ]
+          },
+          {
+            "group": "Network Information",
+            "pages": [
+              "home/network/network-details",
+              "home/network/contract-addresses"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Build",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "build/get-started/introduction",
+              "developers/build/quick-start"
+            ]
+          },
+          {
+            "group": "Smart Contracts",
+            "pages": [
+              "build/smart-contracts/introduction",
+              "build/smart-contracts/deploy-to-tac",
+              "build/smart-contracts/build-a-proxy"
+            ]
+          },
+          {
+            "group": "TAC SDK (Frontend)",
+            "pages": [
+              "build/sdk/introduction",
+              "build/sdk/installation",
+              {
+                "group": "Core Concepts",
+                "pages": [
+                  "build/sdk/core/initialization",
+                  "build/sdk/core/wallet",
+                  "build/sdk/core/sending-transaction",
+                  "build/sdk/core/transaction-tracking",
+                  "build/sdk/core/asset-bridging"
+                ]
+              },
+              {
+                "group": "Advanced Usage",
+                "pages": [
+                  "build/sdk/usage/cross-chain-operations",
+                  "build/sdk/usage/simulation-testing",
+                  "build/sdk/usage/token-address-mapping",
+                  "build/sdk/usage/error-handling"
+                ]
+              },
+              "build/sdk/changelog"
+            ]
+          },
+          {
+            "group": "Partner Integrations",
+            "pages": [
+              {
+                "group": "Oracles",
+                "pages": [
+                  "build/integrations/oracles/stork",
+                  "build/integrations/oracles/redstone",
+                  "build/integrations/oracles/apro"
+                ]
+              },
+              {
+                "group": "Indexers",
+                "pages": [
+                  "build/integrations/indexers/goldsky"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Learn",
+        "groups": [
+          {
+            "group": "Learn",
+            "pages": [
+              "learn/introduction"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "References",
+        "groups": [
+          {
+            "group": "REST API",
+            "pages": [
+              {
+                "group": "Check Status",
+                "pages": [
+                  "references/api/status/get-status"
+                ]
+              },
+              {
+                "group": "EVM endpoints",
+                "pages": [
+                  "references/api/evm/check-if-merkle-message-is-collected",
+                  "references/api/evm/check-if-merkle-message-is-executed",
+                  "references/api/evm/check-if-merkle-root-is-set"
+                ]
+              },
+              {
+                "group": "TVM endpoints",
+                "pages": [
+                  "references/api/tvm/check-if-tvm-merkle-message-is-collected",
+                  "references/api/tvm/check-if-tvm-merkle-message-is-executed",
+                  "references/api/tvm/check-if-merkle-root-is-set"
+                ]
+              },
+              {
+                "group": "Shards statistics",
+                "pages": [
+                  "references/api/shards-statistics/get-number-of-user-shards"
+                ]
+              },
+              {
+                "group": "Operation Id",
+                "pages": [
+                  "references/api/operationid/get-operation-id"
+                ]
+              },
+              {
+                "group": "Time profiling",
+                "pages": [
+                  "references/api/time-profiling/get-stage-profiling"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Tools and Resources",
+            "pages": [
+              "references/tools/developer-console",
+              "references/tools/example-applications",
+              "references/tools/awesome-tac"
+            ]
+          }
+        ]
+      }
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Telegram",
+          "href": "https://t.me/TACbuild",
+          "icon": "telegram"
+        },
+        {
+          "anchor": "Discord",
+          "href": "https://discord.gg/tacbuild",
+          "icon": "discord"
+        },
+        {
+          "anchor": "X (Twitter)",
+          "href": "https://x.com/TacBuild",
+          "icon": "twitter"
+        },
+        {
+          "anchor": "Github",
+          "href": "https://github.com/TacBuild/",
+          "icon": "github"
+        }
+      ]
+    }
+  },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Support",
+        "href": "mailto:info@tac.build"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Discord",
+      "href": "https://discord.gg/tacbuild"
+    }
+  },
+  "footer": {
+    "socials": {
+      "x": "https://x.com/TacBuild",
+      "github": "https://github.com/TacBuild"
+    }
+  }
+}

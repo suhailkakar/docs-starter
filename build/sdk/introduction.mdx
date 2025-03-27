@@ -1,0 +1,44 @@
+Welcome to the TAC SDK guide for frontend developers. This section will help you create powerful, user-friendly interfaces that connect EVM contracts with TON wallets through the TON Adapter.
+
+<Note>
+  The TAC SDK makes it possible to create hybrid dApps that let TON users interact directly with EVM smart contracts without needing to manage multiple wallets or understand the complexities of cross-chain messaging.
+</Note>
+
+## What You Can Build with the TAC SDK
+
+The TAC SDK enables you to create frontends that:
+
+- Connect to TON wallets like Tonkeeper or Tonhub
+- Send transactions from TON to your EVM contracts
+- Track cross-chain transaction status in real-time
+- Handle tokens across both chains
+- Create a seamless user experience for TON users
+
+<Frame> <img src="/images/build/frontend-1.png" alt="TAC SDK Frontend Architecture" /> </Frame>
+
+## Key Components of the TAC SDK
+
+<CardGroup cols={2}> <Card title="Wallet Connections" icon="wallet"> Connect to TON wallets using TON Connect protocol and manage user sessions </Card> <Card title="Transaction Creation" icon="code-branch"> Build and send cross-chain messages to your EVM contracts </Card> <Card title="Status Tracking" icon="magnifying-glass"> Monitor the status of cross-chain transactions as they progress </Card> <Card title="Asset Management" icon="coins"> Handle token transfers between TON and TAC EVM chains </Card> </CardGroup>
+
+## Frontend Integration Flow
+When building a frontend with the TAC SDK, you'll typically follow this workflow:
+
+<Steps> 
+<Step title="Set Up Your Project"> Install and configure the TAC SDK in your JavaScript/TypeScript project</Step> 
+<Step title="Connect to TON Wallets"> Implement TON wallet connections using TON Connect </Step> 
+<Step title="Create Cross-Chain Messages"> Build messages that target your EVM contracts through the TON Adapter </Step> 
+<Step title="Send and Track Transactions"> Send transactions and implement status tracking for a responsive UI </Step> 
+<Step title="Handle Assets"> Manage token transfers and approvals across chains </Step> 
+</Steps>
+
+
+## The User Experience
+From a user's perspective, the experience is seamless:
+
+1. Connect Wallet: User connects their TON wallet (no EVM wallet needed)
+2. Interact with UI: User interacts with your dApp interface
+3. Approve Transaction: User approves a transaction in their TON wallet
+4. Wait for Processing: UI shows transaction status as it processes through both chains
+5. View Results: User sees the results of their interaction with your EVM contract
+6.  All the cross-chain complexity is handled behind the scenes by the TAC SDK and TON Adapter.
+
