@@ -125,62 +125,8 @@
         ]
       },
       {
-        "tab": "References",
-        "groups": [
-          {
-            "group": "REST API",
-            "pages": [
-              {
-                "group": "Check Status",
-                "pages": [
-                  "references/api/status/get-status"
-                ]
-              },
-              {
-                "group": "EVM endpoints",
-                "pages": [
-                  "references/api/evm/check-if-merkle-message-is-collected",
-                  "references/api/evm/check-if-merkle-message-is-executed",
-                  "references/api/evm/check-if-merkle-root-is-set"
-                ]
-              },
-              {
-                "group": "TVM endpoints",
-                "pages": [
-                  "references/api/tvm/check-if-tvm-merkle-message-is-collected",
-                  "references/api/tvm/check-if-tvm-merkle-message-is-executed",
-                  "references/api/tvm/check-if-merkle-root-is-set"
-                ]
-              },
-              {
-                "group": "Shards statistics",
-                "pages": [
-                  "references/api/shards-statistics/get-number-of-user-shards"
-                ]
-              },
-              {
-                "group": "Operation Id",
-                "pages": [
-                  "references/api/operationid/get-operation-id"
-                ]
-              },
-              {
-                "group": "Time profiling",
-                "pages": [
-                  "references/api/time-profiling/get-stage-profiling"
-                ]
-              }
-            ]
-          },
-          {
-            "group": "Tools and Resources",
-            "pages": [
-              "references/tools/developer-console",
-              "references/tools/example-applications",
-              "references/tools/awesome-tac"
-            ]
-          }
-        ]
+        "tab": "API Reference",
+        "openapi": "openapi.yaml"
       }
     ],
     "global": {
