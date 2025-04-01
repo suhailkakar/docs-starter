@@ -42,7 +42,8 @@
             "group": "Network Information",
             "pages": [
               "home/network/network-details",
-              "home/network/contract-addresses"
+              "home/network/contract-addresses",
+                            "curve",
             ]
           }
         ]
