@@ -178,6 +178,14 @@
       "href": "https://discord.gg/tacbuild"
     }
   },
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "claude",
+      "chatgpt"
+    ]
+  },
   "footer": {
     "socials": {
       "x": "https://x.com/TacBuild",
