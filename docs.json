@@ -43,7 +43,7 @@
             "pages": [
               "home/network/network-details",
               "home/network/contract-addresses",
-                            "curve"
+              "curve"
             ]
           }
         ]
@@ -102,6 +102,12 @@
                   "build/integrations/oracles/stork",
                   "build/integrations/oracles/redstone",
                   "build/integrations/oracles/apro"
+                ]
+              },
+              {
+                "group": "RPC",
+                "pages": [
+                  "build/integrations/rpc/ankr"
                 ]
               },
               {
