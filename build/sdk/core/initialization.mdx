@@ -8,19 +8,21 @@ Creating a TAC SDK Instance
 The TAC SDK uses a factory pattern for initialization. You'll need to use the async create method rather than a constructor:
 
 ```tsx
-import { TacSdk, Network } from '@tonappchain/sdk';
+import { TacSdk, Network } from "@tonappchain/sdk";
 
 async function initializeSdk() {
   // Create a new SDK instance
   const tacSdk = await TacSdk.create({
-    network: Network.TESTNET
+    network: Network.TESTNET,
   });
-  
+
   return tacSdk;
 }
 ```
+
 <Note>
-  Always use the async `TacSdk.create()` method, not the constructor. This ensures proper initialization of all SDK components.
+  Always use the async `TacSdk.create()` method, not the constructor. This
+  ensures proper initialization of all SDK components.
 </Note>
 
 ## Configuration Options
@@ -28,32 +30,32 @@ async function initializeSdk() {
 When initializing the SDK, you can provide various configuration options:
 
 ```tsx
-import { TacSdk, Network } from '@tonappchain/sdk';
+import { TacSdk, Network } from "@tonappchain/sdk";
 
 async function initializeWithConfig() {
   const tacSdk = await TacSdk.create({
     // Required: Specify the network
     network: Network.TESTNET, // or Network.MAINNET for production
-    
+
     // Optional: Add delay in seconds for network requests
     delay: 3,
-    
+
     // Optional: Custom TON parameters
     TONParams: {
       // Custom configuration for TON client
     },
-    
+
     // Optional: Custom TAC parameters
     TACParams: {
       // Custom configuration for TAC client
     },
-    
+
     // Optional: Custom Lite Sequencer endpoints
     customLiteSequencerEndpoints: [
       // Your custom endpoints
-    ]
+    ],
   });
-  
+
   return tacSdk;
 }
 ```
@@ -74,39 +76,58 @@ The SDKParams type includes the following options:
     <tr>
       <td>network</td>
       <td>Network</td>
-      <td><strong>Required.</strong> Specifies the TON network (TESTNET or MAINNET)</td>
+      <td>
+        <strong>Required.</strong> Specifies the TON network (TESTNET or
+        MAINNET)
+      </td>
     </tr>
     <tr>
       <td>delay</td>
       <td>number</td>
-      <td><strong>Optional.</strong> Delay (in seconds) for requests to the TON client. Default is 0</td>
+      <td>
+        <strong>Optional.</strong> Delay (in seconds) for requests to the TON
+        client. Default is 0
+      </td>
     </tr>
     <tr>
       <td>TONParams</td>
       <td>TONParams</td>
-      <td><strong>Optional.</strong> Custom parameters for TON side</td>
+      <td>
+        <strong>Optional.</strong> Custom parameters for TON side
+      </td>
     </tr>
     <tr>
       <td>TACParams</td>
       <td>TACParams</td>
-      <td><strong>Optional.</strong> Custom parameters for TAC side</td>
+      <td>
+        <strong>Optional.</strong> Custom parameters for TAC side
+      </td>
     </tr>
     <tr>
       <td>customLiteSequencerEndpoints</td>
       <td>string[]</td>
-      <td><strong>Optional.</strong> Custom lite sequencer endpoints for API access</td>
+      <td>
+        <strong>Optional.</strong> Custom lite sequencer endpoints for API
+        access
+      </td>
     </tr>
   </tbody>
 </table>
 
-
 ### Custom TON Client Configuration
+
+<Warning>
+  The TAC SDK uses a public TON client by default. While convenient, public
+  endpoints can occasionally be unstable. For production or critical use cases,
+  it’s strongly recommended to configure a custom TON client to ensure
+  reliability and control/
+</Warning>
 
 You can provide a custom TON client for more control over TON interactions. This is useful for applications that need customized rate limiting or error handling:
 
 ```tsx
-import { TacSdk, Network } from '@tonappchain/sdk';
-import { TonClient } from '@ton/ton';
+import { TacSdk, Network } from "@tonappchain/sdk";
+import { TonClient } from "@ton/ton";
 
 async function initializeWithCustomTonClient() {
   const tacSdk = await TacSdk.create({
@@ -114,11 +135,11 @@ async function initializeWithCustomTonClient() {
     TONParams: {
       contractOpener: new TonClient({
         endpoint: "https://testnet.toncenter.com/api/v2/jsonRPC",
-        apiKey: "your_api_key" // Recommended for production
-      })
-    }
+        apiKey: "your_api_key", // Recommended for production
+      }),
+    },
   });
-  
+
   return tacSdk;
 }
 ```
@@ -127,28 +148,32 @@ async function initializeWithCustomTonClient() {
 
 For Node.js environments, you can use lite clients for improved performance:
 
-```tsx 
-import { TacSdk, Network, liteClientOpener } from '@tonappchain/sdk';
+```tsx
+import { TacSdk, Network, liteClientOpener } from "@tonappchain/sdk";
 
 async function initializeWithLiteClient() {
   // Your own lite client servers configuration
-  const liteClientServers = [/* your lite client servers */];
-  
+  const liteClientServers = [
+    /* your lite client servers */
+  ];
+
   const tacSdk = await TacSdk.create({
     network: Network.TESTNET,
     TONParams: {
-      contractOpener: await liteClientOpener({ 
-        liteservers: liteClientServers 
+      contractOpener: await liteClientOpener({
+        liteservers: liteClientServers,
       }),
     },
   });
-  
+
   return tacSdk;
 }
 ```
 
 <Warning>
-  When using lite clients, remember to call `tacSdk.closeConnections()` when you're done to properly clean up resources. Otherwise, your Node.js script might hang.
+  When using lite clients, remember to call `tacSdk.closeConnections()` when
+  you're done to properly clean up resources. Otherwise, your Node.js script
+  might hang.
 </Warning>
 
 ### Resource Cleanup
@@ -168,12 +193,13 @@ If you don't specify custom endpoints, the SDK uses these public endpoints:
 - TESTNET: https://testnet.toncenter.com/api/v2/jsonRPC
 
 ## Error Handling
+
 The SDK initialization can throw errors if the configuration is invalid:
 
 ```tsx
 try {
   const tacSdk = await TacSdk.create({
-    network: Network.TESTNET
+    network: Network.TESTNET,
   });
   console.log("SDK initialized successfully");
 } catch (error) {
@@ -188,4 +214,3 @@ try {
 Common initialization errors include:
 
 - `SettingError`: Settings contract at provided address does not contain required setting key
-
