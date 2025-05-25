@@ -101,20 +101,17 @@
                 "pages": [
                   "build/integrations/oracles/stork",
                   "build/integrations/oracles/redstone",
-                  "build/integrations/oracles/apro"
+                  "build/integrations/oracles/apro",
+                  "build/integrations/oracles/eoracle"
                 ]
               },
               {
                 "group": "RPC",
-                "pages": [
-                  "build/integrations/rpc/ankr"
-                ]
+                "pages": ["build/integrations/rpc/ankr"]
               },
               {
                 "group": "Indexers",
-                "pages": [
-                  "build/integrations/indexers/goldsky"
-                ]
+                "pages": ["build/integrations/indexers/goldsky"]
               }
             ]
           }
@@ -125,9 +122,7 @@
         "groups": [
           {
             "group": "Learn",
-            "pages": [
-              "learn/introduction"
-            ]
+            "pages": ["learn/introduction"]
           }
         ]
       },
@@ -179,12 +174,7 @@
     }
   },
   "contextual": {
-    "options": [
-      "copy",
-      "view",
-      "claude",
-      "chatgpt"
-    ]
+    "options": ["copy", "view", "claude", "chatgpt"]
   },
   "footer": {
     "socials": {
