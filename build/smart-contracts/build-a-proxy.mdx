@@ -8,13 +8,13 @@ description: "Learn how to develop a TAC Proxy - the connectors between TON and 
   [Discord](https://discord.com/invite/tacbuild) if you have any questions.
 </Info>
 
-A **TAC Proxy** is a Solidity contract that receives cross-chain messages and tokens bridged from the TON blockchain. When a user on TON initiates a message (and potentially sends tokens), the TAC infrastructure delivers the tokens and data to your EVM-based contract’s function. The **proxy contract** then processes that data—often by calling another Dapp contract or by performing some bridging logic—and optionally sends tokens back to TON using the same TAC infrastructure.
+A **TAC Proxy** is a Solidity contract that receives cross-chain messages and tokens bridged from the TON blockchain. When a user on TON initiates a message (and potentially sends tokens), the TAC infrastructure delivers the tokens and data to your EVM-based contract's function. The **proxy contract** then processes that data—often by calling another Dapp contract or by performing some bridging logic—and optionally sends tokens back to TON using the same TAC infrastructure.
 
 The guide below shows how to:
 
 - Install the necessary dependencies.
 - Write a simple proxy contract (both non-upgradeable and upgradeable).
-- Implement your custom logic in a proxy function that adheres to TAC’s required function signature.
+- Implement your custom logic in a proxy function that adheres to TAC's required function signature.
 - Encode your arguments properly on the frontend.
 - **Test** your proxy contract locally using **Hardhat** and the **tac-l2-ccl** testing utilities.
 
@@ -57,7 +57,7 @@ In your `contracts` folder, create a new `.sol` file (e.g. `MyProxy.sol`). Below
 
 For a **simple**, non-upgradeable contract, you can extend `TacProxyV1`:
 
-```
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.28;
 
@@ -88,7 +88,7 @@ contract MyProxy is TacProxyV1 {
 
 **Key Points**
 
-- We pass `_crossChainLayer` (the CrossChainLayer contract address) to `TacProxyV1`’s constructor.
+- We pass `_crossChainLayer` (the CrossChainLayer contract address) to `TacProxyV1`'s constructor.
 - `_onlyCrossChainLayer` is a security modifier inherited from `TacProxyV1`. It ensures that **only** the recognized cross-chain layer can call this function.
 - `IDappContract` is just an example interface for some external logic contract you may want to call.
 
@@ -96,9 +96,9 @@ contract MyProxy is TacProxyV1 {
 
 ### Upgradeable Contract
 
-If you need to **upgrade** your contract over time, use OpenZeppelin’s upgradeable libraries and the `TacProxyV1Upgradeable` contract:
+If you need to **upgrade** your contract over time, use OpenZeppelin's upgradeable libraries and the `TacProxyV1Upgradeable` contract:
 
-```
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.28;
 
@@ -145,7 +145,7 @@ contract MyProxyUpgradeable is
 
 Every proxy function that TAC calls **must** have the signature:
 
-```
+```solidity
 function <function_name>(bytes calldata, bytes calldata) external;
 ```
 
@@ -158,7 +158,7 @@ You can name the function as you wish (e.g. `myProxyFunction`, `invokeWithCallba
 
 Below is an extended example of how you might implement `myProxyFunction` in a non-upgradeable contract. The logic is the same for an upgradeable contract.
 
-```
+```solidity
 function myProxyFunction(bytes calldata tacHeader, bytes calldata arguments)
     external
     _onlyCrossChainLayer
@@ -216,8 +216,8 @@ When a user on TON sends a message via your Dapp (e.g., using the `@tonappchain/
 
 1. **Tokens** (if any) are automatically transferred from the CrossChainLayer contract to your proxy contract before the function call.
 2. The CrossChainLayer calls `myProxyFunction(tacHeader, arguments)` on your proxy contract.
-   - `tacHeader` is the encoded `TacHeaderV1` struct containing data like `shardsKey`, `operationId`, the user’s `tvmCaller` address on TON, etc.
-   - `arguments` is a `bytes` array containing data you defined in the Dapp’s frontend (encoded via `@tonappchain/sdk` or manually using `ethers.AbiCoder`).
+   - `tacHeader` is the encoded `TacHeaderV1` struct containing data like `shardsKey`, `operationId`, the user's `tvmCaller` address on TON, etc.
+   - `arguments` is a `bytes` array containing data you defined in the Dapp's frontend (encoded via `@tonappchain/sdk` or manually using `ethers.AbiCoder`).
 3. Your proxy function processes the tokens, calls external contracts if necessary, and optionally prepares an `OutMessageV1` with tokens to be sent back to TON.
 4. The `_sendMessageV1(...)` function sends everything back to the CrossChainLayer so that tokens (and an optional message) can be bridged to TON.
 
@@ -227,7 +227,7 @@ When a user on TON sends a message via your Dapp (e.g., using the `@tonappchain/
 
 You typically define a struct that represents the arguments your proxy function expects. For example:
 
-```
+```solidity
 struct MyProxyFunctionArguments {
     address tokenFrom;
     address tokenTo;
@@ -251,7 +251,7 @@ const myProxyFunctionArguments = abiCoder.encode(
 
 ### Complex Example with Nested Structures
 
-```
+```solidity
 struct AnyExtraInfo {
     address feeCollector;
     uint256 feeRate;
@@ -277,7 +277,7 @@ const myProxyFunctionArguments = abiCoder.encode(
 
 ### Complex Example with Dynamic Arrays
 
-```
+```solidity
 struct MyProxyFunctionArguments {
     address[] path;
     uint256 amount;
@@ -330,7 +330,7 @@ In many cases, you want a stripped-down contract to test basic cross-chain behav
 - Emits an event for logging.
 - Demonstrates bridging tokens back to TON.
 
-```
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.28;
 
@@ -397,7 +397,7 @@ contract TestProxy is TacProxyV1 {
 
 Also define the **TestToken** contract.
 
-```
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.28;
 
@@ -617,7 +617,7 @@ describe("TestProxy with tac-l2-ccl", () => {
 
 3. **Invoke Proxy**
 
-   - Use the `testSdk.sendMessage(...)` to simulate a cross-chain call to your proxy’s function.
+   - Use the `testSdk.sendMessage(...)` to simulate a cross-chain call to your proxy's function.
 
 4. **Verification**
 
@@ -646,8 +646,5 @@ By following these steps, you can develop, deploy, and test a TAC Proxy contract
 
 - **Inheritance** from `TacProxyV1` or `TacProxyV1Upgradeable` to gain built-in cross-chain functionality and security modifiers.
 - **Function Signatures** must match `functionName(bytes, bytes) external`.
-- **Decoding** the TAC header and your custom arguments to implement your Dapp’s logic.
-- **Use `_sendMessageV1(...)`** to return tokens and a message back to TON.
-- **Local Testing** with `tac-l2-ccl` provides an easy way to validate your cross-chain logic without deploying a full cross-chain setup.
-
-You can customize the logic in your proxy functions for more advanced scenarios such as multi-token bridging, fee collection, or complex operations on the EVM side before returning data to TON. By carefully using the inherited methods from the TAC library and thoroughly testing your contract, you can confidently build cross-chain applications that interact between EVM and TON networks.
+- **Decoding** the TAC header and your custom arguments to implement your Dapp's logic.
+- \*\*Use `_sendMessageV1(...)`
