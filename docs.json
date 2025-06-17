@@ -1,25 +1,28 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "palm",
+  "theme": "maple",
   "name": "TAC",
   "colors": {
     "primary": "#91029B",
     "light": "#91029B",
     "dark": "#91029B"
   },
+  "icons": {
+    "library": "lucide"
+  },
   "favicon": "./favicon.jpg",
   "navigation": {
-    "tabs": [
+    "dropdowns": [
       {
-        "tab": "Documentation",
+        "dropdown": "Documentation",
+        "icon": "book",
         "groups": [
           {
             "group": "Get Started",
             "pages": [
               "home/get-started/introduction",
               "home/get-started/what-is-tac",
-              "home/get-started/architecture",
-              "home/get-started/faqs"
+              "home/get-started/architecture"
             ]
           },
           {
@@ -42,14 +45,14 @@
             "group": "Network Information",
             "pages": [
               "home/network/network-details",
-              "home/network/contract-addresses",
-              "curve"
+              "home/network/contract-addresses"
             ]
           }
         ]
       },
       {
-        "tab": "Build",
+        "dropdown": "Build",
+        "icon": "code",
         "groups": [
           {
             "group": "Get Started",
@@ -118,7 +121,8 @@
         ]
       },
       {
-        "tab": "Learn",
+        "dropdown": "Learn",
+        "icon": "book",
         "groups": [
           {
             "group": "Learn",
@@ -127,34 +131,11 @@
         ]
       },
       {
-        "tab": "API Reference",
+        "dropdown": "API Reference",
+        "icon": "terminal",
         "openapi": "openapi.yaml"
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Telegram",
-          "href": "https://t.me/TACbuild",
-          "icon": "telegram"
-        },
-        {
-          "anchor": "Discord",
-          "href": "https://discord.gg/tacbuild",
-          "icon": "discord"
-        },
-        {
-          "anchor": "X (Twitter)",
-          "href": "https://x.com/TacBuild",
-          "icon": "twitter"
-        },
-        {
-          "anchor": "Github",
-          "href": "https://github.com/TacBuild/",
-          "icon": "github"
-        }
-      ]
-    }
+    ]
   },
   "logo": {
     "light": "/logo/light.svg",
