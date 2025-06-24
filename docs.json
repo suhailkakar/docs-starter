@@ -50,10 +50,10 @@
             "group": "Cross-Chain Operations",
             "icon": "arrow-left-right",
             "pages": [
-              "core-concepts/cross-chain-messaging",
-              "core-concepts/asset-bridging",
-              "core-concepts/transaction-lifecycle",
-              "core-concepts/message-validation"
+              "core-concepts/cross-chain-operations/cross-chain-messaging",
+              "core-concepts/cross-chain-operations/asset-bridging",
+              "core-concepts/cross-chain-operations/transaction-lifecycle",
+              "core-concepts/cross-chain-operations/message-validation"
             ]
           },
 
