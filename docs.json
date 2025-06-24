@@ -21,7 +21,77 @@
         "pages": ["index"]
       },
       {
-        "tab": "Build with TAC"
+        "tab": "Build with TAC",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "icon": "rocket",
+            "pages": ["build/quickstart"]
+          },
+          {
+            "group": "Smart Contracts",
+            "icon": "code",
+            "pages": [
+              {
+                "group": "Development Tools",
+                "pages": [
+                  "build/smart-contracts/tools/hardhat",
+                  "build/smart-contracts/tools/foundry"
+                ]
+              },
+
+              "build/smart-contracts/deploy-to-tac",
+              "build/smart-contracts/develop-tac-proxy"
+            ]
+          },
+          {
+            "group": "TAC SDK (Frontend)",
+            "icon": "blocks",
+            "pages": [
+              "build/sdk/introduction",
+              "build/sdk/installation",
+              {
+                "group": "Core Concepts",
+                "pages": [
+                  "build/sdk/sdk-initialization",
+                  "build/sdk/wallet-integration",
+                  "build/sdk/sending-transactions",
+                  "build/sdk/transaction-tracking",
+                  "build/sdk/asset-bridging"
+                ]
+              },
+              {
+                "group": "Advanced Usage",
+                "pages": [
+                  "build/sdk/cross-chain-operations",
+                  "build/sdk/simulation-testing",
+                  "build/sdk/token-address-mapping",
+                  "build/sdk/error-handling"
+                ]
+              },
+              "build/sdk/changelog"
+            ]
+          },
+
+          {
+            "group": "Tooling & Resources",
+            "icon": "inbox",
+            "pages": [
+              "build/tooling/block-explorer",
+              "build/tooling/bridge",
+              "build/tooling/faucet",
+              "build/tooling/deploy-contracts"
+            ]
+          },
+          {
+            "group": "Network Information",
+            "icon": "globe",
+            "pages": [
+              "build/network/network-details",
+              "build/network/rpc-endpoints"
+            ]
+          }
+        ]
       },
       {
         "tab": "Core Concepts",
