@@ -8,11 +8,11 @@ export const HeroCard = ({ filename, title, description, href }) => {
   return (
     <a className="group cursor-pointer pb-8" href={href}>
       <img
-        src={`/${filename}.png`}
+        src={`/images/introduction/${filename}.png`}
         className="block dark:hidden pointer-events-none group-hover:scale-105 transition-all duration-100"
       />
       <img
-        src={`/${filename}-dark-2.png`}
+        src={`/images/introduction/${filename}-dark.png`}
         className="block dark:block hidden pointer-events-none group-hover:scale-105 transition-all duration-100"
       />
       <h3 className="mt-5 text-gray-900 dark:text-zinc-50 font-medium">
@@ -26,11 +26,11 @@ export const HeroCard = ({ filename, title, description, href }) => {
 <div className="relative">
   <div className="absolute  left-0 right-0">
     <img
-      src="/bg.png"
+      src="/images/introduction/bg.png"
       className="mt-[-10em] block dark:hidden pointer-events-none w-full cover-image"
     />
       <img
-      src="/bg-dark.png"
+      src="/images/introduction/bg-dark.png"
       className="mt-[-10em] block dark:block hidden pointer-events-none w-full cover-image"
     />
 
@@ -47,37 +47,37 @@ export const HeroCard = ({ filename, title, description, href }) => {
 
     <div className="px-6 lg:px-0 mt-12 lg:mt-24 grid sm:grid-cols-3 gap-x-6 gap-y-4">
       <HeroCard
-        filename="rocket"
+        filename="quick"
         title="Quickstart"
         description="Deploy your first working hybrid dApp in under 5 minutes"
         href="/quickstart"
       />
       <HeroCard
-        filename="rocket"
+        filename="frontend"
         title="Frontend SDK"
         description="Connect TON wallets to your EVM smart contracts seamlessly"
         href="/quick"
       />
       <HeroCard
-        filename="rocket"
+        filename="contract"
         title="Smart Contracts"
         description="Deploy Solidity contracts and build cross-chain proxy app connections"
         href="/editor"
       />
       <HeroCard
-        filename="rocket"
+        filename="example"
         title="Examples"
         description="Clone and customize working hybrid dApps for your project"
         href="/smart-contracts"
       />
       <HeroCard
-        filename="rocket"
+        filename="api"
         title="API Reference"
         description="Complete technical documentation and SDK references for TAC developers"
         href="/api-reference"
       />
       <HeroCard
-        filename="rocket"
+        filename="quick"
         title="Network Info"
         description="Testnet details, contract addresses, and essential TAC developer tools"
         href="/examples"
