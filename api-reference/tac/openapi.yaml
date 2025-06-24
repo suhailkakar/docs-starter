@@ -15,21 +15,21 @@ externalDocs:
   description: OpenAPI
   url: https://swagger.io/resources/open-api/
 servers:
-- url: https://data.turin.tac.build/
+  - url: https://data.turin.tac.build/
 paths:
   /logs:
     get:
       tags:
-      - Logs
+        - Logs
       summary: Get log file content
       description: Retrieve the content of a specific log file by filename.
       parameters:
-      - name: filename
-        in: query
-        description: Name of the log file
-        required: true
-        schema:
-          type: string
+        - name: filename
+          in: query
+          description: Name of the log file
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           description: Log file
@@ -43,128 +43,129 @@ paths:
           content:
             application/octet-stream:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
         "404":
           description: File doesn't exist
           content:
             application/octet-stream:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
         "500":
           description: Can't read file
           content:
             application/octet-stream:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
   /number-of-user-shards:
     get:
       tags:
-      - Shards statistics
+        - Shards statistics
       summary: Get number of user shards
       description: Returns the number of shards associated with a user
       parameters:
-      - name: shardsKey
-        in: query
-        description: Shards Key
-        required: true
-        schema:
-          type: string
-      - name: caller
-        in: query
-        description: Caller address
-        required: true
-        schema:
-          type: string
-      - name: shardCount
-        in: query
-        description: Shard count
-        required: true
-        schema:
-          type: integer
-      - name: timestamp
-        in: query
-        description: Timestamp
-        required: true
-        schema:
-          type: integer
+        - name: shardsKey
+          in: query
+          description: Shards Key
+          required: true
+          schema:
+            type: string
+        - name: caller
+          in: query
+          description: Caller address
+          required: true
+          schema:
+            type: string
+        - name: shardCount
+          in: query
+          description: Shard count
+          required: true
+          schema:
+            type: integer
+        - name: timestamp
+          in: query
+          description: Timestamp
+          required: true
+          schema:
+            type: integer
       responses:
         "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.IntResponse'
+                $ref: "#/components/schemas/api_types.IntResponse"
         "400":
           description: Invalid query parameters
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
         "404":
           description: Data not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
         "500":
           description: Internal error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
   /operation-ids:
     get:
       tags:
-      - OperationId
+        - OperationId
       summary: Get Operation IDs using filters
       description: Returns operation IDs that satisfy certain filters
       parameters:
-      - name: from
-        in: query
-        description: Lower time bound of operation(Unix timestamp)
-        required: true
-        schema:
-          type: number
-      - name: till
-        in: query
-        description: Greater time bound of operation(Unix timestamp)
-        required: true
-        schema:
-          type: number
-      - name: limit
-        in: query
-        description: The maximum number of items to return. Default is 100
-        schema:
-          type: number
-      - name: offset
-        in: query
-        description: The number of items to skip before starting to collect the result
-          set. Default is 0.
-        schema:
-          type: number
+        - name: from
+          in: query
+          description: Lower time bound of operation(Unix timestamp)
+          required: true
+          schema:
+            type: number
+        - name: till
+          in: query
+          description: Greater time bound of operation(Unix timestamp)
+          required: true
+          schema:
+            type: number
+        - name: limit
+          in: query
+          description: The maximum number of items to return. Default is 100
+          schema:
+            type: number
+        - name: offset
+          in: query
+          description:
+            The number of items to skip before starting to collect the result
+            set. Default is 0.
+          schema:
+            type: number
       responses:
         "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.ArrayResponse-api_types_OperationIdWithTimestamp'
+                $ref: "#/components/schemas/api_types.ArrayResponse-api_types_OperationIdWithTimestamp"
         "400":
           description: Invalid query parameters
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
         "500":
           description: Internal error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
   /operation-ids-by-shards-keys:
     post:
       tags:
-      - OperationId
+        - OperationId
       summary: Get Operation IDs by shardsKeys
       description: Returns operation IDs that satisfy certain filters
       requestBody:
@@ -172,7 +173,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/api_types.ShardsKeysParams'
+              $ref: "#/components/schemas/api_types.ShardsKeysParams"
         required: true
       responses:
         "200":
@@ -180,76 +181,77 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.OperationIdsByShardsKeysResponse'
+                $ref: "#/components/schemas/api_types.OperationIdsByShardsKeysResponse"
         "400":
           description: Invalid body parameters
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
         "404":
           description: Data not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
         "500":
           description: Internal error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
       x-codegen-request-body-name: body
   /operation-type:
     get:
       tags:
-      - Status
+        - Status
       summary: Get status
       description: Get type of transaction
       parameters:
-      - name: operationId
-        in: query
-        required: true
-        schema:
-          type: string
+        - name: operationId
+          in: query
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           description: Type of the operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.GetOperationTypeResponse'
+                $ref: "#/components/schemas/api_types.GetOperationTypeResponse"
         "400":
           description: Invalid query parameters
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
         "404":
           description: Operation ID not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
         "500":
           description: Internal error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
   /stage-profiling:
     post:
       tags:
-      - Time profiling
+        - Time profiling
       summary: Get stage profiling
-      description: Retrieves time information for every stage of transaction based
+      description:
+        Retrieves time information for every stage of transaction based
         on operation ID
       requestBody:
         description: Request body
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/api_types.OperationIdsParams'
+              $ref: "#/components/schemas/api_types.OperationIdsParams"
         required: true
       responses:
         "200":
@@ -257,30 +259,30 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.StageProfilingResponse'
+                $ref: "#/components/schemas/api_types.StageProfilingResponse"
         "400":
           description: Invalid body parameters
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
         "404":
           description: Data not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
         "500":
           description: Internal error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
       x-codegen-request-body-name: body
   /status:
     post:
       tags:
-      - Status
+        - Status
       summary: Get status
       description: Get the status of an operation by its Operation ID
       requestBody:
@@ -288,7 +290,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/api_types.OperationIdsParams'
+              $ref: "#/components/schemas/api_types.OperationIdsParams"
         required: true
       responses:
         "200":
@@ -296,178 +298,179 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.GetStatusesResponse'
+                $ref: "#/components/schemas/api_types.GetStatusesResponse"
         "400":
           description: Invalid query parameters
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
         "404":
           description: Operation ID not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
         "500":
           description: Internal error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
       x-codegen-request-body-name: body
   /tac/observer/is-message-collected:
     get:
       tags:
-      - TAC Observer
+        - TAC Observer
       summary: Check if merkle message is collected
       description: Check if the TAC MerkleMsg is collected.
       parameters:
-      - name: operationId
-        in: query
-        description: Operation ID
-        required: true
-        schema:
-          type: string
+        - name: operationId
+          in: query
+          description: Operation ID
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           description: Message is collected
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.GetStatusResponse'
+                $ref: "#/components/schemas/api_types.GetStatusResponse"
         "400":
           description: Invalid query parameters
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.StringResponse'
+                $ref: "#/components/schemas/api_types.StringResponse"
         "404":
           description: Operation ID not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
         "500":
           description: Internal error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
   /tac/observer/is-message-executed:
     get:
       tags:
-      - TAC Observer
+        - TAC Observer
       summary: Check if Merkle Message is Executed
       description: Check if the Merkle message is executed in the TAC chain.
       parameters:
-      - name: operationId
-        in: query
-        description: Operation ID
-        required: true
-        schema:
-          type: string
+        - name: operationId
+          in: query
+          description: Operation ID
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           description: Message is executed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.GetStatusResponse'
+                $ref: "#/components/schemas/api_types.GetStatusResponse"
         "400":
           description: Invalid query parameters
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
         "404":
           description: Operation ID not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
         "500":
           description: Internal error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
   /tac/observer/is-message-included-in-consensus:
     get:
       tags:
-      - TAC Observer
+        - TAC Observer
       summary: Check if Merkle Root is Set
       description: Check if the Merkle root is set in the TAC chain.
       parameters:
-      - name: operationId
-        in: query
-        description: Operation ID
-        required: true
-        schema:
-          type: string
+        - name: operationId
+          in: query
+          description: Operation ID
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           description: Merlkle root is set
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.GetStatusResponse'
+                $ref: "#/components/schemas/api_types.GetStatusResponse"
         "400":
           description: Invalid query parameters
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
         "404":
           description: Operation ID not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
         "500":
           description: Internal error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
   /tac/operation-id:
     get:
       tags:
-      - OperationId
+        - OperationId
       summary: Get Operation ID
-      description: "Returns a unique operationId to track the entire path of a transaction.\
+      description:
+        "Returns a unique operationId to track the entire path of a transaction.\
         \ All parameters are fields of the transactionLinker structure in the SDK,\
         \ which you set when sending a transaction."
       parameters:
-      - name: transactionHash
-        in: query
-        description: TAC transaction hash
-        required: true
-        schema:
-          type: string
+        - name: transactionHash
+          in: query
+          description: TAC transaction hash
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.TACOperationIdResponse'
+                $ref: "#/components/schemas/api_types.TACOperationIdResponse"
         "400":
           description: Invalid query parameters
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
         "500":
           description: Internal error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
   /tac/simulator/simulate-message:
     post:
       tags:
-      - TAC Simulator
+        - TAC Simulator
       summary: Simulate TAC message
       description: Simulates execution of an TAC call from TON
       requestBody:
@@ -475,7 +478,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/api_types.SimulateMessageTACParams'
+              $ref: "#/components/schemas/api_types.SimulateMessageTACParams"
         required: true
       responses:
         "200":
@@ -483,140 +486,141 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.TACSimulationResponse'
+                $ref: "#/components/schemas/api_types.TACSimulationResponse"
         "400":
           description: Bad request - invalid parameters
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
         "500":
           description: Internal error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
       x-codegen-request-body-name: request
   /ton/observer/is-message-collected:
     get:
       tags:
-      - TON Observer
+        - TON Observer
       summary: Check if TON Merkle Message is Collected
       description: Check if the TON MerkleMsg is collected.
       parameters:
-      - name: operationId
-        in: query
-        description: Operation ID
-        required: true
-        schema:
-          type: string
+        - name: operationId
+          in: query
+          description: Operation ID
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           description: Merkle message is collected
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.GetStatusResponse'
+                $ref: "#/components/schemas/api_types.GetStatusResponse"
         "400":
           description: Invalid query parameters
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
         "404":
           description: Operation ID not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
         "500":
           description: Internal error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
   /ton/observer/is-message-executed:
     get:
       tags:
-      - TON Observer
+        - TON Observer
       summary: Check if TON Merkle Message is executed
       description: Check if TON Merkle Message is executed
       parameters:
-      - name: operationId
-        in: query
-        description: Operation ID
-        required: true
-        schema:
-          type: string
+        - name: operationId
+          in: query
+          description: Operation ID
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           description: Merkle message is executed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.GetStatusResponse'
+                $ref: "#/components/schemas/api_types.GetStatusResponse"
         "400":
           description: Invalid query parameters
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
         "404":
           description: Operation ID not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
         "500":
           description: Internal error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
   /ton/observer/is-message-included-in-consensus:
     get:
       tags:
-      - TON Observer
+        - TON Observer
       summary: Check if Merkle Root is Set
       description: Check if the Merkle root is set in the TON chain.
       parameters:
-      - name: operationId
-        in: query
-        description: Operation ID
-        required: true
-        schema:
-          type: string
+        - name: operationId
+          in: query
+          description: Operation ID
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           description: Merkle root is set
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.GetStatusResponse'
+                $ref: "#/components/schemas/api_types.GetStatusResponse"
         "400":
           description: Invalid query parameters
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
         "404":
           description: Operation ID not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
         "500":
           description: Internal error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
   /ton/operation-id:
     post:
       tags:
-      - OperationId
+        - OperationId
       summary: Get Operation ID
-      description: "Returns a unique operationId to track the entire path of a transaction.\
+      description:
+        "Returns a unique operationId to track the entire path of a transaction.\
         \ All parameters are fields of the transactionLinker structure in the SDK,\
         \ which you set when sending a transaction."
       requestBody:
@@ -624,7 +628,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/api_types.GetTONOperationIdParams'
+              $ref: "#/components/schemas/api_types.GetTONOperationIdParams"
         required: true
       responses:
         "200":
@@ -632,19 +636,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.StringResponse'
+                $ref: "#/components/schemas/api_types.StringResponse"
         "400":
           description: Invalid query parameters
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
         "500":
           description: Internal error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api_types.Error'
+                $ref: "#/components/schemas/api_types.Error"
       x-codegen-request-body-name: transactionLinker
 components:
   schemas:
@@ -654,15 +658,15 @@ components:
         response:
           type: array
           items:
-            $ref: '#/components/schemas/api_types.OperationIdWithTimestamp'
+            $ref: "#/components/schemas/api_types.OperationIdWithTimestamp"
     api_types.BlockchainType:
       type: string
       enum:
-      - TAC
-      - TON
+        - TAC
+        - TON
       x-enum-varnames:
-      - TAC
-      - TON
+        - TAC
+        - TON
     api_types.EVMTokenAmountResult:
       type: object
       properties:
@@ -679,19 +683,19 @@ components:
       type: object
       properties:
         collectedInTAC:
-          $ref: '#/components/schemas/api_types.ProfilingStageData'
+          $ref: "#/components/schemas/api_types.ProfilingStageData"
         collectedInTON:
-          $ref: '#/components/schemas/api_types.ProfilingStageData'
+          $ref: "#/components/schemas/api_types.ProfilingStageData"
         executedInTAC:
-          $ref: '#/components/schemas/api_types.ProfilingStageData'
+          $ref: "#/components/schemas/api_types.ProfilingStageData"
         executedInTON:
-          $ref: '#/components/schemas/api_types.ProfilingStageData'
+          $ref: "#/components/schemas/api_types.ProfilingStageData"
         includedInTACConsensus:
-          $ref: '#/components/schemas/api_types.ProfilingStageData'
+          $ref: "#/components/schemas/api_types.ProfilingStageData"
         includedInTONConsensus:
-          $ref: '#/components/schemas/api_types.ProfilingStageData'
+          $ref: "#/components/schemas/api_types.ProfilingStageData"
         operationType:
-          $ref: '#/components/schemas/api_types.OperationType'
+          $ref: "#/components/schemas/api_types.OperationType"
     api_types.FeeParamsResult:
       type: object
       properties:
@@ -707,23 +711,23 @@ components:
       type: object
       properties:
         response:
-          $ref: '#/components/schemas/api_types.OperationType'
+          $ref: "#/components/schemas/api_types.OperationType"
     api_types.GetStatusResponse:
       type: object
       properties:
         response:
-          $ref: '#/components/schemas/api_types.StatusResult'
+          $ref: "#/components/schemas/api_types.StatusResult"
     api_types.GetStatusesResponse:
       type: object
       properties:
         response:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/api_types.StatusResult'
+            $ref: "#/components/schemas/api_types.StatusResult"
     api_types.GetTONOperationIdParams:
       required:
-      - caller
-      - shardsKey
+        - caller
+        - shardsKey
       type: object
       properties:
         caller:
@@ -770,7 +774,7 @@ components:
         response:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/api_types.OperationIdsByShardsKeysResult'
+            $ref: "#/components/schemas/api_types.OperationIdsByShardsKeysResult"
     api_types.OperationIdsByShardsKeysResult:
       type: object
       properties:
@@ -780,7 +784,7 @@ components:
             type: string
     api_types.OperationIdsParams:
       required:
-      - operationIds
+        - operationIds
       type: object
       properties:
         operationIds:
@@ -790,19 +794,19 @@ components:
     api_types.OperationType:
       type: string
       enum:
-      - PENDING
-      - TON-TAC-TON
-      - ROLLBACK
-      - TON-TAC
-      - TAC-TON
-      - UNKNOWN
+        - PENDING
+        - TON-TAC-TON
+        - ROLLBACK
+        - TON-TAC
+        - TAC-TON
+        - UNKNOWN
       x-enum-varnames:
-      - PENDING
-      - TON_TAC_TON
-      - ROLLBACK
-      - TON_TAC
-      - TAC_TON
-      - UNKNOWN
+        - PENDING
+        - TON_TAC_TON
+        - ROLLBACK
+        - TON_TAC
+        - TAC_TON
+        - UNKNOWN
     api_types.OutMessageResult:
       type: object
       properties:
@@ -819,22 +823,22 @@ components:
         tokensBurned:
           type: array
           items:
-            $ref: '#/components/schemas/api_types.EVMTokenAmountResult'
+            $ref: "#/components/schemas/api_types.EVMTokenAmountResult"
         tokensLocked:
           type: array
           items:
-            $ref: '#/components/schemas/api_types.EVMTokenAmountResult'
+            $ref: "#/components/schemas/api_types.EVMTokenAmountResult"
     api_types.ProfilingStageData:
       type: object
       properties:
         exists:
           type: boolean
         stageData:
-          $ref: '#/components/schemas/api_types.StageData'
+          $ref: "#/components/schemas/api_types.StageData"
     api_types.ShardsKeysParams:
       required:
-      - caller
-      - shardsKeys
+        - caller
+        - shardsKeys
       type: object
       properties:
         caller:
@@ -845,10 +849,10 @@ components:
             type: string
     api_types.SimulateMessageTACParams:
       required:
-      - shardsKey
-      - tacCallParams
-      - tonAssets
-      - tonCaller
+        - shardsKey
+        - tacCallParams
+        - tonAssets
+        - tonCaller
       type: object
       properties:
         executorAddress:
@@ -860,36 +864,36 @@ components:
         shardsKey:
           type: string
         tacCallParams:
-          $ref: '#/components/schemas/api_types.TACCallParams'
+          $ref: "#/components/schemas/api_types.TACCallParams"
         tonAssets:
           type: array
           items:
-            $ref: '#/components/schemas/api_types.TVMAssetAmount'
+            $ref: "#/components/schemas/api_types.TVMAssetAmount"
         tonCaller:
           type: string
     api_types.Stage:
       type: string
       enum:
-      - start
-      - collectedInTAC
-      - includedInTACConsensus
-      - executedInTAC
-      - collectedInTON
-      - includedInTONConsensus
-      - executedInTON
+        - start
+        - collectedInTAC
+        - includedInTACConsensus
+        - executedInTAC
+        - collectedInTON
+        - includedInTONConsensus
+        - executedInTON
       x-enum-varnames:
-      - START
-      - COLLECTED_IN_TAC
-      - INCLUDED_IN_TAC_CONSENSUS
-      - EXECUTED_IN_TAC
-      - COLLECTED_IN_TON
-      - INCLUDED_IN_TON_CONSENSUS
-      - EXECUTED_IN_TON
+        - START
+        - COLLECTED_IN_TAC
+        - INCLUDED_IN_TAC_CONSENSUS
+        - EXECUTED_IN_TAC
+        - COLLECTED_IN_TON
+        - INCLUDED_IN_TON_CONSENSUS
+        - EXECUTED_IN_TON
     api_types.StageData:
       type: object
       properties:
         note:
-          $ref: '#/components/schemas/api_types.NoteInfo'
+          $ref: "#/components/schemas/api_types.NoteInfo"
         success:
           type: boolean
         timestamp:
@@ -897,21 +901,21 @@ components:
         transactions:
           type: array
           items:
-            $ref: '#/components/schemas/api_types.TransactionData'
+            $ref: "#/components/schemas/api_types.TransactionData"
     api_types.StageProfilingResponse:
       type: object
       properties:
         response:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/api_types.ExecutionStages'
+            $ref: "#/components/schemas/api_types.ExecutionStages"
     api_types.StatusResult:
       type: object
       properties:
         note:
-          $ref: '#/components/schemas/api_types.NoteInfo'
+          $ref: "#/components/schemas/api_types.NoteInfo"
         stage:
-          $ref: '#/components/schemas/api_types.Stage'
+          $ref: "#/components/schemas/api_types.Stage"
         success:
           type: boolean
         timestamp:
@@ -919,7 +923,7 @@ components:
         transactions:
           type: array
           items:
-            $ref: '#/components/schemas/api_types.TransactionData'
+            $ref: "#/components/schemas/api_types.TransactionData"
     api_types.StringResponse:
       type: object
       properties:
@@ -927,7 +931,7 @@ components:
           type: string
     api_types.TACCallParams:
       required:
-      - target
+        - target
       type: object
       properties:
         arguments:
@@ -942,7 +946,7 @@ components:
         response:
           type: array
           items:
-            $ref: '#/components/schemas/api_types.OperationIdWithLogIndex'
+            $ref: "#/components/schemas/api_types.OperationIdWithLogIndex"
     api_types.TACSimulationDebugInfoResult:
       type: object
       properties:
@@ -958,31 +962,31 @@ components:
       type: object
       properties:
         response:
-          $ref: '#/components/schemas/api_types.TACSimulationResult'
+          $ref: "#/components/schemas/api_types.TACSimulationResult"
     api_types.TACSimulationResult:
       type: object
       properties:
         debugInfo:
-          $ref: '#/components/schemas/api_types.TACSimulationDebugInfoResult'
+          $ref: "#/components/schemas/api_types.TACSimulationDebugInfoResult"
         estimatedGas:
           type: integer
         estimatedJettonFeeAmount:
           type: string
         feeParams:
-          $ref: '#/components/schemas/api_types.FeeParamsResult'
+          $ref: "#/components/schemas/api_types.FeeParamsResult"
         message:
           type: string
         outMessages:
           type: array
           items:
-            $ref: '#/components/schemas/api_types.OutMessageResult'
+            $ref: "#/components/schemas/api_types.OutMessageResult"
         simulationError:
           type: string
         simulationStatus:
           type: boolean
     api_types.TVMAssetAmount:
       required:
-      - amount
+        - amount
       type: object
       properties:
         amount:
@@ -993,7 +997,7 @@ components:
       type: object
       properties:
         blockchainType:
-          $ref: '#/components/schemas/api_types.BlockchainType'
+          $ref: "#/components/schemas/api_types.BlockchainType"
         hash:
           type: string
   securitySchemes:

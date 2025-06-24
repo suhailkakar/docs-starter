@@ -18,7 +18,7 @@
     "tabs": [
       {
         "tab": "Get Started",
-        "pages": ["index.mdx"]
+        "pages": ["index"]
       },
       {
         "tab": "Build with TAC"
@@ -66,7 +66,23 @@
       },
       {
         "tab": "API Reference",
-        "openapi": "openapi.yaml"
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": ["api-reference/tac/get-started"]
+          },
+          {
+            "group": "TAC APIs",
+            "openapi": {
+              "source": "api-reference/tac/openapi.yaml",
+              "directory": "api-reference/tac"
+            }
+          },
+          {
+            "group": "EVM APIs",
+            "pages": []
+          }
+        ]
       }
     ]
   },
