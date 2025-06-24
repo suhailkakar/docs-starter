@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "maple",
+  "theme": "mint",
   "name": "TAC",
   "colors": {
     "primary": "#91029B",
@@ -10,129 +10,67 @@
   "icons": {
     "library": "lucide"
   },
+  "fonts": {
+    "family": "Inter"
+  },
   "favicon": "./favicon.jpg",
   "navigation": {
-    "dropdowns": [
+    "tabs": [
       {
-        "dropdown": "Documentation",
-        "icon": "book",
+        "tab": "Get Started",
+        "pages": ["index.mdx"]
+      },
+      {
+        "tab": "Build with TAC"
+      },
+      {
+        "tab": "Core Concepts",
         "groups": [
           {
-            "group": "Get Started",
+            "group": "Overview",
+            "icon": "info",
             "pages": [
-              "home/get-started/introduction",
-              "home/get-started/what-is-tac",
-              "home/get-started/architecture"
+              "core-concepts/overview/what-is-tac",
+              "core-concepts/overview/architecture",
+              "core-concepts/overview/hybrid-dapps"
             ]
           },
           {
-            "group": "Core Concepts",
+            "group": " Components",
+            "icon": "blocks",
             "pages": [
-              "home/core-concepts/cross-chain-messaging",
-              "home/core-concepts/proxy-apps",
-              "home/core-concepts/sequencer-network",
-              "home/core-concepts/token-ops"
+              "core-concepts/components/tac-evm-layer",
+              "core-concepts/components/ton-adapter",
+              "core-concepts/components/proxy-apps",
+              "core-concepts/components/sequencer-network",
+              "core-concepts/components/tac-sdk"
             ]
           },
           {
-            "group": "Contribute",
+            "group": "Cross-Chain Operations",
+            "icon": "arrow-left-right",
             "pages": [
-              "home/contribute/contribute",
-              "home/contribute/join-network"
+              "core-concepts/cross-chain-messaging",
+              "core-concepts/asset-bridging",
+              "core-concepts/transaction-lifecycle",
+              "core-concepts/message-validation"
             ]
           },
+
           {
-            "group": "Network Information",
+            "group": "Token Economics",
+            "icon": "coins",
             "pages": [
-              "home/network/network-details",
-              "home/network/contract-addresses"
+              "core-concepts/token-operations",
+              "core-concepts/native-tokens",
+              "core-concepts/bridged-tokens",
+              "core-concepts/liquidity-management"
             ]
           }
         ]
       },
       {
-        "dropdown": "Build",
-        "icon": "code",
-        "groups": [
-          {
-            "group": "Get Started",
-            "pages": [
-              "build/get-started/introduction",
-              "build/get-started/quick-start"
-            ]
-          },
-          {
-            "group": "Smart Contracts",
-            "pages": [
-              "build/smart-contracts/introduction",
-              "build/smart-contracts/deploy-to-tac",
-              "build/smart-contracts/build-a-proxy"
-            ]
-          },
-          {
-            "group": "TAC SDK (Frontend)",
-            "pages": [
-              "build/sdk/introduction",
-              "build/sdk/installation",
-              {
-                "group": "Core Concepts",
-                "pages": [
-                  "build/sdk/core/initialization",
-                  "build/sdk/core/wallet",
-                  "build/sdk/core/sending-transaction",
-                  "build/sdk/core/transaction-tracking",
-                  "build/sdk/core/asset-bridging"
-                ]
-              },
-              {
-                "group": "Advanced Usage",
-                "pages": [
-                  "build/sdk/usage/cross-chain-operations",
-                  "build/sdk/usage/simulation-testing",
-                  "build/sdk/usage/token-address-mapping",
-                  "build/sdk/usage/error-handling"
-                ]
-              },
-              "build/sdk/changelog"
-            ]
-          },
-          {
-            "group": "Partner Integrations",
-            "pages": [
-              {
-                "group": "Oracles",
-                "pages": [
-                  "build/integrations/oracles/stork",
-                  "build/integrations/oracles/redstone",
-                  "build/integrations/oracles/apro",
-                  "build/integrations/oracles/eoracle"
-                ]
-              },
-              {
-                "group": "RPC",
-                "pages": ["build/integrations/rpc/ankr"]
-              },
-              {
-                "group": "Indexers",
-                "pages": ["build/integrations/indexers/goldsky"]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "dropdown": "Learn",
-        "icon": "book",
-        "groups": [
-          {
-            "group": "Learn",
-            "pages": ["learn/introduction"]
-          }
-        ]
-      },
-      {
-        "dropdown": "API Reference",
-        "icon": "terminal",
+        "tab": "API Reference",
         "openapi": "openapi.yaml"
       }
     ]
@@ -142,12 +80,6 @@
     "dark": "/logo/dark.svg"
   },
   "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "mailto:info@tac.build"
-      }
-    ],
     "primary": {
       "type": "button",
       "label": "Discord",
