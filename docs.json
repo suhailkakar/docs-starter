@@ -60,12 +60,7 @@
           {
             "group": "Token Economics",
             "icon": "coins",
-            "pages": [
-              "core-concepts/token-operations",
-              "core-concepts/native-tokens",
-              "core-concepts/bridged-tokens",
-              "core-concepts/liquidity-management"
-            ]
+            "pages": ["core-concepts/token-economics/token-operations"]
           }
         ]
       },
