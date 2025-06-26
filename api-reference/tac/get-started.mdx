@@ -3,9 +3,9 @@ title: API Reference
 description: "Complete API documentation for building on TAC"
 ---
 
-TAC provides comprehensive API access through two complementary sets of endpoints: standard EVM JSON-RPC APIs for full Ethereum compatibility, and TAC-specific APIs for cross-chain functionality.
+TAC provides comprehensive API access through three complementary sets of endpoints: standard EVM JSON-RPC APIs for full Ethereum compatibility, TAC-specific APIs for cross-chain functionality, and Safe APIs for tracking transactions sent via Safe smart contracts.
 
-This dual approach ensures that existing Ethereum tools work seamlessly while providing access to TAC's unique hybrid dApp capabilities.
+This multi-layered approach ensures that existing Ethereum tools work seamlessly while providing access to TAC's unique hybrid dApp capabilities and Safe transaction monitoring.
 
 ## API Categories
 
@@ -15,8 +15,16 @@ This dual approach ensures that existing Ethereum tools work seamlessly while pr
     transaction tracking, sequencer status, and hybrid dApp operations.
   </Card>
 
-  <Card title="EVM APIs" icon="blocks" href="/api-reference/evm">
-    Standard JSON-RPC: Complete Ethereum JSON-RPC compatibility for accounts,
-    transactions, contracts, block data, and blockchain info.
+<Card title="EVM APIs" icon="blocks" href="/api-reference/evm">
+  Standard JSON-RPC: Complete Ethereum JSON-RPC compatibility for accounts,
+  transactions, contracts, block data, and blockchain info.
+</Card>
+
+  <Card title="Safe APIs" icon="shield" href="/api-reference/safe">
+    Safe Transaction Tracking: APIs to keep track of transactions sent via Safe smart contracts.
   </Card>
 </CardGroup>
+
+## API Usage
+
+Most developers primarily use **TAC APIs** and **EVM APIs** for building applications on TAC. The **Safe APIs** provide specialized functionality for monitoring Safe smart contract transactions.
