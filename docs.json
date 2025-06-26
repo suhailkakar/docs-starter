@@ -51,22 +51,20 @@
               "build/sdk/introduction",
               "build/sdk/installation",
               {
-                "group": "Core Concepts",
+                "group": "Usage",
                 "pages": [
-                  "build/sdk/sdk-initialization",
-                  "build/sdk/wallet-integration",
-                  "build/sdk/sending-transactions",
-                  "build/sdk/transaction-tracking",
-                  "build/sdk/asset-bridging"
+                  "build/sdk/usage/sdk-initialization",
+                  "build/sdk/usage/wallet-integration",
+                  "build/sdk/usage/sending-transactions",
+                  "build/sdk/usage/transaction-tracking",
+                  "build/sdk/usage/asset-bridging"
                 ]
               },
               {
                 "group": "Advanced Usage",
                 "pages": [
-                  "build/sdk/cross-chain-operations",
-                  "build/sdk/simulation-testing",
-                  "build/sdk/token-address-mapping",
-                  "build/sdk/error-handling"
+                  "build/sdk/advanced-usage/simulation-testing",
+                  "build/sdk/advanced-usage/token-address-mapping"
                 ]
               },
               "build/sdk/changelog"
@@ -86,10 +84,7 @@
           {
             "group": "Network Information",
             "icon": "globe",
-            "pages": [
-              "build/network/network-details",
-              "build/network/rpc-endpoints"
-            ]
+            "pages": ["build/network-info/index"]
           }
         ]
       },
@@ -142,15 +137,18 @@
             "pages": ["api-reference/tac/get-started"]
           },
           {
-            "group": "TAC APIs",
+            "group": "TON Adapter APIs",
             "openapi": {
               "source": "api-reference/tac/openapi.yaml",
               "directory": "api-reference/tac"
             }
           },
           {
-            "group": "EVM APIs",
-            "pages": []
+            "group": "Safe APIs",
+            "openapi": {
+              "source": "api-reference/safe/openapi.yaml",
+              "directory": "api-reference/safe"
+            }
           }
         ]
       }
