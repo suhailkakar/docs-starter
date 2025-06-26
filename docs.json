@@ -33,14 +33,12 @@
             "icon": "code",
             "pages": [
               {
-                "group": "Development Tools",
+                "group": "Deploy to TAC",
                 "pages": [
                   "build/smart-contracts/tools/hardhat",
                   "build/smart-contracts/tools/foundry"
                 ]
               },
-
-              "build/smart-contracts/deploy-to-tac",
               "build/smart-contracts/develop-tac-proxy"
             ]
           },
