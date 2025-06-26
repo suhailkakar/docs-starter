@@ -142,13 +142,6 @@
               "source": "api-reference/tac/openapi.yaml",
               "directory": "api-reference/tac"
             }
-          },
-          {
-            "group": "Safe APIs",
-            "openapi": {
-              "source": "api-reference/safe/openapi.yaml",
-              "directory": "api-reference/safe"
-            }
           }
         ]
       }
