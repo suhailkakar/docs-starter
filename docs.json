@@ -64,8 +64,7 @@
                   "build/sdk/advanced-usage/simulation-testing",
                   "build/sdk/advanced-usage/token-address-mapping"
                 ]
-              },
-              "build/sdk/changelog"
+              }
             ]
           },
 
@@ -95,7 +94,8 @@
             "pages": [
               "core-concepts/overview/what-is-tac",
               "core-concepts/overview/architecture",
-              "core-concepts/overview/hybrid-dapps"
+              "core-concepts/overview/hybrid-dapps",
+              "core-concepts/overview/security"
             ]
           },
           {
@@ -186,6 +186,20 @@
               "source": "api-reference/tac/openapi.yaml",
               "directory": "api-reference/tac"
             }
+          }
+        ]
+      },
+      {
+        "tab": "Release Notes",
+        "groups": [
+          {
+            "group": "Release Notes",
+            "pages": [
+              "release-notes/overview",
+              "release-notes/sdk",
+              "release-notes/ton-adapter",
+              "release-notes/evm"
+            ]
           }
         ]
       }
