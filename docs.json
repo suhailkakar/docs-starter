@@ -73,16 +73,17 @@
             "group": "Tooling & Resources",
             "icon": "inbox",
             "pages": [
+              "build/tooling/contract-addresses",
+              "build/tooling/developer-console",
               "build/tooling/block-explorer",
               "build/tooling/bridge",
-              "build/tooling/faucet",
-              "build/tooling/deploy-contracts"
+              "build/tooling/faucet"
             ]
           },
           {
             "group": "Network Information",
             "icon": "globe",
-            "pages": ["build/network-info/index"]
+            "pages": [""]
           }
         ]
       },
@@ -128,6 +129,52 @@
         ]
       },
       {
+        "tab": "Ecosystem",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": ["ecosystem/index"]
+          },
+          {
+            "group": "Oracles",
+            "pages": [
+              "ecosystem/oracles/redstone",
+              "ecosystem/oracles/stork",
+              "ecosystem/oracles/eoracle"
+            ]
+          },
+          {
+            "group": "Interoperability",
+            "pages": [
+              "ecosystem/interoperability/layerzero",
+              "ecosystem/interoperability/hyperlane"
+            ]
+          },
+          {
+            "group": "Data and Indexers",
+            "pages": [
+              "ecosystem/data-indexers/goldsky",
+              "ecosystem/data-indexers/dune"
+            ]
+          },
+          {
+            "group": "Development Tools",
+            "pages": [
+              "ecosystem/development-tools/thirdweb",
+              "ecosystem/development-tools/tenderly"
+            ]
+          },
+          {
+            "group": "Multi-Sig Wallets",
+            "pages": ["ecosystem/multi-sig-wallets/safe"]
+          },
+          {
+            "group": "RPCs",
+            "pages": ["ecosystem/rpcs/ankr"]
+          }
+        ]
+      },
+      {
         "tab": "API Reference",
         "groups": [
           {
@@ -142,12 +189,19 @@
             }
           }
         ]
+      },
+      {
+        "tab": "Developer Console",
+        "href": "https://console.tac.build"
       }
     ]
   },
   "logo": {
     "light": "/images/logo/light.svg",
     "dark": "/images/logo/dark.svg"
+  },
+  "background": {
+    "decoration": "windows"
   },
   "navbar": {
     "primary": {
