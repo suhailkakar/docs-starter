@@ -74,7 +74,6 @@
             "icon": "inbox",
             "pages": [
               "build/tooling/contract-addresses",
-              "build/tooling/developer-console",
               "build/tooling/block-explorer",
               "build/tooling/bridge",
               "build/tooling/faucet"
@@ -83,7 +82,7 @@
           {
             "group": "Network Information",
             "icon": "globe",
-            "pages": [""]
+            "pages": ["build/network-info/index"]
           }
         ]
       },
@@ -189,10 +188,6 @@
             }
           }
         ]
-      },
-      {
-        "tab": "Developer Console",
-        "href": "https://console.tac.build"
       }
     ]
   },
