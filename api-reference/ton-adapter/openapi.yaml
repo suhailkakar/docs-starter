@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
-  title: TAC API
-  description: TAC API for transaction tracking and simulation
+  title: TON Adapter API
+  description: TON Adapter API for transaction tracking and simulation on TAC
 servers:
   - url: https://data.turin.tac.build/
 paths:

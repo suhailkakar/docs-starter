@@ -173,18 +173,20 @@
           }
         ]
       },
+
       {
         "tab": "API Reference",
+
         "groups": [
           {
             "group": "Overview",
-            "pages": ["api-reference/tac/get-started"]
+            "pages": ["api-reference/get-started"]
           },
           {
             "group": "TON Adapter APIs",
             "openapi": {
-              "source": "api-reference/tac/openapi.yaml",
-              "directory": "api-reference/tac"
+              "source": "api-reference/ton-adapter/openapi.yaml",
+              "directory": "api-reference/ton-adapter"
             }
           }
         ]
