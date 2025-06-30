@@ -3,7 +3,8 @@ info:
   title: TON Adapter API
   description: TON Adapter API for transaction tracking and simulation on TAC
 servers:
-  - url: https://data.turin.tac.build/
+  - url: https://data.spb.tac.build/
+  - url: https://data.tac.build/
 paths:
   /status:
     post:
