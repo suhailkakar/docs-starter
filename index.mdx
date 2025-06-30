@@ -4,15 +4,22 @@ description: "Meet the next generation of documentation. AI-native, beautiful ou
 mode: "custom"
 ---
 
-export const HeroCard = ({ filename, title, description, href }) => {
+export const HeroCard = ({
+  filename,
+  title,
+  description,
+  href,
+  lightModeImage,
+  darkModeImage,
+}) => {
   return (
     <a className="group cursor-pointer pb-8" href={href}>
       <img
-        src={`/images/introduction/${filename}.png`}
+        src={lightModeImage}
         className="block dark:hidden pointer-events-none group-hover:scale-105 transition-all duration-100"
       />
       <img
-        src={`/images/introduction/${filename}-dark.png`}
+        src={darkModeImage}
         className="block dark:block hidden pointer-events-none group-hover:scale-105 transition-all duration-100"
       />
       <h3 className="mt-5 text-gray-900 dark:text-zinc-50 font-medium">
@@ -48,36 +55,48 @@ export const HeroCard = ({ filename, title, description, href }) => {
     <div className="px-6 lg:px-0 mt-12 lg:mt-24 grid sm:grid-cols-3 gap-x-6 gap-y-4">
       <HeroCard
         filename="quick"
+        lightModeImage="https://i.ibb.co/gM5hWq6P/quick.png.png"
+        darkModeImage="https://i.ibb.co/whv2D8qF/quick-dark.png"
         title="Quickstart"
         description="Deploy your first working hybrid dApp in under 5 minutes"
         href="/build/quickstart"
       />
       <HeroCard
         filename="frontend"
+        lightModeImage="https://i.ibb.co/YTbFGpgv/frontend.png"
+        darkModeImage="https://i.ibb.co/ns0Jd1j6/frontend-dark.png"
         title="Frontend SDK"
         description="Connect TON wallets to your EVM smart contracts seamlessly"
         href="/build/sdk/introduction"
       />
       <HeroCard
         filename="contract"
+        lightModeImage="https://i.ibb.co/4RmSqwnp/contract.png"
+        darkModeImage="https://i.ibb.co/270yT4Sj/contract-dark.png"
         title="Smart Contracts"
         description="Deploy Solidity contracts and build cross-chain proxy app connections"
         href="/build/smart-contracts/tools/hardhat"
       />
       <HeroCard
         filename="example"
+        lightModeImage="https://i.ibb.co/DgHBQ5rY/example.png"
+        darkModeImage="https://i.ibb.co/DD9rV6Zy/example-dark.png"
         title="Examples"
         description="Clone and customize working hybrid dApps for your project"
         href="https://github.com/tacbuild/example-dapps"
       />
       <HeroCard
         filename="api"
+        lightModeImage="https://i.ibb.co/C3HLqrtg/api.png"
+        darkModeImage="https://i.ibb.co/4wYw2QWV/api-dark.png"
         title="API Reference"
         description="Complete technical documentation and SDK references for TAC developers"
         href="/api-reference/"
       />
       <HeroCard
         filename="quick"
+         lightModeImage="https://i.ibb.co/gM5hWq6P/quick.png.png"
+        darkModeImage="https://i.ibb.co/whv2D8qF/quick-dark.png"
         title="Network Info"
         description="Testnet details, contract addresses, and essential TAC developer tools"
         href="/build/network-info"
