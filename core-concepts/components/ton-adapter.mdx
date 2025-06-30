@@ -1,9 +1,13 @@
 ---
 title: TON Adapter
-description: "The decentralized messaging system that securely connects TON and TAC EVM through sequencer consensus"
+description: "The distributed messaging system that securely connects TON and TAC EVM through sequencer consensus"
 ---
 
 The TON Adapter is the cross-chain messaging backbone of TAC, enabling secure communication between TON and TAC EVM Layer. Unlike traditional bridges that simply move assets, the TON Adapter is designed specifically for application-level interactions, allowing TON users to execute complex operations on EVM smart contracts seamlessly.
+
+<Info>
+  **Current Network Status**: The sequencer network is currently distributed but not decentralized. Full decentralization is on the roadmap as the network matures.
+</Info>
 
 ## Core Purpose
 
@@ -36,7 +40,7 @@ This message structure ensures that sequencers have all the information needed t
 
 ## Sequencer Network
 
-The security and reliability of the TON Adapter depends on a decentralized network of sequencers that validate and process cross-chain messages.
+The security and reliability of the TON Adapter depends on a distributed network of sequencers that validate and process cross-chain messages.
 
 ### Individual Sequencer Operations
 
@@ -231,8 +235,7 @@ The TON Adapter is designed to balance security with reasonable performance for 
     hours. The exact timing depends on epoch duration settings and the number of
     sequencer groups participating in consensus. 
     
-    While slower than single-chain transactions, this latency is acceptable for most application use cases and
-    significantly faster than traditional bridge operations.
+    This latency is acceptable for most application use cases.
   </Tab>
 
 <Tab title="Throughput">

@@ -1,13 +1,13 @@
 ---
 title: TAC EVM Layer
-description: "A complete Layer 1 blockchain providing full EVM compatibility with enhanced performance and security"
+description: "A complete Layer 1 blockchain providing full EVM compatibility built on Cosmos SDK"
 ---
 
-The TAC EVM Layer is a fully sovereign Layer 1 blockchain that provides complete Ethereum Virtual Machine compatibility. Built on the latest Cosmos SDK with native EVM integration, it serves as the execution environment where all hybrid dApp smart contracts run, offering developers the familiar Ethereum experience with significantly improved performance.
+The TAC EVM Layer is a fully sovereign Layer 1 blockchain that provides complete Ethereum Virtual Machine compatibility. Built on the latest Cosmos SDK with native EVM integration, it serves as the execution environment where all hybrid dApp smart contracts run, offering developers the familiar Ethereum experience.
 
 ## Technical Foundation
 
-TAC EVM Layer combines proven blockchain technologies to deliver a robust execution environment that feels familiar to Ethereum developers while providing meaningful improvements.
+TAC EVM Layer combines proven blockchain technologies to deliver a robust execution environment that feels familiar to Ethereum developers.
 
 <Frame caption="TAC EVM Layer built on battle-tested infrastructure">
   <img
@@ -42,34 +42,17 @@ existing Solidity contracts.
 
 </Accordion>
 
-<Accordion title="Modern Consensus Engine" icon="handshake">
-
-TAC EVM Layer uses a Byzantine Fault Tolerant consensus mechanism that
-provides immediate finality. Unlike Ethereum's probabilistic finality,
-transactions on TAC EVM Layer are final the moment they're included in a
-block.
-
-The consensus engine also prevents chain reorganizations entirely -
-once a block is committed, it cannot be changed, providing stronger guarantees
-than Ethereum's eventual consistency model.
-
-</Accordion>
 
 </AccordionGroup>
 
 ## Performance Characteristics
 
-TAC EVM Layer is optimized for speed and throughput while maintaining the security guarantees developers expect from a production blockchain.
+TAC EVM Layer maintains the security guarantees developers expect from a production blockchain built on Cosmos SDK.
 
 <Tabs>
-  <Tab title="Speed & Finality">
+  <Tab title="Finality">
 
-    **3-second block times** provide rapid transaction confirmation,
-    significantly faster than Ethereum's 12-second average. Combined with
-    Tendermint's instant finality, users see confirmed transactions in seconds
-    rather than minutes.
-
-    **Same-block finality** means transactions are
+    **Immediate finality** means transactions are
     irreversibly confirmed the moment they appear in a block. There's no waiting
     period for additional confirmations - one confirmation is enough.
 
@@ -81,16 +64,11 @@ TAC EVM Layer is optimized for speed and throughput while maintaining the securi
 
 <Tab title="Throughput">
 
-**20 million gas per block** allows for high transaction throughput and
-complex smart contract executions. This limit can accommodate hundreds of
-simple transfers or dozens of complex DeFi operations per block.
-
-**Configurable block size** means the network can adapt to demand through
-governance proposals, allowing the community to balance throughput with
+**Configurable gas limits** allow the network to adapt to demand through
+governance proposals, balancing throughput with
 decentralization requirements.
 
-**Parallel execution potential** exists within the Cosmos SDK framework, enabling future optimizations for even higher
-throughput as the network grows.
+**Parallel execution potential** exists within the Cosmos SDK framework, enabling future optimizations as the network grows.
 
 </Tab>
 
@@ -99,9 +77,6 @@ throughput as the network grows.
     **EIP-1559 gas management** provides predictable transaction fees with
     automatic fee adjustment based on network demand. Users get the same fee
     predictability they expect from modern Ethereum.
-
-    **Lower base costs** result from the more efficient consensus mechanism and higher throughput, making
-    complex operations more affordable than on Ethereum mainnet.
 
     **Fee token flexibility** allows transaction fees to be paid in TAC tokens, while still
     supporting ETH-denominated gas calculations for contract compatibility.
