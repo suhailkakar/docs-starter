@@ -63,7 +63,7 @@ The sequencer network handles message validation and consensus formation:
 <Accordion title="INCLUDED_IN_TAC_CONSENSUS" icon="network">
   - **Merkle Tree Formation**: Sequencers compile validated transactions into Merkle trees at the end of each epoch period.
 
-- **Group Consensus**: Sequencer groups work to achieve 66% internal agreement on their Merkle tree root hashes.
+- **Group Consensus**: Sequencer groups work to achieve 3/5 internal agreement on their Merkle tree root hashes.
 
 - **Network Submission**: Successfully agreed-upon trees are submitted to the network for cross-group validation and consensus.
 
@@ -134,10 +134,11 @@ Different transaction patterns result in different lifecycle flows, each with di
 
   <Tab title="ROLLBACK">
 
-    - **Failed Operations**: Transactions that encounter errors during execution and trigger automatic asset recovery procedures.
-    - **Triggers**: EVM execution failures, invalid parameters, insufficient gas, or other error conditions.
-    - **Asset Protection**: The rollback process ensures user assets are returned safely even when operations fail.
-    - **Recovery**: Rollback operations follow their own consensus path to ensure secure asset recovery.
+    - **Automatic Failure Detection**: System automatically detects EVM execution failures, invalid parameters, insufficient gas, or timeout conditions.
+    - **Rollback Merkle Tree Creation**: Failed messages are grouped into special rollback Merkle trees with same consensus properties as regular transactions.
+    - **Consensus-Secured Recovery**: Rollback trees submitted through identical sequencer consensus process for transparent and secure approval.
+    - **Automatic Asset Return**: Upon rollback consensus finalization, locked assets automatically returned to original users without manual intervention.
+    - **No Manual Recovery Required**: Users always receive either successful execution or secure asset return - no funds lost to failed operations.
 
   </Tab>
 </Tabs>
@@ -259,18 +260,59 @@ The transaction lifecycle includes comprehensive error handling at every stage t
 
 - **Network Issues**: Temporary network problems are handled through retry mechanisms and status preservation.
 
-### Rollback Procedures
+### Comprehensive Rollback System
 
 <Warning>
   When transactions fail after assets have been transferred, TAC automatically
-  protects user funds through secure rollback mechanisms.
+  protects user funds through secure rollback mechanisms with the same security
+  guarantees as successful transactions.
 </Warning>
 
-- **Automatic Triggers**: Failed operations automatically create rollback messages that return assets to their original owners.
+#### Rollback Merkle Tree Creation
 
-- **Consensus Protection**: Rollback operations go through the same consensus validation as regular transactions.
+When execution failures occur on TAC EVM Layer, the system immediately implements a sophisticated recovery process:
 
-- **Asset Recovery**: Users receive their original assets back even when target operations cannot complete successfully.
+<AccordionGroup>
+  <Accordion title="Failure Detection & Recording" icon="triangle-alert">
+    **Immediate failure identification:** - Failed messages identified and
+    tagged during execution monitoring - Failure reasons recorded (gas failure,
+    contract revert, invalid parameters) - Asset state tracked to determine
+    required recovery operations - Automatic categorization of reversible vs
+    non-reversible failures
+  </Accordion>
+
+  <Accordion title="Rollback Tree Formation" icon="network">
+    **Deterministic rollback processing:** - Failed messages grouped into
+    special rollback Merkle trees - Same deterministic properties as regular
+    transaction trees - Clear identification of affected users and asset amounts
+    - Network-wide agreement simplified through structured rollback data
+  </Accordion>
+
+  <Accordion title="Consensus on Rollbacks" icon="handshake">
+    **Secure rollback approval:** - Rollback trees submitted through identical
+    sequencer consensus process - 3/5 sequencer agreement required for rollback
+    execution - Same cryptographic security as successful transactions -
+    Transparent and immutable rollback decisions
+  </Accordion>
+</AccordionGroup>
+
+#### Automatic Asset Recovery
+
+Upon finalization of rollback consensus, the recovery process provides comprehensive user protection:
+
+**Safe Return Mechanisms:**
+
+- Locked assets on TON blockchain automatically released to original owners
+- No manual intervention required from users or developers
+- Asset amounts precisely match original transaction parameters
+- Recovery transactions include original transaction references for auditability
+
+**Rollback as Core UX Guarantee:**
+
+- Users always have clear outcome: successful execution OR safe asset return
+- Eliminates fund loss risk from transaction failures
+- Maintains user confidence in cross-chain interactions
+- Transparent failure communication with detailed error reporting
 
 ## Monitoring and Debugging
 

@@ -6,7 +6,9 @@ description: "The distributed messaging system that securely connects TON and TA
 The TON Adapter is the cross-chain messaging backbone of TAC, enabling secure communication between TON and TAC EVM Layer. Unlike traditional bridges that simply move assets, the TON Adapter is designed specifically for application-level interactions, allowing TON users to execute complex operations on EVM smart contracts seamlessly.
 
 <Info>
-  **Current Network Status**: The sequencer network is currently distributed but not decentralized. Full decentralization is on the roadmap as the network matures.
+  **Current Network Status**: The sequencer network is currently distributed but
+  not decentralized. Full decentralization is on the roadmap as the network
+  matures.
 </Info>
 
 ## Core Purpose
@@ -72,7 +74,7 @@ The network organizes sequencers into groups to enhance security through redunda
 
 <Accordion title="Internal Consensus" icon="handshake">
 
-Within each group, sequencers must reach 66% agreement before submitting their
+Within each group, sequencers must reach 3/5 agreement before submitting their
 Merkle tree to the network. This internal consensus requirement prevents
 individual sequencer failures or attacks from affecting the group's
 participation.

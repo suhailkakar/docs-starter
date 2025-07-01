@@ -3,7 +3,7 @@ title: TAC EVM Layer
 description: "A complete Layer 1 blockchain providing full EVM compatibility built on Cosmos SDK"
 ---
 
-The TAC EVM Layer is a fully sovereign Layer 1 blockchain that provides complete Ethereum Virtual Machine compatibility. Built on the latest Cosmos SDK with native EVM integration, it serves as the execution environment where all hybrid dApp smart contracts run, offering developers the familiar Ethereum experience.
+The TAC EVM Layer is a fully-fledged Layer-1 blockchain environment based on Cosmos SDK technology. It provides a secure and scalable execution environment specifically optimized for Ethereum-compatible smart contracts, allowing existing EVM dApps to be deployed without modifications or code rewrites, achieving ≈2-second finality through dPoS.
 
 ## Technical Foundation
 
@@ -52,11 +52,11 @@ TAC EVM Layer maintains the security guarantees developers expect from a product
 <Tabs>
   <Tab title="Finality">
 
-    **Immediate finality** means transactions are
-    irreversibly confirmed the moment they appear in a block. There's no waiting
-    period for additional confirmations - one confirmation is enough.
+    **≈2-second finality** through Tendermint consensus mechanism provides
+    deterministic execution and fast block confirmation. Transactions are
+    irreversibly confirmed with minimal latency.
 
-    **No reorganizations** are possible due to Tendermint's consensus model. This
+    **No reorganizations** are possible due to Tendermint's BFT consensus model. This
     eliminates edge cases where transactions might be reversed or reordered
     after confirmation.
 

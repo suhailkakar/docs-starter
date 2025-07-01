@@ -181,6 +181,67 @@ TAC implements 24/7 security monitoring and incident response capabilities to de
 
 **Documentation**: Comprehensive security documentation and incident response procedures maintain operational readiness.
 
+## Future Security Enhancements
+
+TAC has planned significant security upgrades that will provide additional layers of protection and decentralization.
+
+### Babylon Bitcoin Restaking Integration
+
+TAC plans integration with Babylon's Bitcoin restaking protocol to add massive economic security:
+
+<AccordionGroup>
+  <Accordion title="Bitcoin as External Security Layer" icon="bitcoin">
+    **Leveraging Bitcoin's Economic Strength:**
+    
+    - Bitcoin holders delegate BTC stakes to Babylon validators
+    - Validators cryptographically verify TAC EVM blocks and Merkle roots
+    - Self-custodial delegation maintains decentralization without custody risk
+    - Exponentially increases attack costs through Bitcoin's security budget
+  </Accordion>
+  
+  <Accordion title="Slashing for Equivocation" icon="shield-alert">
+    **Economic Penalties for Malicious Behavior:**
+    
+    - Validators providing conflicting signatures face automatic slashing
+    - Double-signing detection through Babylon protocol mechanisms
+    - Direct economic penalties via Bitcoin blockchain enforcement
+    - Makes attacks economically irrational at Bitcoin-scale security
+  </Accordion>
+</AccordionGroup>
+
+### FROST Consensus Upgrade
+
+**Planned migration to FROST-Ed25519 threshold signatures with Distributed Key Generation (DKG):**
+
+<Tabs>
+  <Tab title="Threshold Security">
+    **Enhanced Cryptographic Security:**
+    
+    - Threshold signature creation requires t+1 out of n participants
+    - Attackers controlling up to t participants cannot forge signatures
+    - Ed25519 compatibility with existing verification systems
+    - Round-optimized design minimizes communication overhead
+  </Tab>
+  
+  <Tab title="Distributed Key Generation">
+    **Decentralized Key Management:**
+    
+    - Dealerless key generation - no single party knows complete secret
+    - High threshold support (k > n/2) for enhanced security
+    - Feldman VSS with verifiable encrypted shares
+    - Complaint handling without secret disclosure
+  </Tab>
+  
+  <Tab title="Proactive Security">
+    **Long-term Security Maintenance:**
+    
+    - Share refreshing capabilities for proactive security
+    - Dynamic committee composition changes
+    - Threshold value adaptation to security requirements
+    - Protection against gradual node compromise
+  </Tab>
+</Tabs>
+
 ## Community Security Programs
 
 TAC will launch comprehensive community-driven security programs following mainnet deployment.
