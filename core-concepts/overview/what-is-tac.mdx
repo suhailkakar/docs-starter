@@ -3,7 +3,7 @@ title: What is TAC
 description: "TAC bridges TON's 1 billion users with EVM's application ecosystem"
 ---
 
-TAC is a **Layer 1 blockchain** and a **Network Extension** that connects TON's massive user base with Ethereum's rich application ecosystem. It solves a fundamental problem: EVM developers can't easily reach TON's 1 billion Telegram users, and TON users can't access the vast world of EVM applications.
+TAC is an **EVM for Telegram**: a Layer 1 with a TON-specific CrossChain Layer that connects Ethereum dApps and developers with Telegram's users without exposing users to bridges, extra wallets, or wrapped assets. TAC eliminates the gap between TON's billion-user reach and EVM's programmability through **Hybrid dApps** - EVM dApps natively accessible by any TON wallet holder.
 
 <Frame caption="TAC creates a bridge between TON users and EVM applications">
   <img
@@ -37,12 +37,13 @@ TAC is a **Layer 1 blockchain** and a **Network Extension** that connects TON's 
 TAC operates through three core innovations that work together seamlessly:
 
 <Accordion title="Layer 1 EVM Blockchain" >
-TAC runs a full Layer 1 blockchain built on **Cosmos SDK**, providing complete EVM compatibility. This means:
+TAC EVM Layer is a CosmosSDK-based blockchain that runs unmodified Solidity contracts and achieves **≈2-second finality** through dPoS. This means:
 
 - Deploy existing Solidity contracts without modifications
-- Use familiar tools like Hardhat, Remix, and MetaMask
-- Built on proven Cosmos SDK technology
-- Secured by delegated Proof of Stake (dPoS) and **Babylon Bitcoin Staking**
+- Use familiar tools like Hardhat, Remix, and MetaMask  
+- Built on proven Cosmos SDK with Tendermint consensus
+- Secured by delegated Proof of Stake with economic incentives
+- **Future Enhancement**: Babylon Bitcoin restaking for additional economic security
 
 The EVM layer handles all application logic and state, while the TON Adapter manages cross-chain communication.
 
@@ -52,7 +53,7 @@ The EVM layer handles all application logic and state, while the TON Adapter man
 A distributed network of **sequencers** that securely routes messages between TON and TAC EVM:
 
 - **Validation**: Sequencers verify all transactions and asset transfers
-- **Consensus**: Groups require 66% agreement before proceeding
+- **Consensus**: 3/5 sequencer consensus with BFT guarantees
 - **Security**: Multiple validation layers prevent double-spending and fraud
 - **Epochs**: Time-based processing ensures orderly message handling
 
@@ -78,14 +79,15 @@ When a TON user interacts with an EVM app, proxy contracts handle all the comple
 
 <Tabs>
   <Tab title="For Developers">
-    ### Deploy Once, Reach Billions - **No code rewrites**: 
+    ### Deploy Once, Reach Billions
     
-    Deploy existing Solidity contracts directly
-    - **Familiar tooling**: Use Hardhat, Truffle,
-    Remix, and other EVM tools 
-    - **Automatic proxies**: TAC generates proxy contracts for you 
+    - **No code rewrites**: Deploy existing Solidity contracts directly
+    - **Familiar tooling**: Use Hardhat, Truffle, Remix, and other EVM tools 
+    - **Hybrid dApp conversion**: Every deployment becomes a Hybrid dApp accessible from TON
     - **Cross-chain SDK**: Simple JavaScript library handles TON integration
-    <Tip>EVM developers can expand to TON's ecosystem in days, not months</Tip>
+    - **Telegram MiniApps**: Bring EVM-powered logic directly inside Telegram
+    
+    <Tip>The world's largest developer community meets the largest user base</Tip>
   </Tab>
 
 <Tab title="For Users">
@@ -112,7 +114,7 @@ When a TON user interacts with an EVM app, proxy contracts handle all the comple
 
 ## Transaction Flow Example
 
-Here's what happens when a TON user swaps tokens on an EVM DEX:
+Here's what happens when a TON user swaps tokens on an EVM DEX through TAC's hybrid dApp system:
 
 <Steps>
   <Step title="User Action" icon="user">
@@ -130,9 +132,9 @@ Here's what happens when a TON user swaps tokens on an EVM DEX:
   consensus across multiple groups.
 </Step>
 
-<Step title="EVM Execution" icon="play">
-  The EVM proxy receives the validated message, mints wrapped tokens, and
-  executes the swap on the target DEX contract.
+<Step title="Executor Selection & EVM Execution" icon="play">
+  A designated executor submits Merkle proofs to TAC EVM Layer, triggers asset
+  minting/unlocking, and executes the swap on the target DEX contract via proxy.
 </Step>
 
   <Step title="Result Delivery" icon="check">
@@ -144,8 +146,9 @@ Here's what happens when a TON user swaps tokens on an EVM DEX:
 ## What Makes TAC Different
 
 <Warning>
-  TAC isn't just another bridge or Layer 2. It's a purpose-built Layer 1
-  designed specifically to unify TON and EVM ecosystems.
+  TAC is not a cross-chain workaround—it is a native execution path between
+  two ecosystems that were never meant to connect. By removing barriers instead
+  of building over them, TAC aligns UX, liquidity, and developer incentives.
 </Warning>
 
 Unlike traditional bridges that move assets between existing chains, TAC creates **hybrid applications** that natively serve both ecosystems. Users don't "bridge to another chain"—they use applications that happen to run on EVM but feel completely native to TON.

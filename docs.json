@@ -123,7 +123,10 @@
           {
             "group": "Token Economics",
             "icon": "coins",
-            "pages": ["core-concepts/token-economics/token-operations"]
+            "pages": [
+              "core-concepts/token-economics/token-operations",
+              "core-concepts/token-economics/tac-tokenomics"
+            ]
           }
         ]
       },

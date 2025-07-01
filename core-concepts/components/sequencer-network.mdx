@@ -6,7 +6,9 @@ description: "The distributed network of nodes that validates and processes cros
 The Sequencer Network is the operational backbone of the TON Adapter, consisting of distributed nodes that collect, validate, and reach consensus on cross-chain messages. These sequencers ensure that messages between TON and TAC EVM are processed securely and reliably through a multi-layered validation system.
 
 <Info>
-  **Current Network Status**: The sequencer network is currently distributed but not decentralized. Full decentralization is on the roadmap as the network matures.
+  **Current Network Status**: The sequencer network is currently distributed but
+  not decentralized. Full decentralization is on the roadmap as the network
+  matures.
 </Info>
 
 ## Core Functions
@@ -19,7 +21,7 @@ Sequencers perform several critical functions that enable secure cross-chain com
 
 - **Merkle Tree Formation**: At regular intervals determined by network parameters, sequencers compile validated transactions into Merkle trees. These trees provide cryptographic proof of transaction inclusion and enable efficient consensus.
 
-- **Consensus Participation**: Sequencers work together in groups to reach agreement on transaction validity, with each group requiring 66% internal consensus before submitting to the broader network.
+- **Consensus Participation**: Sequencers work together in groups to reach agreement on transaction validity, with each group requiring 3/5 internal consensus before submitting to the broader network.
 
 ## Sequencer Groups
 
@@ -43,13 +45,14 @@ The network organizes individual sequencers into groups to enhance security thro
 ### Economic Requirements
 
 <AccordionGroup>
-  <Accordion title="Collateral Staking" icon="coins">
-    Each sequencer group must maintain collateral above a minimum threshold set
-    by DAO governance. While the collateral amount doesn't affect voting power
-    within the consensus mechanism, it directly impacts profitability and
-    provides economic security. 
+  <Accordion title="Collateral Requirements" icon="coins">
+    Each sequencer group must maintain approved collateral above a minimum threshold:
     
-    Groups with higher collateral demonstrate stronger commitment to network security and receive proportionally higher rewards for their participation.
+    - **Liquid Staking Tokens**: stTON (TON Liquid Staking Tokens)
+    - **Ethereum LSTs**: wstETH, stETH (when Agglayer integration is live)
+    - **Other DAO-approved**: Additional liquid staking derivatives as voted by governance
+    - Minimum threshold set by DAO governance
+    - Higher collateral demonstrates stronger commitment and earns proportionally higher rewards
   </Accordion>
 
 <Accordion title="Stake Management" icon="chart-line">
@@ -71,14 +74,6 @@ The network organizes individual sequencers into groups to enhance security thro
 ## Consensus Mechanism
 
 The sequencer network achieves consensus through a multi-layer validation process that ensures security while maintaining operational efficiency.
-
-### Group-Level Consensus
-
-- **Internal Agreement**: Within each group, sequencers must reach 66% agreement before the group can submit its Merkle tree to the network. This high threshold ensures that temporary node issues or minor disagreements don't prevent group participation.
-
-- **Signature Collection**: As group members submit matching root hashes to the SequencerGroup smart contract, the signature counter increases. Only when signatures reach the required threshold does the tree advance to network-level consideration.
-
-- **Validation Requirements**: The SequencerGroup contract verifies that submitting wallets have proper authorization before accepting their signatures, preventing unauthorized participation.
 
 ### Network-Level Consensus
 
@@ -115,7 +110,7 @@ The sequencer network achieves consensus through a multi-layer validation proces
 </Step>
 
 <Step title="Group Consensus" icon="users">
-  Groups work to reach 66% internal agreement on their Merkle trees.
+  Groups work to reach 3/5 internal agreement on their Merkle trees.
   Successfully agreed-upon trees are submitted to the network for cross-group
   validation.
 </Step>
@@ -225,15 +220,75 @@ The sequencer network operates under distributed governance that manages partici
   </Tab>
 </Tabs>
 
+## Executor Mechanism
+
+TAC employs a separation of responsibilities between cross-chain message sequencing and execution, with designated executors handling the final transaction processing.
+
+### Executor Selection and Assignment
+
+<AccordionGroup>
+  <Accordion title="Permissionless Participation" icon="unlock">
+    **Open executor network:** - Any participant can become an executor without
+    central approval - No collateral requirements for executors (security
+    through cryptographic proofs) - Executors compete for transaction processing
+    opportunities - Selection based on assignment specified in cross-chain
+    messages
+  </Accordion>
+
+  <Accordion title="Assignment Mechanism" icon="target">
+    **Message-specific executor designation:** - Each cross-chain message
+    specifies which executor is authorized to process it - For round-trip
+    operations (TON → TAC → TON), two executors must be specified -
+    CrossChainLayer contract verifies executor authorization before execution -
+    Only designated executor can claim rewards for processing
+  </Accordion>
+</AccordionGroup>
+
+### Executor Responsibilities
+
+<Tabs>
+  <Tab title="Message Execution">
+    **Primary execution duties:** - Submit finalized message batches with Merkle
+    proofs to CrossChainLayer contract - Verify cryptographic proofs of
+    consensus approval - Trigger asset minting/unlocking operations before
+    contract calls - Execute target smart contract methods with validated
+    parameters
+  </Tab>
+
+  <Tab title="Fee Management">
+    **Reward collection and verification:** - Estimate gas usage before
+    execution using Merkle proofs - Verify attached fees cover execution costs
+    (gas + overhead) - Collect executor fees upon successful transaction
+    completion - Optional subsidization of small fee deficits for UX
+    preservation
+  </Tab>
+
+  <Tab title="Oracle Services">
+    **Future enhancement capabilities:** - Provide oracle data during message
+    execution (planned feature) - Access to up-to-date market data and external
+    information - Enhanced execution context for complex cross-chain operations
+  </Tab>
+</Tabs>
+
+### Security Through Cryptography
+
+**No Collateral Required:**
+
+- Executor security guaranteed through cryptographic proofs rather than economic staking
+- Merkle proofs ensure only consensus-approved messages can be executed
+- CrossChainLayer contract validates all proofs before allowing execution
+- Eliminates need for executor collateral or centralized approval processes
+
 ## Future Evolution
 
 The modular design of the sequencer network allows for future improvements and adaptations as the network grows and requirements evolve.
 
-- **Scalability Enhancements**: The network can potentially support more groups, shorter epochs, or more efficient consensus mechanisms as infrastructure and participation improve.
+### Planned Enhancements
 
-- **Additional Validation**: New types of transaction validation can be added to support more complex cross-chain operations or additional security requirements.
-
-- **Integration Expansion**: The sequencer network could potentially be extended to support additional blockchains beyond TON and TAC EVM in the future.
+- **FROST Consensus Upgrade**: Migration to FROST-Ed25519 threshold signatures with DKG
+- **Enhanced Oracle Integration**: Expanded oracle services during execution
+- **Scalability Improvements**: Support for more groups, shorter epochs, efficient consensus
+- **Additional Blockchain Support**: Potential expansion beyond TON and TAC EVM
 
 ## What's Next?
 

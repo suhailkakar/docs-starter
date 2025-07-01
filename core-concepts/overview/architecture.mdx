@@ -3,7 +3,7 @@ title: Architecture
 description: "How TAC's three-layer architecture enables seamless interaction between TON and EVM ecosystems"
 ---
 
-TAC's architecture solves cross-chain interaction through three interconnected layers: a full EVM blockchain, a secure messaging network, and intelligent proxy contracts. Together, they create an environment where TON users can interact with EVM applications as if they were native TON apps.
+TAC's architecture is designed to support secure and deterministic cross-chain communication while preserving native user experience on the TON side. The protocol relies on off-chain batching, standardized message structures, and on-chain consensus to execute contract-level operations across both networks.
 
 <Info>
   Some part of TAC's architecture is still under development and in roadmap.
@@ -40,7 +40,9 @@ The foundation of TAC is a complete Layer 1 blockchain that provides full EVM co
 The TON Adapter is a purpose-built messaging system that securely connects TON and TAC EVM. Unlike traditional bridges, it's designed specifically for application-level interactions.
 
 <Info>
-  **Current Network Status**: The sequencer network is currently distributed but not decentralized. Full decentralization is on the roadmap as the network matures.
+  **Current Network Status**: The sequencer network is currently distributed but
+  not decentralized. Full decentralization is on the roadmap as the network
+  matures.
 </Info>
 
 ### Core Functions
@@ -71,7 +73,7 @@ The TON Adapter handles five critical operations:
   </Step>
 
 <Step title="Sequencer Groups" icon="users">
-  Sequencers organize into groups that must reach 66% internal consensus. Each
+  Sequencers organize into groups that must reach 3/5 internal consensus. Each
   group validates transactions independently and stakes collateral as security.
 </Step>
 
@@ -193,7 +195,7 @@ Here's how all three layers work together for a complete cross-chain transaction
 **Multi-layer validation process:**
 
 - Individual sequencers form Merkle trees
-- Groups reach 66% internal consensus
+- Groups reach 3/5 internal consensus (BFT threshold)
 - Cross-group validation ensures network agreement
 - Cryptographic proofs generated for execution
 

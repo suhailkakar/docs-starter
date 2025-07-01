@@ -114,7 +114,7 @@ pragma solidity ^0.8.28;
 
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { TacProxyV1 } from "tac-l2-ccl/contracts/proxies/TacProxyV1.sol";
-import { TokenAmount, OutMessageV1, TacHeaderV1 } from "tac-l2-ccl/contracts/L2/Structs.sol";
+import { TokenAmount, OutMessageV1, TacHeaderV1 } from "tac-l2-ccl/contracts/core/Structs.sol";
 
 contract MyDeFiProxy is TacProxyV1 {
     IDeFiContract public targetContract;
