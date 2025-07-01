@@ -6,7 +6,9 @@ description: "The distributed network of nodes that validates and processes cros
 The Sequencer Network is the operational backbone of the TON Adapter, consisting of distributed nodes that collect, validate, and reach consensus on cross-chain messages. These sequencers ensure that messages between TON and TAC EVM are processed securely and reliably through a multi-layered validation system.
 
 <Info>
-  **Current Network Status**: The sequencer network is currently distributed but not decentralized. Full decentralization is on the roadmap as the network matures.
+  **Current Network Status**: The sequencer network is currently distributed but
+  not decentralized. Full decentralization is on the roadmap as the network
+  matures.
 </Info>
 
 ## Core Functions
@@ -71,14 +73,6 @@ The network organizes individual sequencers into groups to enhance security thro
 ## Consensus Mechanism
 
 The sequencer network achieves consensus through a multi-layer validation process that ensures security while maintaining operational efficiency.
-
-### Group-Level Consensus
-
-- **Internal Agreement**: Within each group, sequencers must reach 66% agreement before the group can submit its Merkle tree to the network. This high threshold ensures that temporary node issues or minor disagreements don't prevent group participation.
-
-- **Signature Collection**: As group members submit matching root hashes to the SequencerGroup smart contract, the signature counter increases. Only when signatures reach the required threshold does the tree advance to network-level consideration.
-
-- **Validation Requirements**: The SequencerGroup contract verifies that submitting wallets have proper authorization before accepting their signatures, preventing unauthorized participation.
 
 ### Network-Level Consensus
 
